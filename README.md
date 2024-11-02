@@ -45,7 +45,7 @@
     <img align="center" src="assets/gmail.png" alt="mail" height="50" width="55" />
   </a>
   &nbsp;&nbsp;&nbsp;
-  <a href="https://samarjit.me" target="_blank">
+  <a href="https://gourab.me" target="_blank">
     <img align="center" src="assets/web.png" alt="website" height="50" width="50" />
   </a>
   &nbsp;&nbsp;&nbsp;
@@ -55,40 +55,3 @@
 </p>
 
 <p align="right"><a href="#top"><img src="https://img.shields.io/static/v1?label&message=Go+to+Top&color=0b6ab3&style=flat&logo" alt="Go to Top" /></a></p>
-
-<!-- About Section-->
-<h3 align="center">About Me</h3>
-<p align="center">
-  Hello, my name is Gourab Gorai, and I am a passionate and ambitious individual dedicated to advancing the field of computer science. As a recipient of the prestigious Reliance Foundation Scholarship of 2022, I am driven to excel in technology and innovation. My strong foundation in Python and Machine Learning has enabled me to complete various impactful projects, including cryptocurrency value prediction and image recognition applications. These experiences have honed my technical expertise while also enhancing my problem-solving and critical-thinking abilities.
-</p>
-<p align="center">
-  29/1/13 Ashoke Avenue, A-Zone, Durgapur · PH- 7908039405 · <a href="mailto:gourabg30march@gmail.com">gourabg30march@gmail.com</a>
-</p>
-
-<!-- Projects Section-->
-<h3 align="center">Projects</h3>
-<ul>
-  <li><strong>Image Recognition System:</strong> Logistic Regression, Machine Learning</li>
-  <li><strong>Crypto Prediction:</strong> Linear Regression, Machine Learning</li>
-  <li><strong>Stock Price Prediction:</strong> RANDOM FOREST, Machine Learning</li>
-</ul>
-
-<!-- Education Section-->
-<h3 align="center">Education</h3>
-<ul>
-  <li><strong>DR. B.C. Roy Academy of Professional Courses:</strong> Bachelor of Computer Application (BCA) - Expected Graduation: 2025</li>
-  <li><strong>Bidhan Chandra Institution:</strong> Higher Secondary Education - Commerce - 2022</li>
-  <li><strong>Durgapur Ispat Vidyalaya:</strong> Secondary Education - 2020</li>
-</ul>
-
-<!-- Skills Section-->
-<h3 align="center">Skills</h3>
-<ul>
-  <li>Python (Intermediate)</li>
-  <li>Java (Beginner)</li>
-  <li>Machine Learning (Beginner)</li>
-  <li>DBMS (Beginner)</li>
-  <li>HTML (Intermediate)</li>
-  <li>CSS (Beginner)</li>
-  <li>JavaScript (Beginner)</li>
-</ul>
