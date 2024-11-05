@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Gourab Gorai's Resume" />
     <meta name="author" content="Gourab Gorai" />
-    <title>Gourab Gorai Portfolio</title>
+    <title>Gourab Gorai - Resume</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -31,15 +31,47 @@
             e.preventDefault();
         });
     </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6E6JCWBSP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R6E6JCWBSP');
-</script>
+    <!-- Dark Theme CSS -->
+    <style>
+        :root.dark-theme {
+            --bs-body-bg: #121212;
+            --bs-body-color: #e0e0e0;
+            --bs-link-color: #bb86fc;
+            --bs-link-hover-color: #3700b3;
+            --bs-border-color: #333;
+            --bs-table-bg: #1f1f1f;
+            --bs-table-color: #e0e0e0;
+            --bs-table-border-color: #333;
+            --bs-table-striped-bg: #333;
+            --bs-table-striped-color: #e0e0e0;
+            --bs-table-hover-bg: #444;
+            --bs-table-hover-color: #fff;
+            --bs-code-color: #d63384;
+            --bs-highlight-bg: #333;
+            --bs-primary: #1a1a1a; /* Dark black for primary */
+            --bs-secondary: #2a2a2a; /* Lighter black for secondary */
+            --bs-dark: #000; /* Pure black for dark */
+        }
+        body {
+            margin: 0;
+            font-family: var(--bs-body-font-family);
+            font-size: var(--bs-body-font-size);
+            font-weight: var(--bs-body-font-weight);
+            line-height: var(--bs-body-line-height);
+            color: var(--bs-body-color);
+            text-align: var(--bs-body-text-align);
+            background-color: var(--bs-body-bg);
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        a {
+            color: var(--bs-link-color);
+            text-decoration: underline;
+        }
+        a:hover {
+            color: var(--bs-link-hover-color);
+        }
+    </style>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -62,6 +94,9 @@
         </div>
     </nav>
 
+    <!-- Add Theme Toggle Button -->
+    <button id="theme-toggle" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px;">Toggle Theme</button>
+
     <!-- Page Content-->
     <div class="container-fluid p-0">
         <!-- About-->
@@ -69,7 +104,7 @@
             <div class="resume-section-content">
                 <h1 class="mb-0">Gourab <span class="text-primary">Gorai</span></h1>
                 <div class="subheading mb-5">
-                    WEST BENGAL, INDIA· PH- 7908039405 ·
+                    29/1/13 Ashoke Avenue, A-Zone, Durgapur · PH- 7908039405 ·
                     <a href="mailto:gourabg30march@gmail.com">gourabg30march@gmail.com</a>
                 </div>
                 <p class="lead mb-5">Hello, my name is Gourab Gorai, and I am a passionate and ambitious individual dedicated to advancing the field of computer science. As a recipient of the prestigious Reliance Foundation Scholarship of 2022, I am driven to excel in technology and innovation. My strong foundation in Python and Machine Learning has enabled me to complete various impactful projects, including cryptocurrency value prediction and image recognition applications. These experiences have honed my technical expertise while also enhancing my problem-solving and critical-thinking abilities.</p>
@@ -98,13 +133,6 @@
                         <div class="subheading mb-3">Linear Regression, Machine Learning</div>
                     </div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Stock Price Prediction</h3>
-                        <div class="subheading mb-3">RANDOM FOREST, Machine Learning</div>
-                    </div>
-                </div>
-
             </div>
         </section>
         <hr class="m-0" />
@@ -127,13 +155,6 @@
                         <div class="subheading mb-3">Higher Secondary Education - Commerce</div>
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">2022</span></div>
-                </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Durgapur Ispat Vidyalaya</h3>
-                        <div class="subheading mb-3">Secondary Education</div>
-                    </div>
-                    <div class="flex-shrink-0"><span class="text-primary">2020</span></div>
                 </div>
             </div>
         </section>
@@ -171,13 +192,13 @@
                 <h2 class="mb-5">Gallery</h2>
                 <div class="row">
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'RELIANCE FOUNDATION SCHOLAR')" />
+                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Image 1 Caption')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'NATIONAL INSTITUTE FOR INDUSTRIAL TRAINING BATCH, 2024')" />
+                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'Image 2 Caption')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'ANTI-RAGGING CEREMONY AT COLLEGE')" />
+                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Image 3 Caption')" />
                     </div>
                 </div>
             </div>
@@ -199,10 +220,10 @@
                         <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT [RELIANCE FOUNDATION SKILLING ACADEMY]')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE [NAUKRI CAMPUS]')" />
+                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE [NAUKRI CAMPUS]')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON [INFOSYS SPRINGBOARD]')" />
+                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON [INFOSYS SPRINGBOARD]')" />
                     </div>
                 </div>
             </div>
@@ -231,6 +252,12 @@
                 var myModal = new bootstrap.Modal(document.getElementById('imageModal'));
                 myModal.show();
             }
+
+            // Theme toggle script
+            const toggleButton = document.getElementById('theme-toggle');
+            toggleButton.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark-theme');
+            });
         </script>
     </div>
     <!-- Bootstrap core JS-->
