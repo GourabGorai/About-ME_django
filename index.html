@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Gourab Gorai's Resume" />
     <meta name="author" content="Gourab Gorai" />
-    <title>Gourab Gorai Portfolio</title>
+    <title>Gourab Gorai - Portfolio</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -71,6 +71,61 @@
         a:hover {
             color: var(--bs-link-hover-color);
         }
+        /* Modal styling for video */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            display: inline-block;
+            margin: 10% auto;
+            width: 80%;
+        }
+
+        .video-modal-content {
+            width: 100%;
+            height: auto;
+        }
+
+        .close-video {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-video:hover,
+        .close-video:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #playPauseBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body id="page-top">
@@ -125,21 +180,23 @@
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Image Recognition System</h3>
                         <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/image_recog.mkv">Play Demo</button>
                     </div>
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Crypto Prediction</h3>
                         <div class="subheading mb-3">Linear Regression, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mp4">Play Demo</button>
                     </div>
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Stock Price Prediction</h3>
-                        <div class="subheading mb-3">RANDOM FOREST, Machine Learning</div>
+                        <div class="subheading mb-3">Random Forest, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/stock_price_prediction.mp4">Play Demo</button>
                     </div>
                 </div>
-
             </div>
         </section>
         <hr class="m-0" />
@@ -207,13 +264,13 @@
         <h2 class="mb-5">Gallery</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Merchandise of Reliance Foundation', 'A merchandise had been awarded to all the selected scholars of Reliance Foundation.')" />
+                <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Image 1 Caption', 'This is a detailed description for Image 1. It provides more context and background about the image content, purpose, and relevance.')" />
             </div>
             <div class="col-md-4 mb-4">
-                <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'N.I.I.T 2024 Machine Learning Batch', 'The batch of National Institute of Instrial training,Kolkata, Machine Learning Batch')" />
+                <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'Image 2 Caption', 'Detailed description for Image 2. This image represents another aspect of the gallery, highlighting specific themes or activities.')" />
             </div>
             <div class="col-md-4 mb-4">
-                <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', 'An Anti-Ragging Ceremony was organized in Dr. B.C. Roy Academy of Prefessional Courses.')" />
+                <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Image 3 Caption', 'Description for Image 3. This section delves into the meaning or background of the image and why it is part of the collection.')" />
             </div>
         </div>
     </div>
@@ -261,6 +318,59 @@
         </div>
     </div>
 </div>
+<div id="videoModal" class="video-modal">
+        <span class="close-video">&times;</span>
+        <div class="video-container">
+            <video id="videoPlayer" class="video-modal-content" disablePictureInPicture controlsList="nodownload noplaybackrate" autoplay>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-controls">
+                <button id="playPauseBtn" class="btn btn-primary">Play</button>
+            </div>
+        </div>
+</div>
+    <script>
+        const videoModal = document.getElementById('videoModal');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const closeVideo = document.querySelector('.close-video');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        document.querySelectorAll('.play-video').forEach(button => {
+            button.addEventListener('click', function () {
+                const videoSrc = this.getAttribute('data-video');
+                videoPlayer.src = videoSrc;
+                videoModal.style.display = 'block';
+                videoPlayer.play();
+                playPauseBtn.innerText = 'Pause';
+            });
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+                playPauseBtn.innerText = 'Pause';
+            } else {
+                videoPlayer.pause();
+                playPauseBtn.innerText = 'Play';
+            }
+        });
+
+        closeVideo.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            videoPlayer.pause();
+            videoPlayer.src = '';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === videoModal) {
+                videoModal.style.display = 'none';
+                videoPlayer.pause();
+                videoPlayer.src = '';
+            }
+        });
+    </script>
+
         <script>
             function openModal(imgSrc, imgTitle, imgDescription) {
         document.getElementById("modalImage").src = imgSrc;
