@@ -183,32 +183,45 @@
         <hr class="m-0" />
 
         <!-- Projects-->
-        <section class="resume-section" id="experience">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Projects</h2>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Image Recognition System</h3>
-                        <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/image_recog.mkv">Play Demo</button>
-                    </div>
-                </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Crypto Prediction</h3>
-                        <div class="subheading mb-3">Linear Regression, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mp4">Play Demo</button>
-                    </div>
-                </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Stock Price Prediction</h3>
-                        <div class="subheading mb-3">Random Forest, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/stock_price_prediction.mkv">Play Demo</button>
-                    </div>
-                </div>
+        <!-- Projects-->
+<section class="resume-section" id="experience">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Projects</h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+                <h3 class="mb-0">Image Recognition System</h3>
+                <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
+                <button class="play-video btn btn-primary" data-video="assets/videos/image_recog.mkv">Play Demo</button>
+                <button class="open-modal btn btn-secondary" data-page="details/page3.html">View Details</button>
             </div>
-        </section>
+        </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+                <h3 class="mb-0">Crypto Prediction</h3>
+                <div class="subheading mb-3">Linear Regression, Machine Learning</div>
+                <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mp4">Play Demo</button>
+                <button class="open-modal btn btn-secondary" data-page="details/page3.html">View Details</button>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+                <h3 class="mb-0">Stock Price Prediction</h3>
+                <div class="subheading mb-3">Random Forest, Machine Learning</div>
+                <button class="play-video btn btn-primary" data-video="assets/videos/stock_price_prediction.mkv">Play Demo</button>
+                <button class="open-modal btn btn-secondary" data-page="details/page3.html">View Details</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="detailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <iframe id="modalIframe" src="" style="width: 100%; height: 80vh;"></iframe>
+    </div>
+</div>
+
         <hr class="m-0" />
 
         <!-- Education-->
@@ -396,7 +409,57 @@
                 document.documentElement.classList.toggle('dark-theme');
             });
         </script>
+
     </div>
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Project Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="detailsIframe" src="" style="width: 100%; height: 500px; border: none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+document.querySelectorAll('.view-details').forEach(button => {
+    button.addEventListener('click', function () {
+        const url = this.getAttribute('data-url');
+        const iframe = document.getElementById('detailsIframe');
+        iframe.src = url;
+        const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+        modal.show();
+    });
+});
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    var modal = document.getElementById('detailsModal');
+    var iframe = document.getElementById('modalIframe');
+    var span = document.getElementsByClassName('close')[0];
+
+    document.querySelectorAll('.open-modal').forEach(button => {
+        button.onclick = function() {
+            var page = button.getAttribute('data-page');
+            iframe.src = page;
+            modal.style.display = 'block';
+        }
+    });
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+        iframe.src = '';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            iframe.src = '';
+        }
+    }
+});
+</script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
