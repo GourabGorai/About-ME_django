@@ -424,15 +424,7 @@
         </div>
     </div>
 </div>
-document.querySelectorAll('.view-details').forEach(button => {
-    button.addEventListener('click', function () {
-        const url = this.getAttribute('data-url');
-        const iframe = document.getElementById('detailsIframe');
-        iframe.src = url;
-        const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
-        modal.show();
-    });
-});
+
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     var modal = document.getElementById('detailsModal');
