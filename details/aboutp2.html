@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Cryptocurrency Price Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            padding-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #6c757d;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p, ul, pre {
+            color: #495057;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            padding: 5px 0;
+        }
+        ul li strong {
+            color: #343a40;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .highlight code {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flask Cryptocurrency Price Prediction Application</h1>
+        <p>This Flask application allows users to fetch historical cryptocurrency data, train a prediction model, and predict future prices.</p>
+
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Fetch Data:</strong> Retrieve historical data for a specific cryptocurrency symbol over a specified date range.</li>
+            <li><strong>Train Model:</strong> Train a linear regression model using historical data to predict future prices.</li>
+            <li><strong>Predict Price:</strong> Predict the future price of a cryptocurrency based on the trained model and a specified future date.</li>
+        </ul>
+
+        <h2>Endpoints</h2>
+        <h3>Index</h3>
+        <p><code>GET /</code> - Render the main page.</p>
+
+        <h3>Fetch Data</h3>
+        <p><code>POST /fetch_data</code> - Fetch historical data for a given cryptocurrency symbol, start date, and end date.</p>
+        <div class="highlight">
+            <pre>
+{
+    "symbol": "BTC",
+    "start_date": "2023-01-01",
+    "end_date": "2023-12-31"
+}
+            </pre>
+        </div>
+
+        <h3>Train Model</h3>
+        <p><code>POST /train_model</code> - Train a linear regression model using historical data from 2023 and 2024.</p>
+        <div class="highlight">
+            <pre>
+{
+    "symbol": "BTC"
+}
+            </pre>
+        </div>
+
+        <h3>Predict Price</h3>
+        <p><code>POST /predict_price</code> - Predict the future price of a cryptocurrency for a specified future date.</p>
+        <div class="highlight">
+            <pre>
+{
+    "symbol": "BTC",
+    "user_date": "2024-12-31"
+}
+            </pre>
+        </div>
+
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><strong>Flask:</strong> Web framework for building the application.</li>
+            <li><strong>Requests:</strong> Library for making HTTP requests to the CryptoCompare API.</li>
+            <li><strong>Pandas:</strong> Library for data manipulation and analysis.</li>
+            <li><strong>Scikit-learn:</strong> Library for machine learning, used for training the linear regression model.</li>
+            <li><strong>Matplotlib:</strong> Library for plotting and visualizing data.</li>
+            <li><strong>Gunicorn:</strong> WSGI HTTP server for running the Flask application in production.</li>
+        </ul>
+    </div>
+</body>
+</html>
