@@ -43,6 +43,36 @@
     </script>
     <!-- Dark Theme CSS -->
     <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--bs-body-color);
+            background-color: var(--bs-body-bg);
+            transition: background-color 0.3s, color 0.3s;
+            color: white; /* Ensures text is white in both themes */
+        }
+
+        /* Video Background */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Sends the video to the background */
+            transition: opacity 0.3s ease;
+        }
+        
+
+        /* Hide video in dark theme */
+        :root.dark-theme .background-video {
+            opacity: 0;
+            pointer-events: none; /* Prevent interactions when hidden */
+        }
+
         :root.dark-theme {
             --bs-body-bg: #121212;
             --bs-body-color: #e0e0e0;
@@ -68,7 +98,7 @@
             font-size: var(--bs-body-font-size);
             font-weight: var(--bs-body-font-weight);
             line-height: var(--bs-body-line-height);
-            color: var(--bs-body-color);
+            color: white; /* Ensures text is white in both themes */
             text-align: var(--bs-body-text-align);
             background-color: var(--bs-body-bg);
             -webkit-text-size-adjust: 100%;
@@ -139,6 +169,11 @@
     </style>
 </head>
 <body id="page-top">
+    <!-- Add the video background -->
+    <video class="background-video" autoplay loop muted>
+        <source src="assets/videos/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
