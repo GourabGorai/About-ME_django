@@ -41,38 +41,27 @@
             e.preventDefault();
         });
     </script>
-    <!-- Dark Theme CSS -->
     <style>
+        /* Ensure scrolling works by placing the video properly */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-            color: var(--bs-body-color);
-            background-color: var(--bs-body-bg);
-            transition: background-color 0.3s, color 0.3s;
-            color: white; /* Ensures text is white in both themes */
+            height: 100%;
+            overflow: auto;
+            position: relative; /* Allows layering */
         }
-
-        /* Video Background */
-        .background-video {
+        video.background-video {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1; /* Sends the video to the background */
-            transition: opacity 0.3s ease;
+            z-index: -1; /* Push behind content */
         }
-        
-
-        /* Hide video in dark theme */
-        :root.dark-theme .background-video {
-            opacity: 0;
-            pointer-events: none; /* Prevent interactions when hidden */
-        }
-
+    </style>
+    <!-- Dark Theme CSS -->
+    <style>
         :root.dark-theme {
             --bs-body-bg: #121212;
             --bs-body-color: #e0e0e0;
@@ -98,7 +87,7 @@
             font-size: var(--bs-body-font-size);
             font-weight: var(--bs-body-font-weight);
             line-height: var(--bs-body-line-height);
-            color: white; /* Ensures text is white in both themes */
+            color: var(--bs-body-color);
             text-align: var(--bs-body-text-align);
             background-color: var(--bs-body-bg);
             -webkit-text-size-adjust: 100%;
@@ -166,6 +155,31 @@
             font-size: 16px;
             cursor: pointer;
         }
+        /* Hide video in dark theme */
+        :root.dark-theme .background-video {
+            opacity: 0;
+            pointer-events: none; /* Prevent interactions when hidden */
+        }
+
+        /* Dark Theme Toggle Button */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            padding: 10px 20px;
+            background-color: var(--bs-link-color);
+            color: var(--bs-body-bg);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--bs-link-hover-color);
+        }
+
     </style>
 </head>
 <body id="page-top">
@@ -442,10 +456,13 @@
     }
 
             // Theme toggle script
-            const toggleButton = document.getElementById('theme-toggle');
-            toggleButton.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark-theme');
-            });
+            const themeToggleButton = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Dark Theme Toggle
+        themeToggleButton.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark-theme');
+        });
         </script>
 
     </div>
