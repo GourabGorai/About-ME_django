@@ -208,6 +208,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Hobbies</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#internships">Internships</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
             </ul>
@@ -334,7 +335,23 @@
                 <p>Watching movies and web series, tech news enthusiast.</p>
             </div>
         </section>
-        <hr class="m-0" />
+
+        <!-- Add Internship Section -->
+<section class="resume-section" id="internships">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Internships</h2>
+        <div class="row">
+            <!-- Example Internship Entry -->
+            <div class="col-md-4 mb-4">
+                <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1" 
+                    onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham( a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic :- Implementation of ML model for image classification')" />
+            </div>
+            
+            <!-- Add more entries as needed -->
+        </div>
+    </div>
+</section>
+
 
         <!-- Gallery-->
 <section class="resume-section" id="gallery">
@@ -489,6 +506,24 @@
     </div>
 </div>
 
+<!-- Modal for Internship Images and PDFs -->
+<div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="internshipModalLabel">Internship Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
+                <p id="internshipDescription"></p>
+                <iframe id="internshipPDF" src="" style="width: 100%; height: 500px; border: none;" allow="fullscreen"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     var modal = document.getElementById('detailsModal');
@@ -515,6 +550,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 });
+function openInternshipModal(imgSrc, title, pdfSrc, description) {
+        document.getElementById('internshipImage').src = imgSrc;
+        document.getElementById('internshipModalLabel').innerText = title;
+        document.getElementById('internshipDescription').innerText = description;
+        document.getElementById('internshipPDF').src = pdfSrc + "#toolbar=0"; // Disable download button in the PDF viewer
+        var myModal = new bootstrap.Modal(document.getElementById('internshipModal'));
+        myModal.show();
+    }
 </script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
