@@ -3,43 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <title>Project Details</title>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
+        /* Basic styling for the logos */
+        .logo-container {
             display: flex;
+            justify-content: space-around;
             align-items: center;
-            justify-content: center;
-            background: #282c34;
-            color: #61dafb;
-            font-family: Arial, sans-serif;
-            font-size: 2em;
-            text-align: center;
-        }
-        .container {
-            text-align: center;
-            border: 2px solid #61dafb;
             padding: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            background-color: #f4f4f4;
         }
-        .glow {
-            animation: glow 1.5s infinite alternate;
+
+        .logo-container img {
+            max-width: 100px;
+            height: auto;
         }
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #61dafb, 0 0 20px #61dafb, 0 0 30px #61dafb, 0 0 40px #61dafb, 0 0 50px #61dafb, 0 0 60px #61dafb, 0 0 70px #61dafb;
-            }
-            to {
-                text-shadow: 0 0 20px #61dafb, 0 0 30px #61dafb, 0 0 40px #61dafb, 0 0 50px #61dafb, 0 0 60px #61dafb, 0 0 70px #61dafb, 0 0 80px #61dafb;
-            }
+
+        /* Styling for the project details */
+        .project-details {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .project-details h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .project-details p {
+            font-size: 16px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="glow">Coming Soon</div>
+
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <img src="logo1.png" alt="Logo 1">
+        <img src="logo2.png" alt="Logo 2">
+        <img src="logo3.png" alt="Logo 3">
+        <img src="logo4.png" alt="Logo 4">
     </div>
+
+    
+
 </body>
 </html>
