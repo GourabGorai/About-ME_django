@@ -10,29 +10,26 @@
     <!-- Open Graph meta tags for rich link previews -->
     <meta property="og:title" content="Check out my Portfolio website" />
     <meta property="og:description" content="Know about me." />
-    <meta property="og:image" content="assets\img\image1.jpg" />
+    <meta property="og:image" content="assets/img/image1.jpg" />
     <meta property="og:url" content="gourabgorai.netlify.app" />
     <meta property="og:type" content="website" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H2TRYVGY4X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-H2TRYVGY4X');
-</script>
-
-    <!-- Font Awesome icons (free version)-->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2TRYVGY4X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H2TRYVGY4X');
+    </script>
+    <!-- Font Awesome icons (free version) -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
+    <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Core theme CSS (includes Bootstrap) -->
     <link href="css/styles.css" rel="stylesheet" />
     <!-- Security CSS -->
     <style>
-        /* Disable text selection */
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -42,19 +39,17 @@
     </style>
     <!-- Security JavaScript -->
     <script>
-        // Disable right-click context menu
         document.addEventListener("contextmenu", function (e) {
             e.preventDefault();
         });
     </script>
     <style>
-        /* Ensure scrolling works by placing the video properly */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             height: 100%;
             overflow: auto;
-            position: relative; /* Allows layering */
+            position: relative;
         }
         video.background-video {
             position: fixed;
@@ -63,7 +58,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1; /* Push behind content */
+            z-index: -1;
         }
     </style>
     <!-- Dark Theme CSS -->
@@ -83,9 +78,9 @@
             --bs-table-hover-color: #fff;
             --bs-code-color: #d63384;
             --bs-highlight-bg: #333;
-            --bs-primary: #1a1a1a; /* Dark black for primary */
-            --bs-secondary: #2a2a2a; /* Lighter black for secondary */
-            --bs-dark: #000; /* Pure black for dark */
+            --bs-primary: #1a1a1a;
+            --bs-secondary: #2a2a2a;
+            --bs-dark: #000;
         }
         body {
             margin: 0;
@@ -106,7 +101,6 @@
         a:hover {
             color: var(--bs-link-hover-color);
         }
-        /* Modal styling for video */
         .video-modal {
             display: none;
             position: fixed;
@@ -119,19 +113,16 @@
             background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
         }
-
         .video-container {
             position: relative;
             display: inline-block;
             margin: 10% auto;
             width: 80%;
         }
-
         .video-modal-content {
             width: 100%;
             height: auto;
         }
-
         .close-video {
             position: absolute;
             top: 20px;
@@ -141,33 +132,27 @@
             font-weight: bold;
             cursor: pointer;
         }
-
         .close-video:hover,
         .close-video:focus {
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
         }
-
         .video-controls {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
         }
-
         #playPauseBtn {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
         }
-        /* Hide video in dark theme */
         :root.dark-theme .background-video {
             opacity: 0;
-            pointer-events: none; /* Prevent interactions when hidden */
+            pointer-events: none;
         }
-
-        /* Dark Theme Toggle Button */
         .theme-toggle-btn {
             position: fixed;
             top: 20px;
@@ -181,20 +166,18 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-
         .theme-toggle-btn:hover {
             background-color: var(--bs-link-hover-color);
         }
-
     </style>
 </head>
 <body id="page-top">
-    <!-- Add the video background -->
+    <!-- Video Background -->
     <video class="background-video" autoplay loop muted>
         <source src="assets/videos/background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
-    <!-- Navigation-->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Gourab Gorai</span>
@@ -211,21 +194,20 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#internships">Internships</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
             </ul>
         </div>
     </nav>
-
-    <!-- Add Theme Toggle Button -->
+    <!-- Theme Toggle Button -->
     <button id="theme-toggle" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px;">Toggle Theme</button>
-
-    <!-- Page Content-->
+    <!-- Page Content -->
     <div class="container-fluid p-0">
-        <!-- About-->
+        <!-- About -->
         <section class="resume-section" id="about">
             <div class="resume-section-content">
                 <h1 class="mb-0">Gourab <span class="text-primary">Gorai</span></h1>
                 <div class="subheading mb-5">
-                    WEST BENGAL, INDIA· PH- 7908039405 ·
+                    WEST BENGAL, INDIA · PH- 7908039405 ·
                     <a href="mailto:gourabg30march@gmail.com">gourabg30march@gmail.com</a>
                 </div>
                 <p class="lead mb-5">I am Gourab Gorai, a driven and innovative computer science enthusiast with a strong foundation in programming and machine learning. I am currently pursuing a Bachelor of Computer Application (BCA) from Dr. B.C. Roy Academy of Professional Courses, expected to graduate in 2025. I completed my higher-secondary education in Commerce from Bidhan Chandra Institution in 2022 and my secondary education from Durgapur Ispat Vidyalaya in 2020. As a scholar of the Reliance Foundation Scholarships, 2022, I am committed to leveraging technology to solve real-world problems. My technical skills include proficiency in Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript. I have earned certifications in Machine Learning using Python from the National Institute for Industrial Training and Front-End Web Development from the Reliance Foundation Skill Academy. I also completed an internship in AI with TechSaksham, under the guidance of Microsoft, SAP, AICTE, and Edunet Foundation. Some of my projects include an Image Recognition System using Logistic Regression, Crypto Prediction using Linear Regression, and Stock Price Prediction using Random Forest, all of which showcase my expertise in machine learning. In my free time, I enjoy watching movies, web series, and staying updated with the latest tech news.</p>
@@ -238,50 +220,44 @@
             </div>
         </section>
         <hr class="m-0" />
-
-        <!-- Projects-->
-        <!-- Projects-->
-<section class="resume-section" id="experience">
-    <div class="resume-section-content">
-        <h2 class="mb-5">Projects</h2>
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">Image Recognition System</h3>
-                <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
-                <button class="play-video btn btn-primary" data-video="assets/videos/trial (2).mp4">Play Demo</button>
-                <button class="open-modal btn btn-secondary" data-page="details/page3.html">View Details</button>
+        <!-- Projects -->
+        <section class="resume-section" id="experience">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Projects</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Image Recognition System</h3>
+                        <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/trial (2).mp4">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/page3.html">View Details</button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Crypto Prediction</h3>
+                        <div class="subheading mb-3">Linear Regression, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mkv">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp2.html">View Details</button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Stock Price Prediction</h3>
+                        <div class="subheading mb-3">Random Forest, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/stock_price_prediction.mkv">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp3.html">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <iframe id="modalIframe" src="" style="width: 100%; height: 80vh;"></iframe>
             </div>
         </div>
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">Crypto Prediction</h3>
-                <div class="subheading mb-3">Linear Regression, Machine Learning</div>
-                <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mkv">Play Demo</button>
-                <button class="open-modal btn btn-secondary" data-page="details/aboutp2.html">View Details</button>
-            </div>
-        </div>
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">Stock Price Prediction</h3>
-                <div class="subheading mb-3">Random Forest, Machine Learning</div>
-                <button class="play-video btn btn-primary" data-video="assets/videos/stock_price_prediction.mkv">Play Demo</button>
-                <button class="open-modal btn btn-secondary" data-page="details/aboutp3.html">View Details</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Modal Structure -->
-<div id="detailsModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <iframe id="modalIframe" src="" style="width: 100%; height: 80vh;"></iframe>
-    </div>
-</div>
-
         <hr class="m-0" />
-
-        <!-- Education-->
+        <!-- Education -->
         <section class="resume-section" id="education">
             <div class="resume-section-content">
                 <h2 class="mb-5">Education</h2>
@@ -307,12 +283,10 @@
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">2020</span></div>
                 </div>
-
             </div>
         </section>
         <hr class="m-0" />
-
-        <!-- Skills-->
+        <!-- Skills -->
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
                 <h2 class="mb-5">Skills</h2>
@@ -328,118 +302,157 @@
             </div>
         </section>
         <hr class="m-0" />
-
-        <!-- Hobbies-->
+        <!-- Hobbies -->
         <section class="resume-section" id="interests">
             <div class="resume-section-content">
                 <h2 class="mb-5">Hobbies</h2>
                 <p>Watching movies and web series, tech news enthusiast.</p>
             </div>
         </section>
-
-        <!-- Add Internship Section -->
-<section class="resume-section" id="internships">
-    <div class="resume-section-content">
-        <h2 class="mb-5">Internships</h2>
-        <div class="row">
-            <!-- Example Internship Entry -->
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1" 
-                    onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham( a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic :- Implementation of ML model for image classification                      Verification Link :- https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881 ')" />
+        <!-- Internships -->
+        <section class="resume-section" id="internships">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Internships</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1" onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2" onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
+                    </div>
+                </div>
             </div>
-            
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2" 
-                    onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. :- Completed a job simulation involving development and coding.Wrote a proposal for creating a dashboard')" />
+        </section>
+        <!-- Gallery -->
+        <section class="resume-section" id="gallery">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Gallery</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4" onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')" />
+                    </div>
+                </div>
             </div>
-            <!-- Add more entries as needed -->
-        </div>
-    </div>
-</section>
-
-
-        <!-- Gallery-->
-<section class="resume-section" id="gallery">
-    <div class="resume-section-content">
-        <h2 class="mb-5">Gallery</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')" />
+        </section>
+        <!-- Certifications -->
+        <section class="resume-section" id="certifications">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Certifications</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1" onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2" onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6" onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')" />
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')" />
+        </section>
+        <!-- Hackathons Section -->
+        <section class="resume-section" id="hackathons">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Hackathons</h2>
+                <div class="row">
+                    <!-- First Entry: Single Image -->
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1" onclick="openModal('assets/img/hack1.png', 'Sample Hackathon 2024', 'Participated in a 24-hour coding hackathon focused on developing innovative solutions using Machine Learning and Web Development. Achieved 2nd place among 50 teams.')" />
+                    </div>
+                    <!-- Second Entry: Flexible Multiple Images -->
+                    <div class="col-md-4 mb-4">
+                        <img src="assets/img/hack2.jpg" class="img-thumbnail" alt="Hackathon 2" onclick="openHackathonDetailsModal('Tech Innovate Hackathon 2025', ['assets/img/hack2.jpg','assets/img/hack2_detail1.jpg', 'assets/img/hack2_detail2.jpg', 'assets/img/hack2_detail3.jpg'], 'Participated in a 48-hour hackathon organized by Tech Innovate, focusing on AI-driven solutions. Our team developed a real-time traffic prediction system using Python and ML, winning the Best Innovation Award.')" />
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4" onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')" />
-            </div>
-        </div>
-    </div>
-</section>
-
-
-        <!-- Certifications-->
-<section class="resume-section" id="certifications">
-    <div class="resume-section-content">
-        <h2 class="mb-5">Certifications</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1" onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2" onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6" onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 6" onclick="openModal('assets/img/cert7.jpg', 'Peoject Manager ROLE, Linkedin', '')" />
-            </div>
-        </div>
-    </div>
-</section>
-
+        </section>
         <hr class="m-0" />
-
-        <!-- Modal for images -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Image Title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Modals -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Image Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="modalImage" src="" alt="Modal Image" class="img-fluid">
+                        <p id="modalDescription" class="mt-3"></p>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <img id="modalImage" src="" alt="Modal Image" class="img-fluid">
-                <p id="modalDescription" class="mt-3"></p> <!-- Added paragraph for description -->
+        </div>
+        <div class="modal fade" id="hackathonDetailsModal" tabindex="-1" aria-labelledby="hackathonDetailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hackathonDetailsModalLabel">Hackathon Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="hackathonImages" class="row"></div>
+                        <p id="hackathonDescription" class="mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="videoModal" class="video-modal">
+            <span class="close-video">×</span>
+            <div class="video-container">
+                <video id="videoPlayer" class="video-modal-content" disablePictureInPicture controlsList="nodownload noplaybackrate" autoplay>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-controls">
+                    <button id="playPauseBtn" class="btn btn-primary">Play</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="internshipModalLabel">Internship Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
+                        <p id="internshipDescription"></p>
+                        <iframe id="internshipPDF" src="" style="width: 100%; height: 500px; border: none;" allow="fullscreen"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="videoModal" class="video-modal">
-        <span class="close-video">&times;</span>
-        <div class="video-container">
-            <video id="videoPlayer" class="video-modal-content" disablePictureInPicture controlsList="nodownload noplaybackrate" autoplay>
-                <source src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-controls">
-                <button id="playPauseBtn" class="btn btn-primary">Play</button>
-            </div>
-        </div>
-</div>
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
+    <script src="js/scripts.js"></script>
+    <!-- Custom Scripts -->
     <script>
+        // Video Modal Script
         const videoModal = document.getElementById('videoModal');
         const videoPlayer = document.getElementById('videoPlayer');
         const closeVideo = document.querySelector('.close-video');
@@ -478,98 +491,81 @@
                 videoPlayer.src = '';
             }
         });
-    </script>
 
-        <script>
-            function openModal(imgSrc, imgTitle, imgDescription) {
-        document.getElementById("modalImage").src = imgSrc;
-        document.getElementById("imageModalLabel").innerText = imgTitle;
-        document.getElementById("modalDescription").innerText = imgDescription; // Set the description text
-        var myModal = new bootstrap.Modal(document.getElementById('imageModal'));
-        myModal.show();
-    }
+        // Single Image Modal
+        function openModal(imgSrc, imgTitle, imgDescription) {
+            document.getElementById("modalImage").src = imgSrc;
+            document.getElementById("imageModalLabel").innerText = imgTitle;
+            document.getElementById("modalDescription").innerText = imgDescription;
+            var myModal = new bootstrap.Modal(document.getElementById('imageModal'), {});
+            myModal.show();
+        }
 
-            // Theme toggle script
-            const themeToggleButton = document.getElementById('theme-toggle');
+        // Hackathon Details Modal with Flexible Images
+        function openHackathonDetailsModal(title, images, description) {
+            document.getElementById("hackathonDetailsModalLabel").innerText = title;
+            document.getElementById("hackathonDescription").innerText = description;
+
+            const imagesContainer = document.getElementById("hackathonImages");
+            imagesContainer.innerHTML = ''; // Clear previous images
+            images.forEach(src => {
+                const col = document.createElement("div");
+                col.className = "col-md-4 mb-3";
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "Hackathon Detail Image";
+                img.className = "img-fluid";
+                col.appendChild(img);
+                imagesContainer.appendChild(col);
+            });
+
+            var myModal = new bootstrap.Modal(document.getElementById('hackathonDetailsModal'), {});
+            myModal.show();
+        }
+
+        // Project Details Modal
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var modal = document.getElementById('detailsModal');
+            var iframe = document.getElementById('modalIframe');
+            var span = document.getElementsByClassName('close')[0];
+
+            document.querySelectorAll('.open-modal').forEach(button => {
+                button.onclick = function() {
+                    var page = button.getAttribute('data-page');
+                    iframe.src = page;
+                    modal.style.display = 'block';
+                }
+            });
+
+            span.onclick = function() {
+                modal.style.display = 'none';
+                iframe.src = '';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    iframe.src = '';
+                }
+            }
+        });
+
+        // Internship Modal
+        function openInternshipModal(imgSrc, title, pdfSrc, description) {
+            document.getElementById('internshipImage').src = imgSrc;
+            document.getElementById('internshipModalLabel').innerText = title;
+            document.getElementById('internshipDescription').innerText = description;
+            document.getElementById('internshipPDF').src = pdfSrc + "#toolbar=0";
+            var myModal = new bootstrap.Modal(document.getElementById('internshipModal'), {});
+            myModal.show();
+        }
+
+        // Theme Toggle
+        const themeToggleButton = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
-
-        // Dark Theme Toggle
         themeToggleButton.addEventListener('click', () => {
             htmlElement.classList.toggle('dark-theme');
         });
-        </script>
-
-    </div>
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detailsModalLabel">Project Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <iframe id="detailsIframe" src="" style="width: 100%; height: 500px; border: none;"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for Internship Images and PDFs -->
-<div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="internshipModalLabel">Internship Title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
-                <p id="internshipDescription"></p>
-                <iframe id="internshipPDF" src="" style="width: 100%; height: 500px; border: none;" allow="fullscreen"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    var modal = document.getElementById('detailsModal');
-    var iframe = document.getElementById('modalIframe');
-    var span = document.getElementsByClassName('close')[0];
-
-    document.querySelectorAll('.open-modal').forEach(button => {
-        button.onclick = function() {
-            var page = button.getAttribute('data-page');
-            iframe.src = page;
-            modal.style.display = 'block';
-        }
-    });
-
-    span.onclick = function() {
-        modal.style.display = 'none';
-        iframe.src = '';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-            iframe.src = '';
-        }
-    }
-});
-function openInternshipModal(imgSrc, title, pdfSrc, description) {
-        document.getElementById('internshipImage').src = imgSrc;
-        document.getElementById('internshipModalLabel').innerText = title;
-        document.getElementById('internshipDescription').innerText = description;
-        document.getElementById('internshipPDF').src = pdfSrc + "#toolbar=0"; // Disable download button in the PDF viewer
-        var myModal = new bootstrap.Modal(document.getElementById('internshipModal'));
-        myModal.show();
-    }
-</script>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    </script>
 </body>
 </html>
