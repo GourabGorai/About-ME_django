@@ -3,7 +3,7 @@
 ![Portfolio Banner](assets/img/image1.jpg)
 
 ## About Me
-I am **Gourab Gorai**, a passionate and driven computer science enthusiast with a strong foundation in programming, machine learning, and web development. Currently pursuing a **Bachelor of Computer Application (BCA)** from **Dr. B.C. Roy Academy of Professional Courses**, I am expected to graduate in 2025. My journey in technology began with a deep curiosity for solving real-world problems using innovative solutions.
+I am **Gourab Gorai**, a passionate and driven computer science enthusiast with a strong foundation in programming, machine learning, and web development. Recently completed degree course **Bachelor of Computer Application (BCA)** from **Dr. B.C. Roy Academy of Professional Courses**,  on July 2025 My journey in technology began with a deep curiosity for solving real-world problems using innovative solutions.
 
 As a **Reliance Foundation Scholar (2022)**, I have honed my skills in **Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript**. My projects, certifications, and internships reflect my commitment to continuous learning and growth in the tech industry.
 
