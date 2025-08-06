@@ -138,16 +138,61 @@
             text-decoration: none;
             cursor: pointer;
         }
+        /* Enhanced Video Controls */
         .video-controls {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
         }
-        #playPauseBtn {
-            padding: 10px 20px;
-            font-size: 16px;
+
+        .control-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .video-controls button {
+            padding: 8px 15px;
+            font-size: 14px;
             cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .video-controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .video-controls button.muted {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .video-controls button.muted:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsive controls */
+        @media (max-width: 768px) {
+            .video-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+    
+            .control-group {
+                justify-content: center;
+            }
         }
         :root.dark-theme .background-video {
             opacity: 0;
@@ -210,7 +255,7 @@
                     WEST BENGAL, INDIA · PH- 7908039405 ·
                     <a href="mailto:gourabg30march@gmail.com">gourabg30march@gmail.com</a>
                 </div>
-                <p class="lead mb-5">I am Gourab Gorai, a driven and innovative computer science enthusiast with a strong foundation in programming and machine learning. I have completed a degree on Bachelor of Computer Application (BCA) from Dr. B.C. Roy Academy of Professional Courses, on July,2025. I completed my higher-secondary education in Commerce from Bidhan Chandra Institution in 2022 and my secondary education from Durgapur Ispat Vidyalaya in 2020. As a scholar of the Reliance Foundation Scholarships, 2022, I am committed to leveraging technology to solve real-world problems. My technical skills include proficiency in Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript. I have earned certifications in Machine Learning using Python from the National Institute for Industrial Training and Front-End Web Development from the Reliance Foundation Skill Academy. I also completed an internship in AI with TechSaksham, under the guidance of Microsoft, SAP, AICTE, and Edunet Foundation. Some of my projects include an Image Recognition System using Logistic Regression, Crypto Prediction using Linear Regression, and Stock Price Prediction using Random Forest, all of which showcase my expertise in machine learning. In my free time, I enjoy watching movies, web series, and staying updated with the latest tech news.</p>
+                <p class="lead mb-5">I am Gourab Gorai, a driven and innovative computer science enthusiast with a strong foundation in programming and machine learning. I am currently pursuing a Bachelor of Computer Application (BCA) from Dr. B.C. Roy Academy of Professional Courses, expected to graduate in 2025. I completed my higher-secondary education in Commerce from Bidhan Chandra Institution in 2022 and my secondary education from Durgapur Ispat Vidyalaya in 2020. As a scholar of the Reliance Foundation Scholarships, 2022, I am committed to leveraging technology to solve real-world problems. My technical skills include proficiency in Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript. I have earned certifications in Machine Learning using Python from the National Institute for Industrial Training and Front-End Web Development from the Reliance Foundation Skill Academy. I also completed an internship in AI with TechSaksham, under the guidance of Microsoft, SAP, AICTE, and Edunet Foundation. Some of my projects include an Image Recognition System using Logistic Regression, Crypto Prediction using Linear Regression, and Stock Price Prediction using Random Forest, all of which showcase my expertise in machine learning. In my free time, I enjoy watching movies, web series, and staying updated with the latest tech news.</p>
                 <div class="social-icons">
                     <a class="social-icon" href="https://www.linkedin.com/in/gourab-gorai-4a51541ba"><i class="fab fa-linkedin-in"></i></a>
                     <a class="social-icon" href="https://github.com/GourabGorai"><i class="fab fa-github"></i></a>
@@ -380,13 +425,13 @@
                         <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 8" onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification, Infosys SpringBoard', '')" />
+                        <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification', '')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 9" onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals, IBM', '')" />
+                        <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals', '')" />
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 10" onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership, LinkedIn', '')" />
+                        <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership', '')" />
                     </div>
                 </div>
             </div>
@@ -402,11 +447,11 @@
                     </div>
                     <!-- Second Entry: Flexible Multiple Images -->
                     <div class="col-md-4 mb-4">
-                        <img src="assets/img/image-7.png" class="img-thumbnail" alt="Hackathon 2"
+                        <img src="assets/img/image-7.jpg" class="img-thumbnail" alt="Hackathon 2"
      onclick="openHackathonDetailsModal(
          'Google Solution Challenge 2025',
          [
-             'assets/img/image-7.png',
+             'assets/img/image-7.jpg',
              'assets/img/hack2.jpg',
              'assets/img/hack2_detail1.jpg',
              'assets/img/hack2_detail2.jpg',
@@ -457,7 +502,25 @@
                     Your browser does not support the video tag.
                 </video>
                 <div class="video-controls">
-                    <button id="playPauseBtn" class="btn btn-primary">Play</button>
+                    <!-- Play/Pause Control -->
+                    <button id="playPauseBtn">Play</button>
+    
+                    <!-- Skip Forward Controls -->
+                    <div class="control-group">
+                        <button id="skip10Btn">Skip +10s</button>
+                        <button id="skip20Btn">Skip +20s</button>
+                        <button id="skip30Btn">Skip +30s</button>
+                    </div>
+    
+                    <!-- Skip Backward Controls -->
+                    <div class="control-group">
+                        <button id="back10Btn">Back -10s</button>
+                        <button id="back20Btn">Back -20s</button>
+                        <button id="back30Btn">Back -30s</button>
+                    </div>
+    
+                    <!-- Mute Control -->
+                    <button id="muteBtn">Mute</button>
                 </div>
             </div>
         </div>
@@ -488,6 +551,18 @@
         const videoPlayer = document.getElementById('videoPlayer');
         const closeVideo = document.querySelector('.close-video');
         const playPauseBtn = document.getElementById('playPauseBtn');
+        // Add these new button references
+        const muteBtn = document.getElementById('muteBtn');
+
+        // Skip buttons
+        const skip10Btn = document.getElementById('skip10Btn');
+        const skip20Btn = document.getElementById('skip20Btn');
+        const skip30Btn = document.getElementById('skip30Btn');
+
+        // Backward skip buttons
+        const back10Btn = document.getElementById('back10Btn');
+        const back20Btn = document.getElementById('back20Btn');
+        const back30Btn = document.getElementById('back30Btn');
 
         document.querySelectorAll('.play-video').forEach(button => {
             button.addEventListener('click', function () {
@@ -495,18 +570,50 @@
                 videoPlayer.src = videoSrc;
                 videoModal.style.display = 'block';
                 videoPlayer.play();
-                playPauseBtn.innerText = 'Pause';
+                updatePlayPauseButton();
+                updateMuteButton();
             });
         });
 
         playPauseBtn.addEventListener('click', () => {
             if (videoPlayer.paused) {
                 videoPlayer.play();
-                playPauseBtn.innerText = 'Pause';
             } else {
-                videoPlayer.pause();
-                playPauseBtn.innerText = 'Play';
+            videoPlayer.pause();
             }
+            updatePlayPauseButton();
+        });
+
+        // Skip forward functionality
+        skip10Btn.addEventListener('click', () => {
+            videoPlayer.currentTime = Math.min(videoPlayer.currentTime + 10, videoPlayer.duration);
+        });
+
+        skip20Btn.addEventListener('click', () => {
+            videoPlayer.currentTime = Math.min(videoPlayer.currentTime + 20, videoPlayer.duration);
+        });
+
+        skip30Btn.addEventListener('click', () => {
+            videoPlayer.currentTime = Math.min(videoPlayer.currentTime + 30, videoPlayer.duration);
+        });
+
+        // Skip backward functionality
+        back10Btn.addEventListener('click', () => {
+            videoPlayer.currentTime = Math.max(videoPlayer.currentTime - 10, 0);
+        });
+
+        back20Btn.addEventListener('click', () => {
+            videoPlayer.currentTime = Math.max(videoPlayer.currentTime - 20, 0);
+        });
+
+        back30Btn.addEventListener('click', () => {
+            videoPlayer.currentTime = Math.max(videoPlayer.currentTime - 30, 0);
+        });
+
+        // Mute/Unmute functionality
+        muteBtn.addEventListener('click', () => {
+            videoPlayer.muted = !videoPlayer.muted;
+            updateMuteButton();
         });
 
         closeVideo.addEventListener('click', () => {
@@ -522,6 +629,66 @@
                 videoPlayer.src = '';
             }
         });
+
+        // Update Play/Pause button text
+        function updatePlayPauseButton() {
+            playPauseBtn.innerText = videoPlayer.paused ? 'Play' : 'Pause';
+        }
+
+        // Update Mute button text and style
+        function updateMuteButton() {
+            if (videoPlayer.muted) {
+                muteBtn.innerText = 'Unmute';
+                muteBtn.classList.add('muted');
+            } else {
+                muteBtn.innerText = 'Mute';
+                muteBtn.classList.remove('muted');
+            }
+        }
+
+        // Video event listeners for button updates
+        videoPlayer.addEventListener('play', updatePlayPauseButton);
+        videoPlayer.addEventListener('pause', updatePlayPauseButton);
+        videoPlayer.addEventListener('volumechange', updateMuteButton);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (videoModal.style.display === 'block') {
+                switch(e.key) {
+                    case ' ':
+                    case 'k':
+                        e.preventDefault();
+                        playPauseBtn.click();
+                        break;
+                    case 'm':
+                        e.preventDefault();
+                        muteBtn.click();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        skip10Btn.click();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        back10Btn.click();
+                        break;
+                    case 'Escape':
+                        e.preventDefault();
+                        closeVideo.click();
+                        break;
+                }
+            }
+        });
+
+        closeVideo.addEventListener('click', () => {
+            closeVideoModal();
+        });
+
+        function closeVideoModal() {
+            videoModal.style.display = 'none';
+            videoPlayer.pause();
+            videoPlayer.src = '';
+        }
 
         // Single Image Modal
         function openModal(imgSrc, imgTitle, imgDescription) {
@@ -580,6 +747,7 @@
                 }
             }
         });
+
 
         // Internship Modal
         function openInternshipModal(imgSrc, title, pdfSrc, description) {
