@@ -221,18 +221,26 @@
             background-color: var(--bs-link-hover-color);
         }
 
-        /* Progress Bar Styles */
+        /* NEW: Container for progress bar and time */
+        .progress-and-time-container {
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* UPDATED: Progress Bar Styles */
         .progress-container {
-            width: 80%;
+            position: relative;
+            flex-grow: 1; /* Allows it to take up available space */
             height: 10px;
             background-color: #555;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px auto;
-            position: absolute;
-            bottom: 110px; /* Position it above the controls */
-            left: 50%;
-            transform: translateX(-50%);
         }
 
         .progress-bar {
@@ -242,16 +250,14 @@
             border-radius: 5px;
         }
 
+        /* UPDATED: Time Display Styles */
         .time-display {
-            position: absolute;
-            bottom: 90px; /* Position below the progress bar */
-            left: 50%;
-            transform: translateX(-50%);
             color: white;
             font-size: 14px;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 2px 8px;
             border-radius: 4px;
+            white-space: nowrap; /* Prevents the time from wrapping */
         }
 
         /* Gemini Summary Modal Styles */
@@ -580,10 +586,13 @@
                     <source src="" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="progress-container" id="progressContainer">
-                    <div class="progress-bar" id="progressBar"></div>
+                <!-- UPDATED: New container for progress bar and time -->
+                <div class="progress-and-time-container">
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
                 </div>
-                <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
                 <div class="video-controls">
                     <button id="playPauseBtn">Play</button>
                     <div class="control-group">
