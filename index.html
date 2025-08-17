@@ -189,17 +189,6 @@
             background-color: #c82333;
         }
 
-        /* Responsive controls */
-        @media (max-width: 768px) {
-            .video-controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-    
-            .control-group {
-                justify-content: center;
-            }
-        }
         :root.dark-theme .background-video {
             opacity: 0;
             pointer-events: none;
@@ -221,7 +210,7 @@
             background-color: var(--bs-link-hover-color);
         }
 
-        /* NEW: Container for progress bar and time */
+        /* Container for progress bar and time */
         .progress-and-time-container {
             position: absolute;
             bottom: 90px;
@@ -233,7 +222,7 @@
             gap: 15px;
         }
 
-        /* UPDATED: Progress Bar Styles */
+        /* Progress Bar Styles */
         .progress-container {
             position: relative;
             flex-grow: 1; /* Allows it to take up available space */
@@ -250,7 +239,7 @@
             border-radius: 5px;
         }
 
-        /* UPDATED: Time Display Styles */
+        /* Time Display Styles */
         .time-display {
             color: white;
             font-size: 14px;
@@ -287,6 +276,42 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* --- MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 600px) {
+            .video-container {
+                padding-bottom: 180px; /* Increase padding to make space for stacked controls */
+            }
+
+            .video-controls {
+                flex-direction: column;
+                padding: 10px;
+                gap: 8px;
+                bottom: 10px;
+                width: 90%;
+            }
+
+            .video-controls .control-group {
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            .video-controls button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .progress-and-time-container {
+                bottom: 150px; /* Adjust position to be above the taller controls */
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .progress-container {
+                width: 100%;
+            }
+        }
+
     </style>
     <!-- Security JavaScript -->
     <script>
