@@ -744,7 +744,7 @@
                 videoPlayer.src = '';
             });
             
-            // Video Controls
+            // --- FIXED: Video Controls ---
             playPauseBtn.addEventListener('click', () => {
                 if (videoPlayer.paused) {
                     videoPlayer.play();
@@ -754,12 +754,20 @@
                 updatePlayPauseButton();
             });
 
-            skip10Btn.addEventListener('click', () => videoPlayer.currentTime += 10);
-            skip20Btn.addEventListener('click', () => videoPlayer.currentTime += 20);
-            skip30Btn.addEventListener('click', () => videoPlayer.currentTime += 30);
-            back10Btn.addEventListener('click', () => videoPlayer.currentTime -= 10);
-            back20Btn.addEventListener('click', () => videoPlayer.currentTime -= 20);
-            back30Btn.addEventListener('click', () => videoPlayer.currentTime -= 30);
+            // Helper function to safely skip video time
+            const skipTime = (amount) => {
+                if (videoPlayer.duration) { // Check if duration is available
+                    videoPlayer.currentTime = Math.max(0, Math.min(videoPlayer.duration, videoPlayer.currentTime + amount));
+                }
+            };
+
+            skip10Btn.addEventListener('click', () => skipTime(10));
+            skip20Btn.addEventListener('click', () => skipTime(20));
+            skip30Btn.addEventListener('click', () => skipTime(30));
+            back10Btn.addEventListener('click', () => skipTime(-10));
+            back20Btn.addEventListener('click', () => skipTime(-20));
+            back30Btn.addEventListener('click', () => skipTime(-30));
+
             muteBtn.addEventListener('click', () => {
                 videoPlayer.muted = !videoPlayer.muted;
                 updateMuteButton();
