@@ -7,13 +7,11 @@
     <meta name="author" content="Gourab Gorai" />
     <title>Gourab Gorai - Portfolio</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <!-- Open Graph meta tags for rich link previews -->
     <meta property="og:title" content="Check out my Portfolio website" />
     <meta property="og:description" content="Know about me." />
     <meta property="og:image" content="assets/img/image1.jpg" />
     <meta property="og:url" content="gourabgorai.netlify.app" />
     <meta property="og:type" content="website" />
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2TRYVGY4X"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -21,14 +19,10 @@
         gtag('js', new Date());
         gtag('config', 'G-H2TRYVGY4X');
     </script>
-    <!-- Font Awesome icons (free version) -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap) -->
     <link href="css/styles.css" rel="stylesheet" />
-    <!-- All Custom CSS -->
     <style>
         /* Security CSS */
         body {
@@ -118,7 +112,8 @@
             background: #000;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            padding-bottom: 140px; /* Add padding to the bottom for controls */
+            /* UPDATED: Adjusted padding for new controls wrapper */
+            padding-bottom: 150px;
         }
 
         .video-modal-content {
@@ -144,12 +139,31 @@
             cursor: pointer;
         }
         
-        /* Enhanced Video Controls */
-        .video-controls {
+        /* === UPDATED: Player Controls Structure === */
+        
+        /* NEW: Wrapper for all player controls */
+        .player-controls-wrapper {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Space between progress bar and control buttons */
+        }
+        
+        /* UPDATED: Container for progress bar and time (now inside wrapper) */
+        .progress-and-time-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* UPDATED: Video Controls (now inside wrapper) */
+        .video-controls {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
@@ -188,6 +202,36 @@
         .video-controls button.muted:hover {
             background-color: #c82333;
         }
+        
+        /* Progress Bar Styles */
+        .progress-container {
+            position: relative;
+            flex-grow: 1; /* Allows it to take up available space */
+            height: 10px;
+            background-color: #555;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #007bff;
+            border-radius: 5px;
+            pointer-events: none; /* Make sure clicks go to the container */
+        }
+
+        /* Time Display Styles */
+        .time-display {
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap; /* Prevents the time from wrapping */
+        }
+        
+        /* --- End of Player Controls Update --- */
 
         :root.dark-theme .background-video {
             opacity: 0;
@@ -208,45 +252,6 @@
         }
         .theme-toggle-btn:hover {
             background-color: var(--bs-link-hover-color);
-        }
-
-        /* Container for progress bar and time */
-        .progress-and-time-container {
-            position: absolute;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Progress Bar Styles */
-        .progress-container {
-            position: relative;
-            flex-grow: 1; /* Allows it to take up available space */
-            height: 10px;
-            background-color: #555;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .progress-bar {
-            width: 0;
-            height: 100%;
-            background-color: #007bff;
-            border-radius: 5px;
-        }
-
-        /* Time Display Styles */
-        .time-display {
-            color: white;
-            font-size: 14px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 2px 8px;
-            border-radius: 4px;
-            white-space: nowrap; /* Prevents the time from wrapping */
         }
 
         /* Gemini Summary Modal Styles */
@@ -280,15 +285,19 @@
         /* --- MOBILE OPTIMIZATIONS --- */
         @media (max-width: 600px) {
             .video-container {
-                padding-bottom: 180px; /* Increase padding to make space for stacked controls */
+                /* Increased padding to make space for stacked controls */
+                padding-bottom: 220px; 
+            }
+            
+            .player-controls-wrapper {
+                bottom: 10px;
+                gap: 10px;
             }
 
             .video-controls {
                 flex-direction: column;
                 padding: 10px;
                 gap: 8px;
-                bottom: 10px;
-                width: 90%;
             }
 
             .video-controls .control-group {
@@ -302,7 +311,6 @@
             }
 
             .progress-and-time-container {
-                bottom: 150px; /* Adjust position to be above the taller controls */
                 flex-direction: column;
                 gap: 8px;
             }
@@ -313,7 +321,6 @@
         }
 
     </style>
-    <!-- Security JavaScript -->
     <script>
         document.addEventListener("contextmenu", function (e) {
             e.preventDefault();
@@ -321,12 +328,10 @@
     </script>
 </head>
 <body id="page-top">
-    <!-- Video Background -->
     <video class="background-video" autoplay loop muted>
         <source src="assets/videos/background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Gourab Gorai</span>
@@ -347,11 +352,8 @@
             </ul>
         </div>
     </nav>
-    <!-- Theme Toggle Button -->
     <button id="theme-toggle" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px;">Toggle Theme</button>
-    <!-- Page Content -->
     <div class="container-fluid p-0">
-        <!-- About -->
         <section class="resume-section" id="about">
             <div class="resume-section-content">
                 <h1 class="mb-0">Gourab <span class="text-primary">Gorai</span></h1>
@@ -369,7 +371,6 @@
             </div>
         </section>
         <hr class="m-0" />
-        <!-- Projects -->
         <section class="resume-section" id="experience">
             <div class="resume-section-content">
                 <h2 class="mb-5">Projects</h2>
@@ -418,7 +419,6 @@
             </div>
         </div>
         <hr class="m-0" />
-        <!-- Education -->
         <section class="resume-section" id="education">
             <div class="resume-section-content">
                 <h2 class="mb-5">Education</h2>
@@ -446,7 +446,6 @@
             </div>
         </section>
         <hr class="m-0" />
-        <!-- Skills -->
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
                 <h2 class="mb-5">Skills</h2>
@@ -462,14 +461,12 @@
             </div>
         </section>
         <hr class="m-0" />
-        <!-- Hobbies -->
         <section class="resume-section" id="interests">
             <div class="resume-section-content">
                 <h2 class="mb-5">Hobbies</h2>
                 <p>Watching movies and web series, tech news enthusiast.</p>
             </div>
         </section>
-        <!-- Internships -->
         <section class="resume-section" id="internships">
             <div class="resume-section-content">
                 <h2 class="mb-5">Internships</h2>
@@ -486,7 +483,6 @@
                 </div>
             </div>
         </section>
-        <!-- Gallery -->
         <section class="resume-section" id="gallery">
             <div class="resume-section-content">
                 <h2 class="mb-5">Gallery</h2>
@@ -509,7 +505,6 @@
                 </div>
             </div>
         </section>
-        <!-- Certifications -->
         <section class="resume-section" id="certifications">
             <div class="resume-section-content">
                 <h2 class="mb-5">Certifications</h2>
@@ -547,36 +542,32 @@
                 </div>
             </div>
         </section>
-        <!-- Hackathons Section -->
         <section class="resume-section" id="hackathons">
             <div class="resume-section-content">
                 <h2 class="mb-5">Hackathons</h2>
                 <div class="row">
-                    <!-- First Entry: Single Image -->
                     <div class="col-md-4 mb-4">
                         <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1" onclick="openModal('assets/img/hack1.png', 'Hackathon 1', 'No Details Available.')" />
                     </div>
-                    <!-- Second Entry: Flexible Multiple Images -->
                     <div class="col-md-4 mb-4">
                         <img src="assets/img/image-7.png" class="img-thumbnail" alt="Hackathon 2"
-     onclick="openHackathonDetailsModal(
-         'Google Solution Challenge 2025',
-         [
-             'assets/img/image-7.png',
-             'assets/img/hack2.jpg',
-             'assets/img/hack2_detail1.jpg',
-             'assets/img/hack2_detail2.jpg',
-             'assets/img/hack2_detail3.jpg'
-         ],
-         'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations’ 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
-     )"
+   onclick="openHackathonDetailsModal(
+       'Google Solution Challenge 2025',
+       [
+           'assets/img/image-7.png',
+           'assets/img/hack2.jpg',
+           'assets/img/hack2_detail1.jpg',
+           'assets/img/hack2_detail2.jpg',
+           'assets/img/hack2_detail3.jpg'
+       ],
+       'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations’ 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
+   )"
 />
                     </div>
                 </div>
             </div>
         </section>
         <hr class="m-0" />
-        <!-- Modals -->
         <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -606,7 +597,6 @@
             </div>
         </div>
         
-        <!-- Enhanced Video Modal -->
         <div id="videoModal" class="video-modal">
             <span class="close-video">×</span>
             <div class="video-container">
@@ -614,31 +604,31 @@
                     <source src="" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <!-- UPDATED: New container for progress bar and time -->
-                <div class="progress-and-time-container">
-                    <div class="progress-container" id="progressContainer">
-                        <div class="progress-bar" id="progressBar"></div>
+                <div class="player-controls-wrapper">
+                    <div class="progress-and-time-container">
+                        <div class="progress-container" id="progressContainer">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                        <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
                     </div>
-                    <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
-                </div>
-                <div class="video-controls">
-                    <button id="playPauseBtn">Play</button>
-                    <div class="control-group">
-                        <button id="skip10Btn">Skip +10s</button>
-                        <button id="skip20Btn">Skip +20s</button>
-                        <button id="skip30Btn">Skip +30s</button>
+                    <div class="video-controls">
+                        <button id="playPauseBtn">Play</button>
+                        <div class="control-group">
+                            <button id="skip10Btn">Skip +10s</button>
+                            <button id="skip20Btn">Skip +20s</button>
+                            <button id="skip30Btn">Skip +30s</button>
+                        </div>
+                        <div class="control-group">
+                            <button id="back10Btn">Back -10s</button>
+                            <button id="back20Btn">Back -20s</button>
+                            <button id="back30Btn">Back -30s</button>
+                        </div>
+                        <button id="muteBtn">Mute</button>
                     </div>
-                    <div class="control-group">
-                        <button id="back10Btn">Back -10s</button>
-                        <button id="back20Btn">Back -20s</button>
-                        <button id="back30Btn">Back -30s</button>
-                    </div>
-                    <button id="muteBtn">Mute</button>
                 </div>
             </div>
         </div>
 
-        <!-- Gemini Summary Modal -->
         <div class="modal fade" id="geminiSummaryModal" tabindex="-1" aria-labelledby="geminiSummaryModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -670,11 +660,8 @@
             </div>
         </div>
     </div>
-    <!-- Bootstrap core JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS -->
     <script src="js/scripts.js"></script>
-    <!-- Custom Scripts for Modals, Video Player, and Gemini API -->
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         
@@ -798,16 +785,45 @@
                 }
             });
 
-            // Seek functionality
-            progressContainer.addEventListener('click', (e) => {
+            // === NEW: Draggable Progress Bar Logic ===
+            let isSeeking = false;
+
+            const startSeek = (e) => {
+                isSeeking = true;
+                updateSeek(e); // Seek on initial touch/click
+            };
+
+            const stopSeek = () => {
+                isSeeking = false;
+            };
+
+            const updateSeek = (e) => {
+                if (!isSeeking) return;
+                e.preventDefault(); // Prevent text selection while dragging
+
                 const { duration } = videoPlayer;
                 if (duration) {
-                    const clickX = e.offsetX;
+                    const event = e.touches ? e.touches[0] : e; // Handle both touch and mouse events
+                    const rect = progressContainer.getBoundingClientRect();
+                    const clientX = event.clientX;
+                    const clickX = clientX - rect.left;
                     const containerWidth = progressContainer.clientWidth;
-                    videoPlayer.currentTime = (clickX / containerWidth) * duration;
+                    // Clamp the value to ensure it's within the container's bounds
+                    const newClickX = Math.max(0, Math.min(clickX, containerWidth));
+                    videoPlayer.currentTime = (newClickX / containerWidth) * duration;
                 }
-            });
+            };
 
+            // Mouse events
+            progressContainer.addEventListener('mousedown', startSeek);
+            document.addEventListener('mousemove', updateSeek);
+            document.addEventListener('mouseup', stopSeek);
+
+            // Touch events for mobile support
+            progressContainer.addEventListener('touchstart', startSeek);
+            document.addEventListener('touchmove', updateSeek);
+            document.addEventListener('touchend', stopSeek);
+            
             // Format time from seconds to MM:SS
             function formatTime(seconds) {
                 if (isNaN(seconds)) return "00:00";
@@ -819,7 +835,7 @@
             // Function to call Gemini API with exponential backoff
             async function callGeminiAPI(prompt, maxRetries = 3) {
                 const apiKey = ""; // Leave empty, it will be handled by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
                 
                 const payload = {
                     contents: [{
