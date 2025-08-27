@@ -93,6 +93,10 @@
             cursor: pointer;
             display: inline-block;
         }
+        /* FIX: Ensure image behaves as a block to prevent extra space below it */
+        .img-container .img-thumbnail {
+            display: block;
+        }
         .img-overlay {
             position: absolute;
             top: 0;
