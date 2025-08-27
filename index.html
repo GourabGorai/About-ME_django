@@ -81,6 +81,40 @@
         .obj4 { top: 80%; left: 92%; animation-duration: 12s; animation-delay: 5s; font-size: 3.5rem; }
         .obj5 { top: 45%; left: 50%; animation-duration: 25s; font-size: 2rem; }
 
+        /* Image Hover Overlay */
+        .img-container {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 0.25rem; /* Match img-thumbnail */
+        }
+        .img-container:hover .img-overlay {
+            opacity: 1;
+        }
+        .img-overlay i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .img-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
 
         /* Dark Theme CSS */
         :root.dark-theme {
@@ -512,13 +546,31 @@
                 <h2 class="mb-5" data-aos="fade-down">Internships</h2>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1" onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
+                        <div class="img-container" onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')">
+                            <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2" onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
+                        <div class="img-container" onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')">
+                            <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/intern3.jpg" class="img-thumbnail" alt="Internship 1" onclick="openInternshipModal('assets/img/intern3.jpg', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', 'assets/pdf/intern3.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')" />
+                        <div class="img-container" onclick="openInternshipModal('assets/img/intern3.jpg', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', 'assets/pdf/intern3.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')">
+                            <img src="assets/img/intern3.jpg" class="img-thumbnail" alt="Internship 3" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -528,19 +580,49 @@
                 <h2 class="mb-5" data-aos="fade-down">Gallery</h2>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')" />
+                        <div class="img-container" onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')">
+                            <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')" />
+                         <div class="img-container" onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')">
+                            <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" />
+                             <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')" />
+                        <div class="img-container" onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')">
+                            <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4" onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')" />
+                        <div class="img-container" onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')">
+                            <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/image5.jpg" class="img-thumbnail" alt="Image 5" onclick="openModal('assets/img/image5.jpg', 'BCA 2022-2025 BATCH', ' ')" />
+                        <div class="img-container" onclick="openModal('assets/img/image5.jpg', 'BCA 2022-2025 BATCH', ' ')">
+                            <img src="assets/img/image5.jpg" class="img-thumbnail" alt="Image 5" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -550,34 +632,94 @@
                 <h2 class="mb-5" data-aos="fade-down">Certifications</h2>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1" onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')">
+                            <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2" onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')">
+                            <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')">
+                            <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')">
+                            <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')">
+                            <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6" onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')">
+                            <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')">
+                            <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification', '')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification', '')">
+                            <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 8" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals', '')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals', '')">
+                            <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 9" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership', '')" />
+                        <div class="img-container" onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership', '')">
+                            <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 10" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -587,22 +729,32 @@
                 <h2 class="mb-5" data-aos="fade-down">Hackathons</h2>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1" onclick="openModal('assets/img/hack1.png', 'Hackathon 1', 'No Details Available.')" />
+                        <div class="img-container" onclick="openModal('assets/img/hack1.png', 'Hackathon 1', 'No Details Available.')">
+                            <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/image-7.png" class="img-thumbnail" alt="Hackathon 2"
-   onclick="openHackathonDetailsModal(
-       'Google Solution Challenge 2025',
-       [
-           'assets/img/image-7.png',
-           'assets/img/hack2.jpg',
-           'assets/img/hack2_detail1.jpg',
-           'assets/img/hack2_detail2.jpg',
-           'assets/img/hack2_detail3.jpg'
-       ],
-       'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations’ 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
-   )"
-/>
+                        <div class="img-container" onclick="openHackathonDetailsModal(
+                           'Google Solution Challenge 2025',
+                           [
+                               'assets/img/image-7.png',
+                               'assets/img/hack2.jpg',
+                               'assets/img/hack2_detail1.jpg',
+                               'assets/img/hack2_detail2.jpg',
+                               'assets/img/hack2_detail3.jpg'
+                           ],
+                           'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations’ 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
+                       )">
+                            <img src="assets/img/image-7.png" class="img-thumbnail" alt="Hackathon 2" />
+                            <div class="img-overlay">
+                                <i class="fas fa-plus"></i>
+                                <p>View Details</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -771,21 +923,27 @@
             });
             
             // Video Modal Close
-            closeVideo.addEventListener('click', () => {
-                videoModal.style.display = 'none';
-                videoPlayer.pause();
-                videoPlayer.src = '';
-            });
+            if(closeVideo) {
+                closeVideo.addEventListener('click', () => {
+                    videoModal.style.display = 'none';
+                    videoPlayer.pause();
+                    videoPlayer.src = '';
+                });
+            }
+            
             
             // --- FIXED: Video Controls ---
-            playPauseBtn.addEventListener('click', () => {
-                if (videoPlayer.paused) {
-                    videoPlayer.play();
-                } else {
-                    videoPlayer.pause();
-                }
-                updatePlayPauseButton();
-            });
+            if(playPauseBtn) {
+                playPauseBtn.addEventListener('click', () => {
+                    if (videoPlayer.paused) {
+                        videoPlayer.play();
+                    } else {
+                        videoPlayer.pause();
+                    }
+                    updatePlayPauseButton();
+                });
+            }
+
 
             // Helper function to safely skip video time
             const skipTime = (amount) => {
@@ -794,39 +952,45 @@
                 }
             };
 
-            skip10Btn.addEventListener('click', () => skipTime(10));
-            skip20Btn.addEventListener('click', () => skipTime(20));
-            skip30Btn.addEventListener('click', () => skipTime(30));
-            back10Btn.addEventListener('click', () => skipTime(-10));
-            back20Btn.addEventListener('click', () => skipTime(-20));
-            back30Btn.addEventListener('click', () => skipTime(-30));
+            if(skip10Btn) skip10Btn.addEventListener('click', () => skipTime(10));
+            if(skip20Btn) skip20Btn.addEventListener('click', () => skipTime(20));
+            if(skip30Btn) skip30Btn.addEventListener('click', () => skipTime(30));
+            if(back10Btn) back10Btn.addEventListener('click', () => skipTime(-10));
+            if(back20Btn) back20Btn.addEventListener('click', () => skipTime(-20));
+            if(back30Btn) back30Btn.addEventListener('click', () => skipTime(-30));
 
-            muteBtn.addEventListener('click', () => {
-                videoPlayer.muted = !videoPlayer.muted;
-                updateMuteButton();
-            });
+            if(muteBtn) {
+                muteBtn.addEventListener('click', () => {
+                    videoPlayer.muted = !videoPlayer.muted;
+                    updateMuteButton();
+                });
+            }
+
 
             function updatePlayPauseButton() {
-                playPauseBtn.textContent = videoPlayer.paused ? 'Play' : 'Pause';
+                if(playPauseBtn) playPauseBtn.textContent = videoPlayer.paused ? 'Play' : 'Pause';
             }
 
             function updateMuteButton() {
-                muteBtn.textContent = videoPlayer.muted ? 'Unmute' : 'Mute';
+                if(muteBtn) muteBtn.textContent = videoPlayer.muted ? 'Unmute' : 'Mute';
             }
 
-            videoPlayer.addEventListener('play', updatePlayPauseButton);
-            videoPlayer.addEventListener('pause', updatePlayPauseButton);
-            videoPlayer.addEventListener('volumechange', updateMuteButton);
+            if(videoPlayer) {
+                videoPlayer.addEventListener('play', updatePlayPauseButton);
+                videoPlayer.addEventListener('pause', updatePlayPauseButton);
+                videoPlayer.addEventListener('volumechange', updateMuteButton);
 
-            // Update progress bar and time display
-            videoPlayer.addEventListener('timeupdate', () => {
-                const { currentTime, duration } = videoPlayer;
-                if (duration) {
-                    const progressPercent = (currentTime / duration) * 100;
-                    progressBar.style.width = `${progressPercent}%`;
-                    timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
-                }
-            });
+                // Update progress bar and time display
+                videoPlayer.addEventListener('timeupdate', () => {
+                    const { currentTime, duration } = videoPlayer;
+                    if (duration) {
+                        const progressPercent = (currentTime / duration) * 100;
+                        if(progressBar) progressBar.style.width = `${progressPercent}%`;
+                        if(timeDisplay) timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+                    }
+                });
+            }
+
 
             // === NEW: Draggable Progress Bar Logic ===
             let isSeeking = false;
@@ -841,7 +1005,7 @@
             };
 
             const updateSeek = (e) => {
-                if (!isSeeking) return;
+                if (!isSeeking || !videoPlayer) return;
                 e.preventDefault(); // Prevent text selection while dragging
 
                 const { duration } = videoPlayer;
@@ -857,15 +1021,17 @@
                 }
             };
 
-            // Mouse events
-            progressContainer.addEventListener('mousedown', startSeek);
-            document.addEventListener('mousemove', updateSeek);
-            document.addEventListener('mouseup', stopSeek);
+            if(progressContainer) {
+                // Mouse events
+                progressContainer.addEventListener('mousedown', startSeek);
+                document.addEventListener('mousemove', updateSeek);
+                document.addEventListener('mouseup', stopSeek);
 
-            // Touch events for mobile support
-            progressContainer.addEventListener('touchstart', startSeek);
-            document.addEventListener('touchmove', updateSeek);
-            document.addEventListener('touchend', stopSeek);
+                // Touch events for mobile support
+                progressContainer.addEventListener('touchstart', startSeek);
+                document.addEventListener('touchmove', updateSeek);
+                document.addEventListener('touchend', stopSeek);
+            }
             
             // Format time from seconds to MM:SS
             function formatTime(seconds) {
@@ -1056,7 +1222,10 @@
         document.getElementById('internshipImage').src = imgSrc;
         document.getElementById('internshipModalLabel').innerText = title;
         document.getElementById('internshipDescription').innerText = description;
-        document.getElementById('internshipPDF').src = pdfSrc + "#toolbar=0";
+        // Appending #toolbar=0 is a common trick to suggest browsers to hide the toolbar.
+        // This is not a guaranteed security feature but works in most desktop browsers.
+        // Mobile browsers may handle this differently.
+        document.getElementById('internshipPDF').src = pdfSrc + "#toolbar=0&navpanes=0&scrollbar=0";
         var myModal = new bootstrap.Modal(document.getElementById('internshipModal'), {});
         myModal.show();
     }
