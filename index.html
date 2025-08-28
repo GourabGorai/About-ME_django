@@ -818,13 +818,13 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         
-        // Initialize PDF.js canvas and context here
-        canvas = document.getElementById('pdf-render');
-        ctx = canvas.getContext('2d');
-        document.getElementById('prev-page').addEventListener('click', onPrevPage);
-        document.getElementById('next-page').addEventListener('click', onNextPage);
-        
         function initializeApp() {
+            // Initialize PDF.js canvas and context here
+            canvas = document.getElementById('pdf-render');
+            ctx = canvas.getContext('2d');
+            document.getElementById('prev-page').addEventListener('click', onPrevPage);
+            document.getElementById('next-page').addEventListener('click', onNextPage);
+
             const videoModal = document.getElementById('videoModal');
             const videoPlayer = document.getElementById('videoPlayer');
             const closeVideo = document.querySelector('.close-video');
