@@ -28,12 +28,6 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <!-- PDF.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
-    <script>
-        // Specify the worker script location
-        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
-    </script>
     <style>
         /* Security CSS */
         body {
@@ -91,14 +85,7 @@
         .img-container {
             position: relative;
             cursor: pointer;
-            display: flex; /* Use flexbox for robust centering */
-            justify-content: center;
-            align-items: center;
-            overflow: hidden; /* Hide anything that might spill out */
-            border-radius: 0.25rem;
-        }
-        .img-container .img-thumbnail {
-            display: block;
+            display: inline-block;
         }
         .img-overlay {
             position: absolute;
@@ -114,7 +101,7 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease;
-            z-index: 1; /* Ensure overlay is on top */
+            border-radius: 0.25rem; /* Match img-thumbnail */
         }
         .img-container:hover .img-overlay {
             opacity: 1;
@@ -162,32 +149,6 @@
             .img-container:active .img-overlay {
                  background-color: rgba(0, 0, 0, 0.8);
             }
-        }
-
-        /* PDF Viewer Styles */
-        #pdf-viewer-container {
-            width: 100%;
-            height: 500px;
-            overflow: auto;
-            background: #525659;
-            text-align: center;
-        }
-        #pdf-render {
-            max-width: 100%;
-            direction: ltr;
-        }
-        #pdf-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            background-color: #f8f9fa;
-        }
-        #pdf-controls button {
-            margin: 0 10px;
-        }
-        #page-num {
-            font-weight: bold;
         }
 
         /* Dark Theme CSS */
@@ -920,16 +881,7 @@
                     <div class="modal-body">
                         <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
                         <p id="internshipDescription"></p>
-                        <!-- PDF.js Viewer Container -->
-                        <div id="pdf-viewer-container">
-                            <div id="pdf-loader" class="spinner" style="display: none;"></div>
-                            <canvas id="pdf-render"></canvas>
-                        </div>
-                        <div id="pdf-controls" class="mt-2">
-                             <button id="prev-page" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></button>
-                             <span id="page-num"></span> / <span id="page-count"></span>
-                             <button id="next-page" class="btn btn-secondary"><i class="fas fa-arrow-right"></i></button>
-                        </div>
+                        <iframe id="internshipPDF" src="" style="width: 100%; height: 500px; border: none;" allow="fullscreen"></iframe>
                     </div>
                 </div>
             </div>
@@ -941,86 +893,6 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-    // PDF.js state variables
-    let pdfDoc = null;
-    let pageNum = 1;
-    let pageRendering = false;
-    let pageNumPending = null;
-    const scale = 1.5;
-    const canvas = document.getElementById('pdf-render');
-    const ctx = canvas.getContext('2d');
-    
-    /**
-     * Get page info from document, resize canvas accordingly, and render page.
-     * @param num Page number.
-     */
-    function renderPage(num) {
-        pageRendering = true;
-        // Using promise to fetch the page
-        pdfDoc.getPage(num).then(function(page) {
-            const viewport = page.getViewport({ scale: scale });
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            // Render PDF page into canvas context
-            const renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-            const renderTask = page.render(renderContext);
-
-            // Wait for rendering to finish
-            renderTask.promise.then(function() {
-                pageRendering = false;
-                if (pageNumPending !== null) {
-                    // New page rendering is pending
-                    renderPage(pageNumPending);
-                    pageNumPending = null;
-                }
-            });
-        });
-
-        // Update page counters
-        document.getElementById('page-num').textContent = num;
-    }
-
-    /**
-     * If another page rendering in progress, waits until the rendering is
-     * finised. Otherwise, executes rendering immediately.
-     */
-    function queueRenderPage(num) {
-        if (pageRendering) {
-            pageNumPending = num;
-        } else {
-            renderPage(num);
-        }
-    }
-
-    /**
-     * Displays previous page.
-     */
-    function onPrevPage() {
-        if (pageNum <= 1) {
-            return;
-        }
-        pageNum--;
-        queueRenderPage(pageNum);
-    }
-    document.getElementById('prev-page').addEventListener('click', onPrevPage);
-
-    /**
-     * Displays next page.
-     */
-    function onNextPage() {
-        if (pageNum >= pdfDoc.numPages) {
-            return;
-        }
-        pageNum++;
-        queueRenderPage(pageNum);
-    }
-    document.getElementById('next-page').addEventListener('click', onNextPage);
-
-
     document.addEventListener('DOMContentLoaded', function () {
         
         // This function will contain all the code that needs to run after Bootstrap is ready.
@@ -1385,25 +1257,10 @@
         document.getElementById('internshipImage').src = imgSrc;
         document.getElementById('internshipModalLabel').innerText = title;
         document.getElementById('internshipDescription').innerText = description;
-        
-        const loader = document.getElementById('pdf-loader');
-        loader.style.display = 'block';
-        
-        // Asynchronously load the PDF
-        const loadingTask = pdfjsLib.getDocument(pdfSrc);
-        loadingTask.promise.then(function(pdf) {
-            loader.style.display = 'none';
-            pdfDoc = pdf;
-            document.getElementById('page-count').textContent = pdfDoc.numPages;
-            pageNum = 1;
-            renderPage(pageNum);
-
-        }, function (reason) {
-            // PDF loading error
-            console.error(reason);
-            loader.style.display = 'none';
-        });
-
+        // Appending #toolbar=0 is a common trick to suggest browsers to hide the toolbar.
+        // This is not a guaranteed security feature but works in most desktop browsers.
+        // Mobile browsers may handle this differently.
+        document.getElementById('internshipPDF').src = pdfSrc + "#toolbar=0&navpanes=0&scrollbar=0";
         var myModal = new bootstrap.Modal(document.getElementById('internshipModal'), {});
         myModal.show();
     }
