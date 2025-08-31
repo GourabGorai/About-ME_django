@@ -120,41 +120,51 @@
         /* Dark Theme CSS */
         :root.dark-theme {
             --bs-body-bg: #121212;
-            --bs-body-color: #e0e0e0;
+            --bs-body-color: #f0f0f0; /* Brighter text for better readability */
             --bs-link-color: #bb86fc;
-            --bs-link-hover-color: #3700b3;
-            --bs-border-color: #333;
-            --bs-table-bg: #1f1f1f;
-            --bs-table-color: #e0e0e0;
-            --bs-table-border-color: #333;
-            --bs-table-striped-bg: #333;
-            --bs-table-striped-color: #e0e0e0;
-            --bs-table-hover-bg: #444;
-            --bs-table-hover-color: #fff;
-            --bs-code-color: #d63384;
-            --bs-highlight-bg: #333;
+            --bs-link-hover-color: #9a67ea;
+            --bs-border-color: #444;
             --bs-primary: #1a1a1a;
             --bs-secondary: #2a2a2a;
             --bs-dark: #000;
         }
-        body {
-            margin: 0;
-            font-family: var(--bs-body-font-family);
-            font-size: var(--bs-body-font-size);
-            font-weight: var(--bs-body-font-weight);
-            line-height: var(--bs-body-line-height);
-            color: var(--bs-body-color);
-            text-align: var(--bs-body-text-align);
+        :root.dark-theme body {
             background-color: var(--bs-body-bg);
-            -webkit-text-size-adjust: 100%;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            color: var(--bs-body-color);
         }
-        a {
+        :root.dark-theme a {
             color: var(--bs-link-color);
-            text-decoration: underline;
         }
-        a:hover {
+        :root.dark-theme a:hover {
             color: var(--bs-link-hover-color);
+        }
+        :root.dark-theme h1, :root.dark-theme .h1,
+        :root.dark-theme h2, :root.dark-theme .h2,
+        :root.dark-theme h3, :root.dark-theme .h3,
+        :root.dark-theme h4, :root.dark-theme .h4,
+        :root.dark-theme h5, :root.dark-theme .h5,
+        :root.dark-theme h6, :root.dark-theme .h6 {
+            color: var(--bs-body-color);
+        }
+        :root.dark-theme .subheading {
+            color: #dcdcdc;
+        }
+        :root.dark-theme .text-primary {
+            color: #bb86fc !important;
+        }
+        :root.dark-theme .modal-content {
+             background-color: #2a2a2a;
+             color: var(--bs-body-color);
+             border-color: var(--bs-border-color);
+        }
+        :root.dark-theme .modal-header {
+            border-bottom-color: var(--bs-border-color);
+        }
+        :root.dark-theme .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+         :root.dark-theme #detailsModal .modal-content {
+            background-color: #1e1e1e; /* Darker background for iframe modal */
         }
         
         /* Enhanced Video Modal Popup Box */
@@ -290,27 +300,6 @@
             white-space: nowrap; 
         }
 
-        :root.dark-theme .background-video {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .theme-toggle-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            padding: 10px 20px;
-            background-color: var(--bs-link-color);
-            color: var(--bs-body-bg);
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .theme-toggle-btn:hover {
-            background-color: var(--bs-link-hover-color);
-        }
-
         .gemini-modal-body {
             position: relative;
             min-height: 150px;
@@ -411,10 +400,10 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
+                <li class="nav-item"><a class="nav-link" id="theme-toggle-link" href="#"><i class="fas fa-adjust me-2"></i>Toggle Theme</a></li>
             </ul>
         </div>
     </nav>
-    <button id="theme-toggle" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px;">Toggle Theme</button>
     <div class="container-fluid p-0">
         <section class="resume-section" id="about">
             <div class="resume-section-content">
@@ -1100,7 +1089,7 @@
             };
 
             tsParticles.load("tsparticles", particlesConfig).then(container => {
-                const themeToggleButton = document.getElementById('theme-toggle');
+                const themeToggleLink = document.getElementById('theme-toggle-link');
                 const htmlElement = document.documentElement;
 
                 const updateParticleColors = () => {
@@ -1113,7 +1102,8 @@
                 
                 updateParticleColors();
 
-                themeToggleButton.addEventListener('click', () => {
+                themeToggleLink.addEventListener('click', (event) => {
+                    event.preventDefault();
                     htmlElement.classList.toggle('dark-theme');
                     updateParticleColors();
                 });
