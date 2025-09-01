@@ -119,6 +119,20 @@
         :root.dark-theme .pdf-controls {
             background-color: #343a40;
         }
+        
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1050;
+        }
+
+        /* Move theme toggle button on mobile to avoid overlapping the navbar toggler */
+        @media (max-width: 991.98px) {
+            #theme-toggle {
+                right: 70px; 
+            }
+        }
 
         /* Dark Theme CSS */
         :root.dark-theme {
@@ -406,7 +420,7 @@
             </ul>
         </div>
     </nav>
-    <button id="theme-toggle" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px; z-index: 1050;"><i class="fas fa-adjust"></i></button>
+    <button id="theme-toggle" class="btn btn-secondary"><i class="fas fa-adjust"></i></button>
     <div class="container-fluid p-0">
         <section class="resume-section" id="about">
             <div class="resume-section-content">
