@@ -92,29 +92,32 @@
         }
 
         /* PDF Viewer Styles */
-        #pdf-viewer-container {
+        .pdf-viewer-container {
             width: 100%;
-            height: 500px;
+            height: 60vh; /* Adjusted for better viewing */
             overflow: auto;
             background: #525659;
             text-align: center;
         }
-        #pdf-render {
+        .pdf-render {
             max-width: 100%;
             direction: ltr;
         }
-        #pdf-controls {
+        .pdf-controls {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 10px;
             background-color: #f8f9fa;
         }
-        #pdf-controls button {
+        .pdf-controls button {
             margin: 0 10px;
         }
-        #page-num {
+        .page-num {
             font-weight: bold;
+        }
+        :root.dark-theme .pdf-controls {
+            background-color: #343a40;
         }
 
         /* Dark Theme CSS */
@@ -400,10 +403,10 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
-                <li class="nav-item"><a class="nav-link" id="theme-toggle-link" href="#"><i class="fas fa-adjust me-2"></i>Toggle Theme</a></li>
             </ul>
         </div>
     </nav>
+    <button id="theme-toggle" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px; z-index: 1050;"><i class="fas fa-adjust"></i></button>
     <div class="container-fluid p-0">
         <section class="resume-section" id="about">
             <div class="resume-section-content">
@@ -418,7 +421,10 @@
                     <a class="social-icon" href="https://github.com/GourabGorai"><i class="fab fa-github"></i></a>
                     <a class="social-icon" href="https://www.facebook.com/gourab.gorai.986"><i class="fab fa-facebook-f"></i></a>
                 </div>
-                <a href="assets/pdf/resume.pdf" download class="btn btn-primary mt-4" data-aos="fade-up" data-aos-delay="400">Download Resume</a>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <a href="assets/pdf/resume.pdf" download class="btn btn-primary mt-4">Download Resume</a>
+                    <button class="btn btn-secondary mt-4 ms-2" onclick="openResumeModal()">View Resume</button>
+                </div>
             </div>
         </section>
         <hr class="m-0" />
@@ -709,14 +715,36 @@
                         <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
                         <p id="internshipDescription"></p>
                         <!-- PDF.js Viewer Container -->
-                        <div id="pdf-viewer-container">
-                            <div id="pdf-loader" class="spinner" style="display: none;"></div>
-                            <canvas id="pdf-render"></canvas>
+                        <div class="pdf-viewer-container">
+                            <div class="spinner" style="display: none;"></div>
+                            <canvas class="pdf-render"></canvas>
                         </div>
-                        <div id="pdf-controls" class="mt-2">
-                             <button id="prev-page" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></button>
-                             <span id="page-num"></span> / <span id="page-count"></span>
-                             <button id="next-page" class="btn btn-secondary"><i class="fas fa-arrow-right"></i></button>
+                        <div class="pdf-controls mt-2">
+                             <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                             <span class="page-num"></span> / <span class="page-count"></span>
+                             <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl"> <!-- Use a larger modal for resume -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resumeModalLabel">My Resume</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- PDF.js Viewer Container for Resume -->
+                        <div class="pdf-viewer-container">
+                            <div class="spinner" style="display: none;"></div>
+                            <canvas class="pdf-render"></canvas>
+                        </div>
+                        <div class="pdf-controls mt-2">
+                             <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                             <span class="page-num"></span> / <span class="page-count"></span>
+                             <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -729,94 +757,80 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-    // PDF.js state variables
-    let pdfDoc = null;
-    let pageNum = 1;
-    let pageRendering = false;
-    let pageNumPending = null;
-    const scale = 1.5;
-    let canvas = null;
-    let ctx = null;
-    
-    /**
-     * Get page info from document, resize canvas accordingly, and render page.
-     * @param num Page number.
-     */
-    function renderPage(num) {
-        pageRendering = true;
-        // Using promise to fetch the page
-        pdfDoc.getPage(num).then(function(page) {
-            const viewport = page.getViewport({ scale: scale });
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
 
-            // Render PDF page into canvas context
-            const renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-            const renderTask = page.render(renderContext);
+    function setupPdfViewer(modalElement, pdfSrc) {
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        const scale = 1.5;
 
-            // Wait for rendering to finish
-            renderTask.promise.then(function() {
-                pageRendering = false;
-                if (pageNumPending !== null) {
-                    // New page rendering is pending
-                    renderPage(pageNumPending);
-                    pageNumPending = null;
-                }
+        const canvas = modalElement.querySelector('.pdf-render');
+        const ctx = canvas.getContext('2d');
+        const loader = modalElement.querySelector('.spinner');
+        const pageNumDisplay = modalElement.querySelector('.page-num');
+        const pageCountDisplay = modalElement.querySelector('.page-count');
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = { canvasContext: ctx, viewport: viewport };
+                const renderTask = page.render(renderContext);
+                
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
             });
+            pageNumDisplay.textContent = num;
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        modalElement.querySelector('.prev-page').addEventListener('click', () => {
+            if (pageNum <= 1) return;
+            pageNum--;
+            queueRenderPage(pageNum);
         });
 
-        // Update page counters
-        document.getElementById('page-num').textContent = num;
+        modalElement.querySelector('.next-page').addEventListener('click', () => {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            queueRenderPage(pageNum);
+        });
+        
+        modalElement.addEventListener('shown.bs.modal', function () {
+            loader.style.display = 'block';
+            const loadingTask = pdfjsLib.getDocument(pdfSrc);
+            loadingTask.promise.then(function(pdf) {
+                loader.style.display = 'none';
+                pdfDoc = pdf;
+                pageCountDisplay.textContent = pdfDoc.numPages;
+                pageNum = 1;
+                renderPage(pageNum);
+            }, function (reason) {
+                console.error(reason);
+                loader.style.display = 'none';
+            });
+        }, { once: true });
     }
-
-    /**
-     * If another page rendering in progress, waits until the rendering is
-     * finised. Otherwise, executes rendering immediately.
-     */
-    function queueRenderPage(num) {
-        if (pageRendering) {
-            pageNumPending = num;
-        } else {
-            renderPage(num);
-        }
-    }
-
-    /**
-     * Displays previous page.
-     */
-    function onPrevPage() {
-        if (pageNum <= 1) {
-            return;
-        }
-        pageNum--;
-        queueRenderPage(pageNum);
-    }
-   
-
-    /**
-     * Displays next page.
-     */
-    function onNextPage() {
-        if (pageNum >= pdfDoc.numPages) {
-            return;
-        }
-        pageNum++;
-        queueRenderPage(pageNum);
-    }
-    
-
 
     document.addEventListener('DOMContentLoaded', function () {
         
         function initializeApp() {
-            // Initialize PDF.js canvas and context here
-            canvas = document.getElementById('pdf-render');
-            ctx = canvas.getContext('2d');
-            document.getElementById('prev-page').addEventListener('click', onPrevPage);
-            document.getElementById('next-page').addEventListener('click', onNextPage);
 
             const videoModal = document.getElementById('videoModal');
             const videoPlayer = document.getElementById('videoPlayer');
@@ -863,7 +877,6 @@
                     iframe.src = '';
                 }
             }
-
 
             document.querySelectorAll('.play-video').forEach(button => {
                 button.addEventListener('click', function () {
@@ -1047,6 +1060,9 @@
                 duration: 800,
                 once: true,
             });
+            
+            setupPdfViewer(document.getElementById('internshipModal'), '');
+            setupPdfViewer(document.getElementById('resumeModal'), 'assets/pdf/resume.pdf');
 
             const particlesConfig = {
                 fpsLimit: 60,
@@ -1089,7 +1105,7 @@
             };
 
             tsParticles.load("tsparticles", particlesConfig).then(container => {
-                const themeToggleLink = document.getElementById('theme-toggle-link');
+                const themeToggleButton = document.getElementById('theme-toggle');
                 const htmlElement = document.documentElement;
 
                 const updateParticleColors = () => {
@@ -1102,7 +1118,7 @@
                 
                 updateParticleColors();
 
-                themeToggleLink.addEventListener('click', (event) => {
+                themeToggleButton.addEventListener('click', (event) => {
                     event.preventDefault();
                     htmlElement.classList.toggle('dark-theme');
                     updateParticleColors();
@@ -1152,34 +1168,21 @@
     }
 
     function openInternshipModal(imgSrc, title, pdfSrc, description) {
-        const internshipModal = document.getElementById('internshipModal');
-        const modal = new bootstrap.Modal(internshipModal, {});
-
+        const modalElement = document.getElementById('internshipModal');
+        const modal = new bootstrap.Modal(modalElement, {});
+        
         document.getElementById('internshipImage').src = imgSrc;
         document.getElementById('internshipModalLabel').innerText = title;
         document.getElementById('internshipDescription').innerText = description;
         
-        const loader = document.getElementById('pdf-loader');
-        
-        internshipModal.addEventListener('shown.bs.modal', function () {
-            loader.style.display = 'block';
-            
-            // Asynchronously load the PDF
-            const loadingTask = pdfjsLib.getDocument(pdfSrc);
-            loadingTask.promise.then(function(pdf) {
-                loader.style.display = 'none';
-                pdfDoc = pdf;
-                document.getElementById('page-count').textContent = pdfDoc.numPages;
-                pageNum = 1;
-                renderPage(pageNum);
+        setupPdfViewer(modalElement, pdfSrc);
+        modal.show();
+    }
 
-            }, function (reason) {
-                // PDF loading error
-                console.error(reason);
-                loader.style.display = 'none';
-            });
-        }, { once: true }); // Ensure this listener only runs once per modal opening
-
+    function openResumeModal() {
+        const modalElement = document.getElementById('resumeModal');
+        const modal = new bootstrap.Modal(modalElement, {});
+        setupPdfViewer(modalElement, 'assets/pdf/resume.pdf');
         modal.show();
     }
     </script>
