@@ -772,79 +772,94 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
 
-    function setupPdfViewer(modalElement, pdfSrc) {
-        let pdfDoc = null;
-        let pageNum = 1;
-        let pageRendering = false;
-        let pageNumPending = null;
-        const scale = 1.5;
+    class PdfViewer {
+        constructor(modalElement) {
+            this.modalElement = modalElement;
+            this.pdfDoc = null;
+            this.pageNum = 1;
+            this.pageRendering = false;
+            this.pageNumPending = null;
+            this.scale = 1.5;
 
-        const canvas = modalElement.querySelector('.pdf-render');
-        const ctx = canvas.getContext('2d');
-        const loader = modalElement.querySelector('.spinner');
-        const pageNumDisplay = modalElement.querySelector('.page-num');
-        const pageCountDisplay = modalElement.querySelector('.page-count');
+            this.canvas = this.modalElement.querySelector('.pdf-render');
+            this.ctx = this.canvas.getContext('2d');
+            this.loader = this.modalElement.querySelector('.spinner');
+            this.pageNumDisplay = this.modalElement.querySelector('.page-num');
+            this.pageCountDisplay = this.modalElement.querySelector('.page-count');
+            
+            // Attach event listeners ONCE
+            this.modalElement.querySelector('.prev-page').addEventListener('click', () => this.onPrevPage());
+            this.modalElement.querySelector('.next-page').addEventListener('click', () => this.onNextPage());
+        }
 
-        function renderPage(num) {
-            pageRendering = true;
-            pdfDoc.getPage(num).then(function(page) {
-                const viewport = page.getViewport({ scale: scale });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
+        renderPage(num) {
+            this.pageRendering = true;
+            this.pdfDoc.getPage(num).then(page => {
+                const viewport = page.getViewport({ scale: this.scale });
+                this.canvas.height = viewport.height;
+                this.canvas.width = viewport.width;
 
-                const renderContext = { canvasContext: ctx, viewport: viewport };
-                const renderTask = page.render(renderContext);
-                
-                renderTask.promise.then(function() {
-                    pageRendering = false;
-                    if (pageNumPending !== null) {
-                        renderPage(pageNumPending);
-                        pageNumPending = null;
+                const renderContext = {
+                    canvasContext: this.ctx,
+                    viewport: viewport,
+                };
+                page.render(renderContext).promise.then(() => {
+                    this.pageRendering = false;
+                    if (this.pageNumPending !== null) {
+                        this.renderPage(this.pageNumPending);
+                        this.pageNumPending = null;
                     }
                 });
             });
-            pageNumDisplay.textContent = num;
+            this.pageNumDisplay.textContent = num;
         }
 
-        function queueRenderPage(num) {
-            if (pageRendering) {
-                pageNumPending = num;
+        queueRenderPage(num) {
+            if (this.pageRendering) {
+                this.pageNumPending = num;
             } else {
-                renderPage(num);
+                this.renderPage(num);
             }
         }
 
-        modalElement.querySelector('.prev-page').addEventListener('click', () => {
-            if (pageNum <= 1) return;
-            pageNum--;
-            queueRenderPage(pageNum);
-        });
+        onPrevPage() {
+            if (this.pageNum <= 1) return;
+            this.pageNum--;
+            this.queueRenderPage(this.pageNum);
+        }
 
-        modalElement.querySelector('.next-page').addEventListener('click', () => {
-            if (pageNum >= pdfDoc.numPages) return;
-            pageNum++;
-            queueRenderPage(pageNum);
-        });
+        onNextPage() {
+            if (this.pageNum >= this.pdfDoc.numPages) return;
+            this.pageNum++;
+            this.queueRenderPage(this.pageNum);
+        }
         
-        modalElement.addEventListener('shown.bs.modal', function () {
-            loader.style.display = 'block';
+        load(pdfSrc) {
+            this.loader.style.display = 'block';
             const loadingTask = pdfjsLib.getDocument(pdfSrc);
-            loadingTask.promise.then(function(pdf) {
-                loader.style.display = 'none';
-                pdfDoc = pdf;
-                pageCountDisplay.textContent = pdfDoc.numPages;
-                pageNum = 1;
-                renderPage(pageNum);
-            }, function (reason) {
+            loadingTask.promise.then(pdf => {
+                this.loader.style.display = 'none';
+                this.pdfDoc = pdf;
+                this.pageCountDisplay.textContent = this.pdfDoc.numPages;
+                this.pageNum = 1;
+                this.renderPage(this.pageNum);
+            }, reason => {
                 console.error(reason);
-                loader.style.display = 'none';
+                this.loader.style.display = 'none';
             });
-        }, { once: true });
+        }
     }
+
+
+    let internshipViewer = null;
+    let resumeViewer = null;
 
     document.addEventListener('DOMContentLoaded', function () {
         
         function initializeApp() {
+
+            internshipViewer = new PdfViewer(document.getElementById('internshipModal'));
+            resumeViewer = new PdfViewer(document.getElementById('resumeModal'));
 
             const videoModal = document.getElementById('videoModal');
             const videoPlayer = document.getElementById('videoPlayer');
@@ -1075,9 +1090,6 @@
                 once: true,
             });
             
-            setupPdfViewer(document.getElementById('internshipModal'), '');
-            setupPdfViewer(document.getElementById('resumeModal'), 'assets/pdf/resume.pdf');
-
             const particlesConfig = {
                 fpsLimit: 60,
                 interactivity: {
@@ -1183,20 +1195,20 @@
 
     function openInternshipModal(imgSrc, title, pdfSrc, description) {
         const modalElement = document.getElementById('internshipModal');
-        const modal = new bootstrap.Modal(modalElement, {});
+        const modal = new bootstrap.Modal(modalElement);
         
-        document.getElementById('internshipImage').src = imgSrc;
-        document.getElementById('internshipModalLabel').innerText = title;
-        document.getElementById('internshipDescription').innerText = description;
+        modalElement.querySelector('#internshipImage').src = imgSrc;
+        modalElement.querySelector('#internshipModalLabel').innerText = title;
+        modalElement.querySelector('#internshipDescription').innerText = description;
         
-        setupPdfViewer(modalElement, pdfSrc);
+        internshipViewer.load(pdfSrc);
         modal.show();
     }
 
     function openResumeModal() {
         const modalElement = document.getElementById('resumeModal');
-        const modal = new bootstrap.Modal(modalElement, {});
-        setupPdfViewer(modalElement, 'assets/pdf/resume.pdf');
+        const modal = new bootstrap.Modal(modalElement);
+        resumeViewer.load('assets/pdf/resume.pdf');
         modal.show();
     }
     </script>
