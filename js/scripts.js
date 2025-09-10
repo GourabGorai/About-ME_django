@@ -80,6 +80,7 @@ class PdfViewer {
     }
 
     load(pdfSrc) {
+        if (!this.loader) return;
         this.loader.style.display = 'block';
         const loadingTask = pdfjsLib.getDocument(pdfSrc);
         loadingTask.promise.then(pdf => {
@@ -291,11 +292,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
         // --- Gemini AI Summary Generation ---
         async function callGeminiAPI(prompt, maxRetries = 3) {
-            const apiKey = ""; // IMPORTANT: Add your Gemini API key here
-            if (!apiKey) {
-                console.error("Gemini API key is missing.");
-                return "AI summary is currently unavailable. API key is not configured.";
-            }
+            const apiKey = "AIzaSyBYbmBSicVfWFMTGSfnKkIyLPCfxZyZEIc";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
             
             const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
