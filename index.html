@@ -411,6 +411,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -650,6 +651,37 @@
             </div>
         </section>
         <hr class="m-0" />
+        <!-- Contact-->
+        <section class="resume-section" id="contact">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Contact Me (Under Development)</h2>
+                <div class="row" data-aos="fade-up">
+                    <div class="col-lg-8 mx-auto">
+                        <form id="contactForm" name="sentMessage">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." required />
+                                <label for="name">Full name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="email" type="email" placeholder="Enter your email..." required />
+                                <label for="email">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." required />
+                                <label for="phone">Phone number</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" required maxlength="1200"></textarea>
+                                <label for="message">Message (max 200 words)</label>
+                            </div>
+                            <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
+                        </form>
+                        <div id="form-status" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         
         <!-- MODALS -->
 
@@ -791,6 +823,8 @@
     <!-- Plugin JS Files -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     
     <!-- Your Custom JS File -->
     <script src="js/scripts.js"></script>
