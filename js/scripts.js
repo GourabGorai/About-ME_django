@@ -159,6 +159,54 @@ window.addEventListener('DOMContentLoaded', event => {
         const geminiModal = new bootstrap.Modal(document.getElementById('geminiSummaryModal'));
         const geminiSpinner = document.getElementById('geminiSpinner');
         const geminiContent = document.getElementById('geminiSummaryContent');
+        
+        const contactForm = document.getElementById('contactForm');
+
+
+        // --- Contact Form Logic (EmailJS) ---
+        if(contactForm) {
+            // IMPORTANT: Replace with your public key from EmailJS
+            emailjs.init({ publicKey: 'YOUR_PUBLIC_KEY' });
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const sendMessageButton = document.getElementById('sendMessageButton');
+                const formStatus = document.getElementById('form-status');
+
+                // Disable button to prevent multiple submissions
+                sendMessageButton.disabled = true;
+                sendMessageButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`;
+
+                // --- IMPORTANT: Replace with your own Service ID and Template ID from EmailJS ---
+                const serviceID = 'service_rs9m9mq';
+                const templateID = 'template_whlfnzb';
+
+                // Get the form data
+                const templateParams = {
+                    from_name: document.getElementById('name').value,
+                    from_email: document.getElementById('email').value,
+                    phone_number: document.getElementById('phone').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Send the email
+                emailjs.send(serviceID, templateID, templateParams)
+                    .then(response => {
+                        console.log('SUCCESS!', response.status, response.text);
+                        formStatus.innerHTML = `<div class="alert alert-success">Message sent successfully!</div>`;
+                        contactForm.reset();
+                    }, error => {
+                        console.log('FAILED...', error);
+                        formStatus.innerHTML = `<div class="alert alert-danger">Oops! Something went wrong. Please try again later.</div>`;
+                    })
+                    .finally(() => {
+                        // Re-enable the button
+                        sendMessageButton.disabled = false;
+                        sendMessageButton.innerHTML = 'Send';
+                    });
+            });
+        }
+
 
         // --- Project Details Modal Logic (iframe) ---
         const detailsModal = document.getElementById('detailsModal');
