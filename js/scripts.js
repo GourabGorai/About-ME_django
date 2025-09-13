@@ -56,7 +56,7 @@ class PdfViewer {
                 }
             });
         });
-        if(this.pageNumDisplay) this.pageNumDisplay.textContent = num;
+        if (this.pageNumDisplay) this.pageNumDisplay.textContent = num;
     }
 
     queueRenderPage(num) {
@@ -86,7 +86,7 @@ class PdfViewer {
         loadingTask.promise.then(pdf => {
             this.loader.style.display = 'none';
             this.pdfDoc = pdf;
-            if(this.pageCountDisplay) this.pageCountDisplay.textContent = this.pdfDoc.numPages;
+            if (this.pageCountDisplay) this.pageCountDisplay.textContent = this.pdfDoc.numPages;
             this.pageNum = 1;
             this.renderPage(this.pageNum);
         }, reason => {
@@ -155,20 +155,20 @@ window.addEventListener('DOMContentLoaded', event => {
         const progressBar = document.getElementById('progressBar');
         const progressContainer = document.getElementById('progressContainer');
         const timeDisplay = document.getElementById('timeDisplay');
-        
+
         const geminiModal = new bootstrap.Modal(document.getElementById('geminiSummaryModal'));
         const geminiSpinner = document.getElementById('geminiSpinner');
         const geminiContent = document.getElementById('geminiSummaryContent');
-        
+
         const contactForm = document.getElementById('contactForm');
 
 
         // --- Contact Form Logic (EmailJS) ---
-        if(contactForm) {
+        if (contactForm) {
             // IMPORTANT: Replace with your public key from EmailJS
             emailjs.init({ publicKey: 'qJsKWmg971wib924k' });
 
-            contactForm.addEventListener('submit', function(e) {
+            contactForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const sendMessageButton = document.getElementById('sendMessageButton');
                 const formStatus = document.getElementById('form-status');
@@ -188,7 +188,7 @@ window.addEventListener('DOMContentLoaded', event => {
                     phone_number: document.getElementById('phone').value,
                     message: document.getElementById('message').value
                 };
-                
+
                 // Send the email
                 emailjs.send(serviceID, templateID, templateParams)
                     .then(response => {
@@ -214,7 +214,7 @@ window.addEventListener('DOMContentLoaded', event => {
         const span = document.getElementsByClassName('close')[0];
 
         document.querySelectorAll('.open-modal').forEach(button => {
-            button.onclick = function() {
+            button.onclick = function () {
                 const page = button.getAttribute('data-page');
                 iframe.src = page;
                 detailsModal.style.display = 'block';
@@ -222,13 +222,13 @@ window.addEventListener('DOMContentLoaded', event => {
         });
 
         if (span) {
-            span.onclick = function() {
+            span.onclick = function () {
                 detailsModal.style.display = 'none';
                 iframe.src = '';
             }
         }
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == detailsModal) {
                 detailsModal.style.display = 'none';
                 iframe.src = '';
@@ -254,7 +254,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 videoPlayer.src = '';
             });
         }
-        
+
         if (playPauseBtn) {
             playPauseBtn.addEventListener('click', () => {
                 if (videoPlayer.paused) {
@@ -267,17 +267,17 @@ window.addEventListener('DOMContentLoaded', event => {
         }
 
         const skipTime = (amount) => {
-            if (videoPlayer.duration) { 
+            if (videoPlayer.duration) {
                 videoPlayer.currentTime = Math.max(0, Math.min(videoPlayer.duration, videoPlayer.currentTime + amount));
             }
         };
 
-        if(skip10Btn) skip10Btn.addEventListener('click', () => skipTime(10));
-        if(skip20Btn) skip20Btn.addEventListener('click', () => skipTime(20));
-        if(skip30Btn) skip30Btn.addEventListener('click', () => skipTime(30));
-        if(back10Btn) back10Btn.addEventListener('click', () => skipTime(-10));
-        if(back20Btn) back20Btn.addEventListener('click', () => skipTime(-20));
-        if(back30Btn) back30Btn.addEventListener('click', () => skipTime(-30));
+        if (skip10Btn) skip10Btn.addEventListener('click', () => skipTime(10));
+        if (skip20Btn) skip20Btn.addEventListener('click', () => skipTime(20));
+        if (skip30Btn) skip30Btn.addEventListener('click', () => skipTime(30));
+        if (back10Btn) back10Btn.addEventListener('click', () => skipTime(-10));
+        if (back20Btn) back20Btn.addEventListener('click', () => skipTime(-20));
+        if (back30Btn) back30Btn.addEventListener('click', () => skipTime(-30));
 
         if (muteBtn) {
             muteBtn.addEventListener('click', () => {
@@ -308,14 +308,14 @@ window.addEventListener('DOMContentLoaded', event => {
                 }
             });
         }
-        
+
         // --- Video Progress Bar Seeking Logic ---
         let isSeeking = false;
         const startSeek = (e) => { isSeeking = true; updateSeek(e); };
         const stopSeek = () => { isSeeking = false; };
         const updateSeek = (e) => {
             if (!isSeeking || !videoPlayer.duration) return;
-            e.preventDefault(); 
+            e.preventDefault();
             const event = e.touches ? e.touches[0] : e;
             const rect = progressContainer.getBoundingClientRect();
             const newTime = ((event.clientX - rect.left) / progressContainer.clientWidth) * videoPlayer.duration;
@@ -330,7 +330,7 @@ window.addEventListener('DOMContentLoaded', event => {
             document.addEventListener('touchmove', updateSeek);
             document.addEventListener('touchend', stopSeek);
         }
-        
+
         function formatTime(seconds) {
             if (isNaN(seconds)) return "00:00";
             const minutes = Math.floor(seconds / 60);
@@ -342,7 +342,7 @@ window.addEventListener('DOMContentLoaded', event => {
         async function callGeminiAPI(prompt, maxRetries = 3) {
             const apiKey = "AIzaSyBYbmBSicVfWFMTGSfnKkIyLPCfxZyZEIc";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-            
+
             const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
             let attempt = 0;
             while (attempt < maxRetries) {
@@ -354,7 +354,7 @@ window.addEventListener('DOMContentLoaded', event => {
                     });
 
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    
+
                     const result = await response.json();
                     if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
                         return result.candidates[0].content.parts[0].text;
@@ -373,7 +373,7 @@ window.addEventListener('DOMContentLoaded', event => {
         }
 
         document.querySelectorAll('.generate-summary').forEach(button => {
-            button.addEventListener('click', async function() {
+            button.addEventListener('click', async function () {
                 const projectTitle = this.dataset.title;
                 const projectTech = this.dataset.tech;
 
@@ -383,7 +383,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
                 const prompt = `Generate a professional, one-paragraph project summary for a developer's portfolio. The project is titled "${projectTitle}" and uses the following technologies: ${projectTech}. The summary should be concise, highlight the project's purpose and the technologies used, and be engaging for potential employers.`;
                 const summary = await callGeminiAPI(prompt);
-                
+
                 geminiSpinner.style.display = 'none';
                 geminiContent.textContent = summary;
             });
@@ -391,7 +391,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
         // --- Initialize Libraries (AOS, tsParticles) ---
         AOS.init({ duration: 800, once: true });
-        
+
         const particlesConfig = {
             fpsLimit: 60,
             interactivity: {
@@ -422,12 +422,21 @@ window.addEventListener('DOMContentLoaded', event => {
                 container.options.particles.links.color = particleColor;
                 container.refresh();
             };
-            
+
             updateParticleColors();
             themeToggleButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 htmlElement.classList.toggle('dark-theme');
                 updateParticleColors();
+                
+                // Update modal text contrast when switching light/dark mode
+                const currentThemeClass = document.body.className.match(/theme-(\w+)/);
+                if (currentThemeClass) {
+                    const activeTheme = currentThemeClass[1];
+                    setTimeout(() => {
+                        updateModalTextContrast(activeTheme);
+                    }, 100);
+                }
             });
 
             // Initialize Interactive Theme Manager
@@ -474,11 +483,11 @@ function openHackathonDetailsModal(title, images, description) {
 function openInternshipModal(imgSrc, title, pdfSrc, description) {
     const modalElement = document.getElementById('internshipModal');
     const modal = new bootstrap.Modal(modalElement);
-    
+
     modalElement.querySelector('#internshipImage').src = imgSrc;
     modalElement.querySelector('#internshipModalLabel').innerText = title;
     modalElement.querySelector('#internshipDescription').innerText = description;
-    
+
     if (internshipViewer) {
         internshipViewer.load(pdfSrc);
     }
@@ -517,23 +526,23 @@ function initializeInteractiveThemes(particlesContainer) {
         // Clear current theme
         themeContainer.innerHTML = '';
         themeContainer.className = 'theme-bg-container';
-        
+
         // Remove all theme classes from body
         document.body.classList.remove(
-            'theme-particles', 'theme-constellation', 'theme-ripple', 
-            'theme-scroll', 'theme-matrix', 'theme-neural', 
+            'theme-particles', 'theme-constellation', 'theme-ripple',
+            'theme-scroll', 'theme-matrix', 'theme-neural',
             'theme-sound', 'theme-gravity'
         );
-        
+
         // Add new theme class to body for font styling
         document.body.classList.add(`theme-${theme}`);
-        
+
         // Update active button
         document.querySelectorAll('.theme-option').forEach(btn => {
             btn.classList.remove('active');
         });
         document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
-        
+
         // Show/hide particles and floating objects based on theme
         if (theme === 'particles') {
             tsParticlesElement.style.display = 'block';
@@ -544,14 +553,17 @@ function initializeInteractiveThemes(particlesContainer) {
             floatingContainer.style.display = 'none';
             themeContainer.classList.add('interactive');
         }
-        
+
         currentTheme = theme;
         initializeTheme(theme);
+
+        // Ensure modal text readability
+        updateModalTextContrast(theme);
     }
 
     // Initialize specific theme
     function initializeTheme(theme) {
-        switch(theme) {
+        switch (theme) {
             case 'particles':
                 // Default particles theme - already handled
                 break;
@@ -591,31 +603,31 @@ function initializeInteractiveThemes(particlesContainer) {
         star.style.left = x + 'px';
         star.style.top = y + 'px';
         themeContainer.appendChild(star);
-        
+
         setTimeout(() => star.style.opacity = '1', 50);
-        
-        stars.push({element: star, x: x, y: y, age: 0});
-        
+
+        stars.push({ element: star, x: x, y: y, age: 0 });
+
         if (stars.length > 50) {
             const oldStar = stars.shift();
             oldStar.element.remove();
         }
-        
+
         updateConstellationConnections();
     }
 
     function updateConstellationConnections() {
         themeContainer.querySelectorAll('.constellation-line').forEach(line => line.remove());
-        
+
         for (let i = 0; i < stars.length; i++) {
             for (let j = i + 1; j < stars.length; j++) {
                 const star1 = stars[i];
                 const star2 = stars[j];
                 const distance = Math.sqrt(
-                    Math.pow(star1.x - star2.x, 2) + 
+                    Math.pow(star1.x - star2.x, 2) +
                     Math.pow(star1.y - star2.y, 2)
                 );
-                
+
                 if (distance < 100) {
                     const line = document.createElement('div');
                     line.className = 'constellation-line';
@@ -623,11 +635,11 @@ function initializeInteractiveThemes(particlesContainer) {
                     line.style.top = star1.y + 'px';
                     line.style.width = distance + 'px';
                     line.style.transformOrigin = 'left center';
-                    
+
                     const angle = Math.atan2(star2.y - star1.y, star2.x - star1.x);
                     line.style.transform = `rotate(${angle}rad)`;
                     line.style.opacity = Math.max(0, 1 - distance / 100);
-                    
+
                     themeContainer.appendChild(line);
                 }
             }
@@ -647,7 +659,7 @@ function initializeInteractiveThemes(particlesContainer) {
         ripple.style.width = '20px';
         ripple.style.height = '20px';
         themeContainer.appendChild(ripple);
-        
+
         setTimeout(() => {
             ripple.remove();
         }, 2000);
@@ -657,14 +669,14 @@ function initializeInteractiveThemes(particlesContainer) {
     function initScrollParticles() {
         themeContainer.className = 'theme-bg-container scroll-particles-bg';
         scrollParticles = [];
-        
+
         for (let i = 0; i < 30; i++) {
             const particle = document.createElement('div');
             particle.className = 'scroll-particle';
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
             themeContainer.appendChild(particle);
-            
+
             scrollParticles.push({
                 element: particle,
                 baseX: Math.random() * window.innerWidth,
@@ -679,9 +691,9 @@ function initializeInteractiveThemes(particlesContainer) {
     function initMatrix() {
         themeContainer.className = 'theme-bg-container reactive-matrix-bg';
         matrixChars = [];
-        
+
         const characters = '0123456789ABCDEFabcdef<>{}[]()';
-        
+
         for (let i = 0; i < 100; i++) {
             const char = document.createElement('div');
             char.className = 'matrix-char';
@@ -689,7 +701,7 @@ function initializeInteractiveThemes(particlesContainer) {
             char.style.left = Math.random() * 100 + '%';
             char.style.top = Math.random() * 100 + '%';
             themeContainer.appendChild(char);
-            
+
             matrixChars.push({
                 element: char,
                 activated: false
@@ -702,7 +714,7 @@ function initializeInteractiveThemes(particlesContainer) {
         themeContainer.className = 'theme-bg-container interactive-neural-bg';
         neuralNodes = [];
         neuralConnections = [];
-        
+
         // Create nodes
         for (let i = 0; i < 15; i++) {
             const node = document.createElement('div');
@@ -712,34 +724,34 @@ function initializeInteractiveThemes(particlesContainer) {
             node.style.left = x + 'px';
             node.style.top = y + 'px';
             themeContainer.appendChild(node);
-            
-            const nodeData = {element: node, x: x, y: y, activated: false};
+
+            const nodeData = { element: node, x: x, y: y, activated: false };
             neuralNodes.push(nodeData);
-            
+
             node.addEventListener('mouseenter', () => activateNeuralNode(nodeData));
             node.addEventListener('mouseleave', () => deactivateNeuralNode(nodeData));
         }
-        
+
         // Create connections
         for (let i = 0; i < neuralNodes.length; i++) {
             for (let j = i + 1; j < neuralNodes.length; j++) {
                 const node1 = neuralNodes[i];
                 const node2 = neuralNodes[j];
                 const distance = Math.sqrt(
-                    Math.pow(node1.x - node2.x, 2) + 
+                    Math.pow(node1.x - node2.x, 2) +
                     Math.pow(node1.y - node2.y, 2)
                 );
-                
+
                 if (distance < 200) {
                     const connection = document.createElement('div');
                     connection.className = 'neural-connection';
                     connection.style.left = node1.x + 'px';
                     connection.style.top = node1.y + 'px';
                     connection.style.width = distance + 'px';
-                    
+
                     const angle = Math.atan2(node2.y - node1.y, node2.x - node1.x);
                     connection.style.transform = `rotate(${angle}rad)`;
-                    
+
                     themeContainer.appendChild(connection);
                     neuralConnections.push({
                         element: connection,
@@ -754,7 +766,7 @@ function initializeInteractiveThemes(particlesContainer) {
     function activateNeuralNode(nodeData) {
         nodeData.activated = true;
         nodeData.element.classList.add('activated');
-        
+
         neuralConnections.forEach(conn => {
             if (neuralNodes[conn.node1] === nodeData || neuralNodes[conn.node2] === nodeData) {
                 conn.element.classList.add('active');
@@ -765,7 +777,7 @@ function initializeInteractiveThemes(particlesContainer) {
     function deactivateNeuralNode(nodeData) {
         nodeData.activated = false;
         nodeData.element.classList.remove('activated');
-        
+
         neuralConnections.forEach(conn => {
             if (neuralNodes[conn.node1] === nodeData || neuralNodes[conn.node2] === nodeData) {
                 conn.element.classList.remove('active');
@@ -777,16 +789,16 @@ function initializeInteractiveThemes(particlesContainer) {
     function initSoundWave() {
         themeContainer.className = 'theme-bg-container sound-wave-bg';
         waveBars = [];
-        
+
         const barCount = Math.floor(window.innerWidth / 8);
-        
+
         for (let i = 0; i < barCount; i++) {
             const bar = document.createElement('div');
             bar.className = 'wave-bar';
             bar.style.left = (i * 8) + 'px';
             bar.style.height = '5px';
             themeContainer.appendChild(bar);
-            
+
             waveBars.push({
                 element: bar,
                 index: i
@@ -798,7 +810,7 @@ function initializeInteractiveThemes(particlesContainer) {
     function initGravityField() {
         themeContainer.className = 'theme-bg-container gravity-bg';
         gravityParticles = [];
-        
+
         for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
             particle.className = 'gravity-particle';
@@ -807,7 +819,7 @@ function initializeInteractiveThemes(particlesContainer) {
             particle.style.left = x + 'px';
             particle.style.top = y + 'px';
             themeContainer.appendChild(particle);
-            
+
             gravityParticles.push({
                 element: particle,
                 x: x,
@@ -824,14 +836,14 @@ function initializeInteractiveThemes(particlesContainer) {
         lastMouseY = mouseY;
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
-        switch(currentTheme) {
+
+        switch (currentTheme) {
             case 'constellation':
                 if (Math.random() < 0.3) {
                     createStar(e.clientX, e.clientY);
                 }
                 break;
-            
+
             case 'sound':
                 waveBars.forEach((bar, index) => {
                     const distance = Math.abs((index * 8) - e.clientX);
@@ -839,28 +851,28 @@ function initializeInteractiveThemes(particlesContainer) {
                     bar.element.style.height = height + 'px';
                 });
                 break;
-            
+
             case 'gravity':
                 gravityParticles.forEach(particle => {
                     const dx = e.clientX - particle.x;
                     const dy = e.clientY - particle.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     const force = Math.min(200 / (distance + 1), 5);
-                    
+
                     particle.velX += (dx / distance) * force * 0.1;
                     particle.velY += (dy / distance) * force * 0.1;
-                    
+
                     particle.velX *= 0.95;
                     particle.velY *= 0.95;
-                    
+
                     particle.x += particle.velX;
                     particle.y += particle.velY;
-                    
+
                     particle.element.style.left = particle.x + 'px';
                     particle.element.style.top = particle.y + 'px';
                 });
                 break;
-            
+
             case 'matrix':
                 matrixChars.forEach((char, index) => {
                     const charRect = char.element.getBoundingClientRect();
@@ -868,7 +880,7 @@ function initializeInteractiveThemes(particlesContainer) {
                         Math.pow(e.clientX - (charRect.left + 8), 2) +
                         Math.pow(e.clientY - (charRect.top + 8), 2)
                     );
-                    
+
                     if (distance < 100) {
                         char.element.classList.add('active');
                         setTimeout(() => {
@@ -905,14 +917,14 @@ function initializeInteractiveThemes(particlesContainer) {
         if (currentTheme === 'scroll') {
             const scrollVel = scrollY - (window.lastScrollY || 0);
             window.lastScrollY = scrollY;
-            
+
             scrollParticles.forEach((particle, index) => {
                 particle.velY += scrollVel * 0.1;
                 particle.velX += (Math.random() - 0.5) * scrollVel * 0.05;
-                
+
                 particle.velX *= 0.95;
                 particle.velY *= 0.95;
-                
+
                 particle.element.style.transform = `translate(${particle.velX}px, ${particle.velY}px)`;
             });
         }
@@ -922,12 +934,12 @@ function initializeInteractiveThemes(particlesContainer) {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('click', handleClick);
     document.addEventListener('keypress', handleKeypress);
-    
+
     let scrollTimeout;
     document.addEventListener('scroll', (e) => {
         scrollY = window.scrollY;
         handleScroll(e);
-        
+
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             if (currentTheme === 'scroll') {
@@ -940,7 +952,7 @@ function initializeInteractiveThemes(particlesContainer) {
 
     // Theme selector event listeners
     document.querySelectorAll('.theme-option').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const theme = this.getAttribute('data-theme');
             switchTheme(theme);
         });
@@ -953,6 +965,230 @@ function initializeInteractiveThemes(particlesContainer) {
         }
     });
 
+    // Function to update modal text contrast based on light/dark mode
+    function updateModalTextContrast(theme) {
+        // Skip if default particles theme
+        if (theme === 'particles') return;
+        
+        // Check if dark mode is active
+        const isDarkMode = document.documentElement.classList.contains('dark-theme');
+        
+        // Get all modal elements
+        const modals = document.querySelectorAll('.modal-content, .modal-body, .modal-title, .modal-header, .modal-footer');
+        const geminiContent = document.getElementById('geminiSummaryContent');
+        const alerts = document.querySelectorAll('.alert');
+        
+        // Set colors based on light/dark mode
+        const textColor = isDarkMode ? '#ffffff' : '#000000';
+        const textShadow = isDarkMode ? '1px 1px 2px rgba(0,0,0,0.8)' : 'none';
+        const backgroundColor = isDarkMode ? 'rgba(0,0,0,0.95)' : 'rgba(255,255,255,0.95)';
+        
+        // Update modal elements
+        modals.forEach(modal => {
+            modal.style.color = textColor;
+            modal.style.textShadow = textShadow;
+            if (modal.classList.contains('modal-content')) {
+                modal.style.backgroundColor = backgroundColor;
+            }
+        });
+        
+        // Special handling for Matrix theme
+        if (theme === 'matrix') {
+            const matrixTextColor = isDarkMode ? '#00ff00' : '#003300';
+            const matrixTextShadow = isDarkMode ? 
+                '0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' : 
+                'none';
+            const matrixBgColor = isDarkMode ? 
+                'rgba(0,17,0,0.95)' : 
+                'rgba(240,255,240,0.95)';
+            
+            modals.forEach(modal => {
+                modal.style.color = matrixTextColor;
+                modal.style.textShadow = matrixTextShadow;
+                modal.style.fontFamily = "'Courier New', monospace";
+                if (modal.classList.contains('modal-content')) {
+                    modal.style.backgroundColor = matrixBgColor;
+                }
+            });
+            
+            // Special handling for Gemini content in Matrix theme
+            if (geminiContent) {
+                geminiContent.style.color = isDarkMode ? '#ccffcc' : '#003300';
+                geminiContent.style.textShadow = isDarkMode ? 
+                    '0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' : 
+                    'none';
+                geminiContent.style.backgroundColor = isDarkMode ? 
+                    'rgba(0,34,0,0.8)' : 
+                    'rgba(230,255,230,0.9)';
+            }
+        } else {
+            // Standard handling for Gemini content
+            if (geminiContent) {
+                geminiContent.style.color = textColor;
+                geminiContent.style.textShadow = textShadow;
+                geminiContent.style.backgroundColor = isDarkMode ? 
+                    'rgba(0,0,0,0.8)' : 
+                    'rgba(255,255,255,0.9)';
+            }
+        }
+        
+        // Update alert text
+        alerts.forEach(alert => {
+            alert.style.color = textColor;
+            alert.style.textShadow = textShadow;
+            alert.style.backgroundColor = isDarkMode ? 
+                'rgba(0,0,0,0.8)' : 
+                'rgba(255,255,255,0.9)';
+        });
+        
+        // Update any existing modal text elements
+        const modalTexts = document.querySelectorAll('.modal p, .modal span, .modal div:not(.modal-content):not(.modal-header):not(.modal-body):not(.modal-footer)');
+        modalTexts.forEach(text => {
+            if (text.textContent.trim() !== '') {
+                if (theme === 'matrix') {
+                    text.style.color = isDarkMode ? '#ccffcc' : '#003300';
+                    text.style.textShadow = isDarkMode ? 
+                        '0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' : 
+                        'none';
+                    text.style.fontFamily = "'Courier New', monospace";
+                } else {
+                    text.style.color = textColor;
+                    text.style.textShadow = textShadow;
+                }
+            }
+        });
+    }
+
     // Initialize with default theme
     switchTheme('particles');
+
+    // Add mutation observer for dynamic modal content
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.type === 'childList' && currentTheme !== 'particles') {
+                // Check if new modal content was added
+                mutation.addedNodes.forEach(function (node) {
+                    if (node.nodeType === 1) { // Element node
+                        if (node.classList && (node.classList.contains('modal') || node.closest('.modal'))) {
+                            updateModalTextContrast(currentTheme);
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    // Start observing
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    // Add theme transition effects
+    addThemeTransitionEffects();
+}
+
+// Enhanced theme transition effects
+function addThemeTransitionEffects() {
+    // Add smooth transition class to body
+    document.body.style.transition = 'all 0.5s ease-in-out';
+
+    // Add loading indicator for theme switches
+    function showThemeLoadingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.id = 'theme-loading';
+        indicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Switching Theme...';
+        indicator.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            z-index: 9999;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        `;
+        document.body.appendChild(indicator);
+
+        setTimeout(() => {
+            if (document.getElementById('theme-loading')) {
+                document.getElementById('theme-loading').remove();
+            }
+        }, 1000);
+    }
+
+    // Enhanced theme option click handlers
+    document.querySelectorAll('.theme-option').forEach(button => {
+        button.addEventListener('click', function () {
+            showThemeLoadingIndicator();
+
+            // Add visual feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+
+    // Add theme preview on hover
+    document.querySelectorAll('.theme-option').forEach(button => {
+        button.addEventListener('mouseenter', function () {
+            const theme = this.getAttribute('data-theme');
+            this.style.boxShadow = '0 5px 15px rgba(100, 255, 218, 0.4)';
+            this.style.transform = 'translateX(5px)';
+        });
+
+        button.addEventListener('mouseleave', function () {
+            this.style.boxShadow = '';
+            this.style.transform = '';
+        });
+    });
+
+    // Add keyboard navigation for theme selector
+    document.addEventListener('keydown', function (e) {
+        if (e.altKey && e.key >= '1' && e.key <= '8') {
+            e.preventDefault();
+            const themeIndex = parseInt(e.key) - 1;
+            const themes = ['particles', 'constellation', 'ripple', 'scroll', 'matrix', 'neural', 'sound', 'gravity'];
+            if (themes[themeIndex]) {
+                const themeButton = document.querySelector(`[data-theme="${themes[themeIndex]}"]`);
+                if (themeButton) {
+                    themeButton.click();
+                }
+            }
+        }
+    });
+
+    // Add theme persistence
+    function saveThemePreference(theme) {
+        localStorage.setItem('portfolioTheme', theme);
+    }
+
+    function loadThemePreference() {
+        return localStorage.getItem('portfolioTheme') || 'particles';
+    }
+
+    // Load saved theme on page load
+    const savedTheme = loadThemePreference();
+    if (savedTheme !== 'particles') {
+        setTimeout(() => {
+            const themeButton = document.querySelector(`[data-theme="${savedTheme}"]`);
+            if (themeButton) {
+                themeButton.click();
+            }
+        }, 500);
+    }
+
+    // Save theme preference when changed
+    document.querySelectorAll('.theme-option').forEach(button => {
+        button.addEventListener('click', function () {
+            const theme = this.getAttribute('data-theme');
+            saveThemePreference(theme);
+        });
+    });
 }
