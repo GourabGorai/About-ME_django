@@ -86,6 +86,170 @@
         .obj4 { top: 80%; left: 92%; animation-duration: 12s; animation-delay: 5s; font-size: 3.5rem; }
         .obj5 { top: 45%; left: 50%; animation-duration: 25s; font-size: 2rem; }
 
+        /* Interactive Background Themes */
+        .theme-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .theme-bg-container.interactive {
+            pointer-events: auto;
+        }
+
+        /* Theme 1: Mouse Trail Constellation */
+        .constellation-bg {
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #64ffda;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #64ffda;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .constellation-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #64ffda, transparent);
+            transform-origin: left center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        /* Theme 2: Ripple Effect */
+        .ripple-bg {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 100%);
+        }
+        .ripple {
+            position: absolute;
+            border: 2px solid #ff6b6b;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-expand 2s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes ripple-expand {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(20); opacity: 0; }
+        }
+
+        /* Theme 3: Scroll-Reactive Particles */
+        .scroll-particles-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .scroll-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: transform 0.1s ease-out;
+            pointer-events: none;
+        }
+
+        /* Theme 4: Code Matrix */
+        .reactive-matrix-bg {
+            background: linear-gradient(135deg, #001100 0%, #003300 100%);
+        }
+        .matrix-char {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            opacity: 0.3;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        .matrix-char.active {
+            opacity: 1;
+            transform: scale(1.2);
+            color: #ffffff;
+            text-shadow: 0 0 15px #00ff00;
+        }
+
+        /* Theme 5: Neural Network */
+        .interactive-neural-bg {
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        .neural-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #64ffda;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #64ffda;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .neural-node:hover {
+            transform: scale(2);
+            box-shadow: 0 0 30px #64ffda;
+        }
+        .neural-node.activated {
+            background: #ff6b6b;
+            box-shadow: 0 0 30px #ff6b6b;
+            transform: scale(1.5);
+        }
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #64ffda, transparent);
+            transform-origin: left center;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .neural-connection.active {
+            opacity: 1;
+            background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
+            animation: pulse-connection 0.5s ease-out;
+        }
+        @keyframes pulse-connection {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(3); }
+        }
+
+        /* Theme 6: Sound Wave */
+        .sound-wave-bg {
+            background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
+        }
+        .wave-bar {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to top, #ff6b6b, #4ecdc4);
+            transition: height 0.1s ease;
+            pointer-events: none;
+        }
+
+        /* Theme 7: Gravity Particles */
+        .gravity-bg {
+            background: linear-gradient(135deg, #0f0f0f 0%, #2d1b69 100%);
+        }
+        .gravity-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ffffff, #64ffda);
+            border-radius: 50%;
+            box-shadow: 0 0 15px #64ffda;
+            transition: all 0.1s ease-out;
+            pointer-events: none;
+        }
+
         .img-thumbnail {
             cursor: pointer;
         }
@@ -130,6 +294,391 @@
         @media (max-width: 991.98px) {
             #theme-toggle {
                 right: 70px; 
+            }
+        }
+
+        /* Theme Selector Dropdown */
+        .theme-selector {
+            position: fixed;
+            top: 10px;
+            right: 60px;
+            z-index: 1050;
+        }
+
+        @media (max-width: 991.98px) {
+            .theme-selector {
+                right: 120px; 
+            }
+        }
+
+        .theme-dropdown {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 0.5rem;
+            min-width: 200px;
+        }
+
+        .theme-option {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin: 2px 0;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            border: 1px solid #64ffda;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .theme-option:hover, .theme-option.active {
+            background: rgba(100, 255, 218, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        :root.dark-theme .theme-dropdown {
+            background: rgba(40,40,40,0.9);
+        }
+
+        /* Theme-Specific Font Adjustments for Accessibility */
+        
+        /* Default Particles Theme - Original styling */
+        body.theme-particles {
+            /* Uses existing default styling */
+        }
+
+        /* Constellation Theme - Dark background with bright text */
+        body.theme-constellation {
+            --bs-body-color: #ffffff;
+            --bs-link-color: #64ffda;
+            --bs-link-hover-color: #4fd3b8;
+        }
+        body.theme-constellation h1, body.theme-constellation .h1,
+        body.theme-constellation h2, body.theme-constellation .h2,
+        body.theme-constellation h3, body.theme-constellation .h3,
+        body.theme-constellation h4, body.theme-constellation .h4,
+        body.theme-constellation h5, body.theme-constellation .h5,
+        body.theme-constellation h6, body.theme-constellation .h6 {
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-weight: 700;
+        }
+        body.theme-constellation .subheading {
+            color: #e0e0e0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        body.theme-constellation .text-primary {
+            color: #64ffda !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+        body.theme-constellation p, body.theme-constellation .lead {
+            color: #f0f0f0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            line-height: 1.7;
+        }
+
+        /* Ripple Theme - Dark purple background with bright text */
+        body.theme-ripple {
+            --bs-body-color: #ffffff;
+            --bs-link-color: #ff6b6b;
+            --bs-link-hover-color: #ff5252;
+        }
+        body.theme-ripple h1, body.theme-ripple .h1,
+        body.theme-ripple h2, body.theme-ripple .h2,
+        body.theme-ripple h3, body.theme-ripple .h3,
+        body.theme-ripple h4, body.theme-ripple .h4,
+        body.theme-ripple h5, body.theme-ripple .h5,
+        body.theme-ripple h6, body.theme-ripple .h6 {
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(26,0,51,0.9);
+            font-weight: 700;
+        }
+        body.theme-ripple .subheading {
+            color: #f0f0f0;
+            text-shadow: 1px 1px 3px rgba(26,0,51,0.8);
+        }
+        body.theme-ripple .text-primary {
+            color: #ff6b6b !important;
+            text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
+        }
+        body.theme-ripple p, body.theme-ripple .lead {
+            color: #f5f5f5;
+            text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
+            line-height: 1.7;
+        }
+
+        /* Scroll Particles Theme - Purple gradient with white text */
+        body.theme-scroll {
+            --bs-body-color: #ffffff;
+            --bs-link-color: #ffffff;
+            --bs-link-hover-color: #f0f0f0;
+        }
+        body.theme-scroll h1, body.theme-scroll .h1,
+        body.theme-scroll h2, body.theme-scroll .h2,
+        body.theme-scroll h3, body.theme-scroll .h3,
+        body.theme-scroll h4, body.theme-scroll .h4,
+        body.theme-scroll h5, body.theme-scroll .h5,
+        body.theme-scroll h6, body.theme-scroll .h6 {
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(102,126,234,0.8);
+            font-weight: 700;
+        }
+        body.theme-scroll .subheading {
+            color: #f0f0f0;
+            text-shadow: 1px 1px 4px rgba(102,126,234,0.7);
+        }
+        body.theme-scroll .text-primary {
+            color: #ffffff !important;
+            text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
+        }
+        body.theme-scroll p, body.theme-scroll .lead {
+            color: #ffffff;
+            text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
+            line-height: 1.7;
+        }
+
+        /* Matrix Theme - Green on black with enhanced readability */
+        body.theme-matrix {
+            --bs-body-color: #00ff00;
+            --bs-link-color: #00ff00;
+            --bs-link-hover-color: #33ff33;
+        }
+        body.theme-matrix h1, body.theme-matrix .h1,
+        body.theme-matrix h2, body.theme-matrix .h2,
+        body.theme-matrix h3, body.theme-matrix .h3,
+        body.theme-matrix h4, body.theme-matrix .h4,
+        body.theme-matrix h5, body.theme-matrix .h5,
+        body.theme-matrix h6, body.theme-matrix .h6 {
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00, 2px 2px 4px rgba(0,0,0,0.8);
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+        }
+        body.theme-matrix .subheading {
+            color: #66ff66;
+            text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.7);
+            font-family: 'Courier New', monospace;
+        }
+        body.theme-matrix .text-primary {
+            color: #00ff00 !important;
+            text-shadow: 0 0 8px #00ff00;
+        }
+        body.theme-matrix p, body.theme-matrix .lead {
+            color: #ccffcc;
+            text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.6);
+            line-height: 1.8;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Neural Network Theme - Blue tones with enhanced contrast */
+        body.theme-neural {
+            --bs-body-color: #ffffff;
+            --bs-link-color: #64ffda;
+            --bs-link-hover-color: #4fd3b8;
+        }
+        body.theme-neural h1, body.theme-neural .h1,
+        body.theme-neural h2, body.theme-neural .h2,
+        body.theme-neural h3, body.theme-neural .h3,
+        body.theme-neural h4, body.theme-neural .h4,
+        body.theme-neural h5, body.theme-neural .h5,
+        body.theme-neural h6, body.theme-neural .h6 {
+            color: #ffffff;
+            text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(15,52,96,0.9);
+            font-weight: 700;
+        }
+        body.theme-neural .subheading {
+            color: #e0f7ff;
+            text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(15,52,96,0.8);
+        }
+        body.theme-neural .text-primary {
+            color: #64ffda !important;
+            text-shadow: 0 0 8px #64ffda;
+        }
+        body.theme-neural p, body.theme-neural .lead {
+            color: #f0f8ff;
+            text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(15,52,96,0.7);
+            line-height: 1.7;
+        }
+
+        /* Sound Wave Theme - Brown/orange background with bright text */
+        body.theme-sound {
+            --bs-body-color: #ffffff;
+            --bs-link-color: #4ecdc4;
+            --bs-link-hover-color: #26a69a;
+        }
+        body.theme-sound h1, body.theme-sound .h1,
+        body.theme-sound h2, body.theme-sound .h2,
+        body.theme-sound h3, body.theme-sound .h3,
+        body.theme-sound h4, body.theme-sound .h4,
+        body.theme-sound h5, body.theme-sound .h5,
+        body.theme-sound h6, body.theme-sound .h6 {
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(44,24,16,0.9);
+            font-weight: 700;
+        }
+        body.theme-sound .subheading {
+            color: #f0f0f0;
+            text-shadow: 1px 1px 4px rgba(44,24,16,0.8);
+        }
+        body.theme-sound .text-primary {
+            color: #4ecdc4 !important;
+            text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
+        }
+        body.theme-sound p, body.theme-sound .lead {
+            color: #f5f5f5;
+            text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
+            line-height: 1.7;
+        }
+
+        /* Gravity Theme - Dark purple with bright text */
+        body.theme-gravity {
+            --bs-body-color: #ffffff;
+            --bs-link-color: #64ffda;
+            --bs-link-hover-color: #4fd3b8;
+        }
+        body.theme-gravity h1, body.theme-gravity .h1,
+        body.theme-gravity h2, body.theme-gravity .h2,
+        body.theme-gravity h3, body.theme-gravity .h3,
+        body.theme-gravity h4, body.theme-gravity .h4,
+        body.theme-gravity h5, body.theme-gravity .h5,
+        body.theme-gravity h6, body.theme-gravity .h6 {
+            color: #ffffff;
+            text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(45,27,105,0.9);
+            font-weight: 700;
+        }
+        body.theme-gravity .subheading {
+            color: #e0f7ff;
+            text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(45,27,105,0.8);
+        }
+        body.theme-gravity .text-primary {
+            color: #64ffda !important;
+            text-shadow: 0 0 8px #64ffda;
+        }
+        body.theme-gravity p, body.theme-gravity .lead {
+            color: #f0f8ff;
+            text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(45,27,105,0.7);
+            line-height: 1.7;
+        }
+
+        /* Enhanced button visibility for all themes */
+        body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
+        body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
+            text-shadow: none;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        body.theme-constellation .btn:hover, body.theme-ripple .btn:hover, body.theme-scroll .btn:hover,
+        body.theme-matrix .btn:hover, body.theme-neural .btn:hover, body.theme-sound .btn:hover, body.theme-gravity .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation adjustments for themed backgrounds */
+        body.theme-constellation .navbar, body.theme-ripple .navbar, body.theme-scroll .navbar,
+        body.theme-matrix .navbar, body.theme-neural .navbar, body.theme-sound .navbar, body.theme-gravity .navbar {
+            backdrop-filter: blur(15px);
+            background-color: rgba(26, 95, 63, 0.9) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Content sections background for better readability */
+        body.theme-constellation .resume-section, body.theme-ripple .resume-section, 
+        body.theme-scroll .resume-section, body.theme-matrix .resume-section, 
+        body.theme-neural .resume-section, body.theme-sound .resume-section, 
+        body.theme-gravity .resume-section {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Special handling for matrix theme readability */
+        body.theme-matrix .resume-section {
+            background: rgba(0,17,0,0.8);
+            border: 1px solid rgba(0,255,0,0.3);
+        }
+
+        /* Improved link visibility for all themes */
+        body.theme-constellation a, body.theme-ripple a, body.theme-scroll a,
+        body.theme-matrix a, body.theme-neural a, body.theme-sound a, body.theme-gravity a {
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+
+        body.theme-constellation a:hover, body.theme-ripple a:hover, body.theme-scroll a:hover,
+        body.theme-matrix a:hover, body.theme-neural a:hover, body.theme-sound a:hover, body.theme-gravity a:hover {
+            text-shadow: 0 0 8px currentColor;
+            transform: translateY(-1px);
+        }
+
+        /* Social icons enhancement for themed backgrounds */
+        body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
+        body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
+        body.theme-neural .social-icon, body.theme-sound .social-icon, 
+        body.theme-gravity .social-icon {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        body.theme-constellation .social-icon:hover, body.theme-ripple .social-icon:hover, 
+        body.theme-scroll .social-icon:hover, body.theme-matrix .social-icon:hover, 
+        body.theme-neural .social-icon:hover, body.theme-sound .social-icon:hover, 
+        body.theme-gravity .social-icon:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Accessibility improvements for focus states */
+        body.theme-constellation *:focus, body.theme-ripple *:focus, body.theme-scroll *:focus,
+        body.theme-matrix *:focus, body.theme-neural *:focus, body.theme-sound *:focus, body.theme-gravity *:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            body.theme-constellation, body.theme-ripple, body.theme-scroll,
+            body.theme-matrix, body.theme-neural, body.theme-sound, body.theme-gravity {
+                --bs-body-color: #ffffff;
+            }
+            
+            body.theme-constellation h1, body.theme-constellation h2, body.theme-constellation h3,
+            body.theme-ripple h1, body.theme-ripple h2, body.theme-ripple h3,
+            body.theme-scroll h1, body.theme-scroll h2, body.theme-scroll h3,
+            body.theme-matrix h1, body.theme-matrix h2, body.theme-matrix h3,
+            body.theme-neural h1, body.theme-neural h2, body.theme-neural h3,
+            body.theme-sound h1, body.theme-sound h2, body.theme-sound h3,
+            body.theme-gravity h1, body.theme-gravity h2, body.theme-gravity h3 {
+                text-shadow: 3px 3px 6px rgba(0,0,0,1);
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
+            body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
+                transition: none;
+            }
+            
+            body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
+            body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
+            body.theme-neural .social-icon, body.theme-sound .social-icon, 
+            body.theme-gravity .social-icon {
+                transition: none;
             }
         }
 
@@ -381,6 +930,9 @@
     </style>
 </head>
 <body id="page-top">
+    <!-- Interactive Theme Background Container -->
+    <div id="theme-bg-container" class="theme-bg-container"></div>
+
     <!-- Particle background container -->
     <div id="tsparticles"></div>
 
@@ -415,6 +967,25 @@
             </ul>
         </div>
     </nav>
+    <!-- Theme Selector Dropdown -->
+    <div class="theme-selector">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-palette"></i> Themes
+            </button>
+            <div class="dropdown-menu theme-dropdown" aria-labelledby="themeDropdown">
+                <button class="theme-option active" data-theme="particles">Default Particles</button>
+                <button class="theme-option" data-theme="constellation">Mouse Trail</button>
+                <button class="theme-option" data-theme="ripple">Click Ripples</button>
+                <button class="theme-option" data-theme="scroll">Scroll Particles</button>
+                <button class="theme-option" data-theme="matrix">Typing Matrix</button>
+                <button class="theme-option" data-theme="neural">Neural Network</button>
+                <button class="theme-option" data-theme="sound">Sound Waves</button>
+                <button class="theme-option" data-theme="gravity">Gravity Field</button>
+            </div>
+        </div>
+    </div>
+    
     <button id="theme-toggle" class="btn btn-secondary"><i class="fas fa-adjust"></i></button>
     
     <!-- Page Content-->
@@ -654,7 +1225,7 @@
         <!-- Contact-->
         <section class="resume-section" id="contact">
             <div class="resume-section-content">
-                <h2 class="mb-5" data-aos="fade-down">Contact Me</h2>
+                <h2 class="mb-5" data-aos="fade-down">Contact Me (Under Development)</h2>
                 <div class="row" data-aos="fade-up">
                     <div class="col-lg-8 mx-auto">
                         <form id="contactForm" name="sentMessage">
@@ -783,9 +1354,9 @@
                             <canvas class="pdf-render"></canvas>
                         </div>
                         <div class="pdf-controls mt-2">
-                             <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
-                             <span class="page-num"></span> / <span class="page-count"></span>
-                             <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                            <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                            <span class="page-num"></span> / <span class="page-count"></span>
+                            <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
