@@ -428,7 +428,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 event.preventDefault();
                 htmlElement.classList.toggle('dark-theme');
                 updateParticleColors();
-                
+
                 // Update modal text contrast when switching light/dark mode
                 const currentThemeClass = document.body.className.match(/theme-(\w+)/);
                 if (currentThemeClass) {
@@ -522,7 +522,7 @@ function initializeInteractiveThemes(particlesContainer) {
     const floatingContainer = document.querySelector('.floating-container');
 
     // Theme switching function
-    function switchTheme(theme) {
+    window.switchTheme = function switchTheme(theme) {
         // Clear current theme
         themeContainer.innerHTML = '';
         themeContainer.className = 'theme-bg-container';
@@ -688,13 +688,21 @@ function initializeInteractiveThemes(particlesContainer) {
     }
 
     // Theme 4: Matrix
-    function initMatrix() {
+    window.initMatrix = function initMatrix() {
         themeContainer.className = 'theme-bg-container reactive-matrix-bg';
         matrixChars = [];
 
         const characters = '0123456789ABCDEFabcdef<>{}[]()';
 
-        for (let i = 0; i < 100; i++) {
+        // Adjust number of characters based on screen size
+        let charCount = 100;
+        if (window.innerWidth <= 480) {
+            charCount = 30; // Fewer characters for small mobile screens
+        } else if (window.innerWidth <= 768) {
+            charCount = 50; // Moderate amount for tablets
+        }
+
+        for (let i = 0; i < charCount; i++) {
             const char = document.createElement('div');
             char.className = 'matrix-char';
             char.textContent = characters[Math.floor(Math.random() * characters.length)];
@@ -969,20 +977,20 @@ function initializeInteractiveThemes(particlesContainer) {
     function updateModalTextContrast(theme) {
         // Skip if default particles theme
         if (theme === 'particles') return;
-        
+
         // Check if dark mode is active
         const isDarkMode = document.documentElement.classList.contains('dark-theme');
-        
+
         // Get all modal elements
         const modals = document.querySelectorAll('.modal-content, .modal-body, .modal-title, .modal-header, .modal-footer');
         const geminiContent = document.getElementById('geminiSummaryContent');
         const alerts = document.querySelectorAll('.alert');
-        
+
         // Set colors based on light/dark mode
         const textColor = isDarkMode ? '#ffffff' : '#000000';
         const textShadow = isDarkMode ? '1px 1px 2px rgba(0,0,0,0.8)' : 'none';
         const backgroundColor = isDarkMode ? 'rgba(0,0,0,0.95)' : 'rgba(255,255,255,0.95)';
-        
+
         // Update modal elements
         modals.forEach(modal => {
             modal.style.color = textColor;
@@ -991,17 +999,17 @@ function initializeInteractiveThemes(particlesContainer) {
                 modal.style.backgroundColor = backgroundColor;
             }
         });
-        
+
         // Special handling for Matrix theme
         if (theme === 'matrix') {
             const matrixTextColor = isDarkMode ? '#00ff00' : '#003300';
-            const matrixTextShadow = isDarkMode ? 
-                '0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' : 
+            const matrixTextShadow = isDarkMode ?
+                '0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' :
                 'none';
-            const matrixBgColor = isDarkMode ? 
-                'rgba(0,17,0,0.95)' : 
+            const matrixBgColor = isDarkMode ?
+                'rgba(0,17,0,0.95)' :
                 'rgba(240,255,240,0.95)';
-            
+
             modals.forEach(modal => {
                 modal.style.color = matrixTextColor;
                 modal.style.textShadow = matrixTextShadow;
@@ -1010,15 +1018,15 @@ function initializeInteractiveThemes(particlesContainer) {
                     modal.style.backgroundColor = matrixBgColor;
                 }
             });
-            
+
             // Special handling for Gemini content in Matrix theme
             if (geminiContent) {
                 geminiContent.style.color = isDarkMode ? '#ccffcc' : '#003300';
-                geminiContent.style.textShadow = isDarkMode ? 
-                    '0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' : 
+                geminiContent.style.textShadow = isDarkMode ?
+                    '0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' :
                     'none';
-                geminiContent.style.backgroundColor = isDarkMode ? 
-                    'rgba(0,34,0,0.8)' : 
+                geminiContent.style.backgroundColor = isDarkMode ?
+                    'rgba(0,34,0,0.8)' :
                     'rgba(230,255,230,0.9)';
             }
         } else {
@@ -1026,29 +1034,29 @@ function initializeInteractiveThemes(particlesContainer) {
             if (geminiContent) {
                 geminiContent.style.color = textColor;
                 geminiContent.style.textShadow = textShadow;
-                geminiContent.style.backgroundColor = isDarkMode ? 
-                    'rgba(0,0,0,0.8)' : 
+                geminiContent.style.backgroundColor = isDarkMode ?
+                    'rgba(0,0,0,0.8)' :
                     'rgba(255,255,255,0.9)';
             }
         }
-        
+
         // Update alert text
         alerts.forEach(alert => {
             alert.style.color = textColor;
             alert.style.textShadow = textShadow;
-            alert.style.backgroundColor = isDarkMode ? 
-                'rgba(0,0,0,0.8)' : 
+            alert.style.backgroundColor = isDarkMode ?
+                'rgba(0,0,0,0.8)' :
                 'rgba(255,255,255,0.9)';
         });
-        
+
         // Update any existing modal text elements
         const modalTexts = document.querySelectorAll('.modal p, .modal span, .modal div:not(.modal-content):not(.modal-header):not(.modal-body):not(.modal-footer)');
         modalTexts.forEach(text => {
             if (text.textContent.trim() !== '') {
                 if (theme === 'matrix') {
                     text.style.color = isDarkMode ? '#ccffcc' : '#003300';
-                    text.style.textShadow = isDarkMode ? 
-                        '0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' : 
+                    text.style.textShadow = isDarkMode ?
+                        '0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9)' :
                         'none';
                     text.style.fontFamily = "'Courier New', monospace";
                 } else {
@@ -1189,6 +1197,99 @@ function addThemeTransitionEffects() {
         button.addEventListener('click', function () {
             const theme = this.getAttribute('data-theme');
             saveThemePreference(theme);
+
+            // Actually switch the theme
+            if (window.switchTheme) {
+                window.switchTheme(theme);
+            }
         });
     });
+
+    // Add resize handler for matrix theme responsiveness
+    let resizeTimeout;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function () {
+            // Check if matrix theme is active and reinitialize if needed
+            if (document.body.classList.contains('theme-matrix')) {
+                const themeContainer = document.getElementById('theme-bg-container');
+                if (themeContainer && window.initMatrix) {
+                    // Clear existing matrix characters
+                    themeContainer.innerHTML = '';
+                    // Reinitialize with new screen size
+                    window.initMatrix();
+                }
+            }
+        }, 250); // Debounce resize events
+    });
+}
+
+// Mobile-specific enhancements for matrix theme
+function addMobileMatrixEnhancements() {
+    // Add touch event handling for matrix theme on mobile
+    if ('ontouchstart' in window) {
+        let touchTimeout;
+
+        document.addEventListener('touchstart', function (e) {
+            if (document.body.classList.contains('theme-matrix')) {
+                clearTimeout(touchTimeout);
+
+                // Activate matrix characters near touch point
+                const touch = e.touches[0];
+                const rect = document.body.getBoundingClientRect();
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+
+                // Find nearby matrix characters and activate them
+                const matrixChars = document.querySelectorAll('.matrix-char');
+                matrixChars.forEach(char => {
+                    const charRect = char.getBoundingClientRect();
+                    const charX = charRect.left + charRect.width / 2;
+                    const charY = charRect.top + charRect.height / 2;
+
+                    const distance = Math.sqrt(
+                        Math.pow(x - charX, 2) + Math.pow(y - charY, 2)
+                    );
+
+                    if (distance < 100) { // Activate chars within 100px
+                        char.classList.add('active');
+
+                        // Deactivate after a delay
+                        setTimeout(() => {
+                            char.classList.remove('active');
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        // Add periodic matrix character animation on mobile
+        function animateMatrixOnMobile() {
+            if (document.body.classList.contains('theme-matrix')) {
+                const matrixChars = document.querySelectorAll('.matrix-char');
+                if (matrixChars.length > 0) {
+                    // Randomly activate a few characters
+                    const numToActivate = Math.min(3, matrixChars.length);
+                    for (let i = 0; i < numToActivate; i++) {
+                        const randomChar = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                        randomChar.classList.add('active');
+
+                        setTimeout(() => {
+                            randomChar.classList.remove('active');
+                        }, 800);
+                    }
+                }
+            }
+        }
+
+        // Start mobile animation interval
+        setInterval(animateMatrixOnMobile, 2000);
+    }
+}
+
+// Initialize mobile enhancements when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addMobileMatrixEnhancements);
+} else {
+    addMobileMatrixEnhancements();
 }
