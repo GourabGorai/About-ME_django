@@ -429,6 +429,9 @@ window.addEventListener('DOMContentLoaded', event => {
                 htmlElement.classList.toggle('dark-theme');
                 updateParticleColors();
             });
+
+            // Initialize Interactive Theme Manager
+            initializeInteractiveThemes(container);
         });
     }
 
@@ -489,4 +492,467 @@ function openResumeModal() {
         resumeViewer.load('assets/pdf/resume.pdf');
     }
     modal.show();
+}
+
+// --- Interactive Theme Management ---
+function initializeInteractiveThemes(particlesContainer) {
+    let currentTheme = 'particles';
+    let mouseX = 0, mouseY = 0;
+    let lastMouseX = 0, lastMouseY = 0;
+    let scrollY = 0;
+    let stars = [];
+    let scrollParticles = [];
+    let matrixChars = [];
+    let neuralNodes = [];
+    let neuralConnections = [];
+    let waveBars = [];
+    let gravityParticles = [];
+
+    const themeContainer = document.getElementById('theme-bg-container');
+    const tsParticlesElement = document.getElementById('tsparticles');
+    const floatingContainer = document.querySelector('.floating-container');
+
+    // Theme switching function
+    function switchTheme(theme) {
+        // Clear current theme
+        themeContainer.innerHTML = '';
+        themeContainer.className = 'theme-bg-container';
+        
+        // Remove all theme classes from body
+        document.body.classList.remove(
+            'theme-particles', 'theme-constellation', 'theme-ripple', 
+            'theme-scroll', 'theme-matrix', 'theme-neural', 
+            'theme-sound', 'theme-gravity'
+        );
+        
+        // Add new theme class to body for font styling
+        document.body.classList.add(`theme-${theme}`);
+        
+        // Update active button
+        document.querySelectorAll('.theme-option').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
+        
+        // Show/hide particles and floating objects based on theme
+        if (theme === 'particles') {
+            tsParticlesElement.style.display = 'block';
+            floatingContainer.style.display = 'block';
+            themeContainer.classList.remove('interactive');
+        } else {
+            tsParticlesElement.style.display = 'none';
+            floatingContainer.style.display = 'none';
+            themeContainer.classList.add('interactive');
+        }
+        
+        currentTheme = theme;
+        initializeTheme(theme);
+    }
+
+    // Initialize specific theme
+    function initializeTheme(theme) {
+        switch(theme) {
+            case 'particles':
+                // Default particles theme - already handled
+                break;
+            case 'constellation':
+                initConstellation();
+                break;
+            case 'ripple':
+                initRipple();
+                break;
+            case 'scroll':
+                initScrollParticles();
+                break;
+            case 'matrix':
+                initMatrix();
+                break;
+            case 'neural':
+                initNeuralNetwork();
+                break;
+            case 'sound':
+                initSoundWave();
+                break;
+            case 'gravity':
+                initGravityField();
+                break;
+        }
+    }
+
+    // Theme 1: Constellation
+    function initConstellation() {
+        themeContainer.className = 'theme-bg-container constellation-bg';
+        stars = [];
+    }
+
+    function createStar(x, y) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = x + 'px';
+        star.style.top = y + 'px';
+        themeContainer.appendChild(star);
+        
+        setTimeout(() => star.style.opacity = '1', 50);
+        
+        stars.push({element: star, x: x, y: y, age: 0});
+        
+        if (stars.length > 50) {
+            const oldStar = stars.shift();
+            oldStar.element.remove();
+        }
+        
+        updateConstellationConnections();
+    }
+
+    function updateConstellationConnections() {
+        themeContainer.querySelectorAll('.constellation-line').forEach(line => line.remove());
+        
+        for (let i = 0; i < stars.length; i++) {
+            for (let j = i + 1; j < stars.length; j++) {
+                const star1 = stars[i];
+                const star2 = stars[j];
+                const distance = Math.sqrt(
+                    Math.pow(star1.x - star2.x, 2) + 
+                    Math.pow(star1.y - star2.y, 2)
+                );
+                
+                if (distance < 100) {
+                    const line = document.createElement('div');
+                    line.className = 'constellation-line';
+                    line.style.left = star1.x + 'px';
+                    line.style.top = star1.y + 'px';
+                    line.style.width = distance + 'px';
+                    line.style.transformOrigin = 'left center';
+                    
+                    const angle = Math.atan2(star2.y - star1.y, star2.x - star1.x);
+                    line.style.transform = `rotate(${angle}rad)`;
+                    line.style.opacity = Math.max(0, 1 - distance / 100);
+                    
+                    themeContainer.appendChild(line);
+                }
+            }
+        }
+    }
+
+    // Theme 2: Ripple Effect
+    function initRipple() {
+        themeContainer.className = 'theme-bg-container ripple-bg';
+    }
+
+    function createRipple(x, y) {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple';
+        ripple.style.left = (x - 10) + 'px';
+        ripple.style.top = (y - 10) + 'px';
+        ripple.style.width = '20px';
+        ripple.style.height = '20px';
+        themeContainer.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 2000);
+    }
+
+    // Theme 3: Scroll Particles
+    function initScrollParticles() {
+        themeContainer.className = 'theme-bg-container scroll-particles-bg';
+        scrollParticles = [];
+        
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'scroll-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            themeContainer.appendChild(particle);
+            
+            scrollParticles.push({
+                element: particle,
+                baseX: Math.random() * window.innerWidth,
+                baseY: Math.random() * window.innerHeight,
+                velX: 0,
+                velY: 0
+            });
+        }
+    }
+
+    // Theme 4: Matrix
+    function initMatrix() {
+        themeContainer.className = 'theme-bg-container reactive-matrix-bg';
+        matrixChars = [];
+        
+        const characters = '0123456789ABCDEFabcdef<>{}[]()';
+        
+        for (let i = 0; i < 100; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = characters[Math.floor(Math.random() * characters.length)];
+            char.style.left = Math.random() * 100 + '%';
+            char.style.top = Math.random() * 100 + '%';
+            themeContainer.appendChild(char);
+            
+            matrixChars.push({
+                element: char,
+                activated: false
+            });
+        }
+    }
+
+    // Theme 5: Neural Network
+    function initNeuralNetwork() {
+        themeContainer.className = 'theme-bg-container interactive-neural-bg';
+        neuralNodes = [];
+        neuralConnections = [];
+        
+        // Create nodes
+        for (let i = 0; i < 15; i++) {
+            const node = document.createElement('div');
+            node.className = 'neural-node';
+            const x = Math.random() * (window.innerWidth - 50) + 25;
+            const y = Math.random() * (window.innerHeight - 50) + 25;
+            node.style.left = x + 'px';
+            node.style.top = y + 'px';
+            themeContainer.appendChild(node);
+            
+            const nodeData = {element: node, x: x, y: y, activated: false};
+            neuralNodes.push(nodeData);
+            
+            node.addEventListener('mouseenter', () => activateNeuralNode(nodeData));
+            node.addEventListener('mouseleave', () => deactivateNeuralNode(nodeData));
+        }
+        
+        // Create connections
+        for (let i = 0; i < neuralNodes.length; i++) {
+            for (let j = i + 1; j < neuralNodes.length; j++) {
+                const node1 = neuralNodes[i];
+                const node2 = neuralNodes[j];
+                const distance = Math.sqrt(
+                    Math.pow(node1.x - node2.x, 2) + 
+                    Math.pow(node1.y - node2.y, 2)
+                );
+                
+                if (distance < 200) {
+                    const connection = document.createElement('div');
+                    connection.className = 'neural-connection';
+                    connection.style.left = node1.x + 'px';
+                    connection.style.top = node1.y + 'px';
+                    connection.style.width = distance + 'px';
+                    
+                    const angle = Math.atan2(node2.y - node1.y, node2.x - node1.x);
+                    connection.style.transform = `rotate(${angle}rad)`;
+                    
+                    themeContainer.appendChild(connection);
+                    neuralConnections.push({
+                        element: connection,
+                        node1: i,
+                        node2: j
+                    });
+                }
+            }
+        }
+    }
+
+    function activateNeuralNode(nodeData) {
+        nodeData.activated = true;
+        nodeData.element.classList.add('activated');
+        
+        neuralConnections.forEach(conn => {
+            if (neuralNodes[conn.node1] === nodeData || neuralNodes[conn.node2] === nodeData) {
+                conn.element.classList.add('active');
+            }
+        });
+    }
+
+    function deactivateNeuralNode(nodeData) {
+        nodeData.activated = false;
+        nodeData.element.classList.remove('activated');
+        
+        neuralConnections.forEach(conn => {
+            if (neuralNodes[conn.node1] === nodeData || neuralNodes[conn.node2] === nodeData) {
+                conn.element.classList.remove('active');
+            }
+        });
+    }
+
+    // Theme 6: Sound Wave
+    function initSoundWave() {
+        themeContainer.className = 'theme-bg-container sound-wave-bg';
+        waveBars = [];
+        
+        const barCount = Math.floor(window.innerWidth / 8);
+        
+        for (let i = 0; i < barCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'wave-bar';
+            bar.style.left = (i * 8) + 'px';
+            bar.style.height = '5px';
+            themeContainer.appendChild(bar);
+            
+            waveBars.push({
+                element: bar,
+                index: i
+            });
+        }
+    }
+
+    // Theme 7: Gravity Field
+    function initGravityField() {
+        themeContainer.className = 'theme-bg-container gravity-bg';
+        gravityParticles = [];
+        
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'gravity-particle';
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            themeContainer.appendChild(particle);
+            
+            gravityParticles.push({
+                element: particle,
+                x: x,
+                y: y,
+                velX: 0,
+                velY: 0
+            });
+        }
+    }
+
+    // Event handlers
+    function handleMouseMove(e) {
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        switch(currentTheme) {
+            case 'constellation':
+                if (Math.random() < 0.3) {
+                    createStar(e.clientX, e.clientY);
+                }
+                break;
+            
+            case 'sound':
+                waveBars.forEach((bar, index) => {
+                    const distance = Math.abs((index * 8) - e.clientX);
+                    const height = Math.max(5, 100 - distance / 5);
+                    bar.element.style.height = height + 'px';
+                });
+                break;
+            
+            case 'gravity':
+                gravityParticles.forEach(particle => {
+                    const dx = e.clientX - particle.x;
+                    const dy = e.clientY - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const force = Math.min(200 / (distance + 1), 5);
+                    
+                    particle.velX += (dx / distance) * force * 0.1;
+                    particle.velY += (dy / distance) * force * 0.1;
+                    
+                    particle.velX *= 0.95;
+                    particle.velY *= 0.95;
+                    
+                    particle.x += particle.velX;
+                    particle.y += particle.velY;
+                    
+                    particle.element.style.left = particle.x + 'px';
+                    particle.element.style.top = particle.y + 'px';
+                });
+                break;
+            
+            case 'matrix':
+                matrixChars.forEach((char, index) => {
+                    const charRect = char.element.getBoundingClientRect();
+                    const distance = Math.sqrt(
+                        Math.pow(e.clientX - (charRect.left + 8), 2) +
+                        Math.pow(e.clientY - (charRect.top + 8), 2)
+                    );
+                    
+                    if (distance < 100) {
+                        char.element.classList.add('active');
+                        setTimeout(() => {
+                            char.element.classList.remove('active');
+                        }, 500);
+                    }
+                });
+                break;
+        }
+    }
+
+    function handleClick(e) {
+        if (currentTheme === 'ripple') {
+            createRipple(e.clientX, e.clientY);
+            setTimeout(() => createRipple(e.clientX + 20, e.clientY + 10), 100);
+            setTimeout(() => createRipple(e.clientX - 15, e.clientY - 5), 200);
+        }
+    }
+
+    function handleKeypress(e) {
+        if (currentTheme === 'matrix') {
+            const activateCount = Math.floor(Math.random() * 10) + 5;
+            for (let i = 0; i < activateCount; i++) {
+                const randomChar = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                randomChar.element.classList.add('active');
+                setTimeout(() => {
+                    randomChar.element.classList.remove('active');
+                }, 1000);
+            }
+        }
+    }
+
+    function handleScroll(e) {
+        if (currentTheme === 'scroll') {
+            const scrollVel = scrollY - (window.lastScrollY || 0);
+            window.lastScrollY = scrollY;
+            
+            scrollParticles.forEach((particle, index) => {
+                particle.velY += scrollVel * 0.1;
+                particle.velX += (Math.random() - 0.5) * scrollVel * 0.05;
+                
+                particle.velX *= 0.95;
+                particle.velY *= 0.95;
+                
+                particle.element.style.transform = `translate(${particle.velX}px, ${particle.velY}px)`;
+            });
+        }
+    }
+
+    // Event listeners
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('click', handleClick);
+    document.addEventListener('keypress', handleKeypress);
+    
+    let scrollTimeout;
+    document.addEventListener('scroll', (e) => {
+        scrollY = window.scrollY;
+        handleScroll(e);
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            if (currentTheme === 'scroll') {
+                scrollParticles.forEach(particle => {
+                    particle.element.style.transform = 'translate(0px, 0px)';
+                });
+            }
+        }, 150);
+    });
+
+    // Theme selector event listeners
+    document.querySelectorAll('.theme-option').forEach(button => {
+        button.addEventListener('click', function() {
+            const theme = this.getAttribute('data-theme');
+            switchTheme(theme);
+        });
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+        if (currentTheme !== 'particles') {
+            initializeTheme(currentTheme);
+        }
+    });
+
+    // Initialize with default theme
+    switchTheme('particles');
 }
