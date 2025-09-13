@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -12,23 +13,24 @@
     <meta property="og:image" content="assets/img/image1.jpg" />
     <meta property="og:url" content="gourabgorai.netlify.app" />
     <meta property="og:type" content="website" />
-    
+
     <!-- Google tag (gtag.js) is now loaded and configured from scripts.js -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2TRYVGY4X"></script>
-    
+
     <!-- Font Awesome icons -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
+
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
+        type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-    
+
     <!-- Animate On Scroll Library CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    
+
     <!-- PDF.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <!-- The worker script is now specified in scripts.js -->
@@ -49,7 +51,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Place it behind all content */
+            z-index: -1;
+            /* Place it behind all content */
         }
 
         /* Floating Objects Animation */
@@ -59,9 +62,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Make container non-interactive */
+            pointer-events: none;
+            /* Make container non-interactive */
             z-index: 0;
         }
+
         .floating-object {
             position: absolute;
             color: var(--bs-gray-500);
@@ -69,186 +74,73 @@
             opacity: 0.15;
             animation: float 15s infinite linear;
         }
+
         :root.dark-theme .floating-object {
-             color: var(--bs-gray-400);
-             opacity: 0.1;
+            color: var(--bs-gray-400);
+            opacity: 0.1;
         }
+
         @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-15px) rotate(90deg); }
-            50% { transform: translateY(0) rotate(180deg); }
-            75% { transform: translateY(15px) rotate(270deg); }
-            100% { transform: translateY(0) rotate(360deg); }
-        }
-        .obj1 { top: 15%; left: 20%; animation-duration: 18s; font-size: 2rem; }
-        .obj2 { top: 25%; left: 85%; animation-duration: 14s; animation-delay: 3s; font-size: 3rem; }
-        .obj3 { top: 65%; left: 18%; animation-duration: 22s; animation-delay: 1s; font-size: 2.5rem; }
-        .obj4 { top: 80%; left: 92%; animation-duration: 12s; animation-delay: 5s; font-size: 3.5rem; }
-        .obj5 { top: 45%; left: 50%; animation-duration: 25s; font-size: 2rem; }
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
 
-        /* Interactive Background Themes */
-        .theme-bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none;
+            25% {
+                transform: translateY(-15px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(15px) rotate(270deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
         }
 
-        .theme-bg-container.interactive {
-            pointer-events: auto;
+        .obj1 {
+            top: 15%;
+            left: 20%;
+            animation-duration: 18s;
+            font-size: 2rem;
         }
 
-        /* Theme 1: Mouse Trail Constellation */
-        .constellation-bg {
-            background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-        }
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #64ffda;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #64ffda;
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-        .constellation-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #64ffda, transparent);
-            transform-origin: left center;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
+        .obj2 {
+            top: 25%;
+            left: 85%;
+            animation-duration: 14s;
+            animation-delay: 3s;
+            font-size: 3rem;
         }
 
-        /* Theme 2: Ripple Effect */
-        .ripple-bg {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 100%);
-        }
-        .ripple {
-            position: absolute;
-            border: 2px solid #ff6b6b;
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple-expand 2s ease-out forwards;
-            pointer-events: none;
-        }
-        @keyframes ripple-expand {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(20); opacity: 0; }
+        .obj3 {
+            top: 65%;
+            left: 18%;
+            animation-duration: 22s;
+            animation-delay: 1s;
+            font-size: 2.5rem;
         }
 
-        /* Theme 3: Scroll-Reactive Particles */
-        .scroll-particles-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .scroll-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.7;
-            transition: transform 0.1s ease-out;
-            pointer-events: none;
+        .obj4 {
+            top: 80%;
+            left: 92%;
+            animation-duration: 12s;
+            animation-delay: 5s;
+            font-size: 3.5rem;
         }
 
-        /* Theme 4: Code Matrix */
-        .reactive-matrix-bg {
-            background: linear-gradient(135deg, #001100 0%, #003300 100%);
-        }
-        .matrix-char {
-            position: absolute;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00;
-            opacity: 0.3;
-            transition: all 0.2s ease;
-            pointer-events: none;
-        }
-        .matrix-char.active {
-            opacity: 1;
-            transform: scale(1.2);
-            color: #ffffff;
-            text-shadow: 0 0 15px #00ff00;
+        .obj5 {
+            top: 45%;
+            left: 50%;
+            animation-duration: 25s;
+            font-size: 2rem;
         }
 
-        /* Theme 5: Neural Network */
-        .interactive-neural-bg {
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        }
-        .neural-node {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #64ffda;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #64ffda;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .neural-node:hover {
-            transform: scale(2);
-            box-shadow: 0 0 30px #64ffda;
-        }
-        .neural-node.activated {
-            background: #ff6b6b;
-            box-shadow: 0 0 30px #ff6b6b;
-            transform: scale(1.5);
-        }
-        .neural-connection {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #64ffda, transparent);
-            transform-origin: left center;
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .neural-connection.active {
-            opacity: 1;
-            background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
-            animation: pulse-connection 0.5s ease-out;
-        }
-        @keyframes pulse-connection {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(3); }
-        }
-
-        /* Theme 6: Sound Wave */
-        .sound-wave-bg {
-            background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
-        }
-        .wave-bar {
-            position: absolute;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to top, #ff6b6b, #4ecdc4);
-            transition: height 0.1s ease;
-            pointer-events: none;
-        }
-
-        /* Theme 7: Gravity Particles */
-        .gravity-bg {
-            background: linear-gradient(135deg, #0f0f0f 0%, #2d1b69 100%);
-        }
-        .gravity-particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, #ffffff, #64ffda);
-            border-radius: 50%;
-            box-shadow: 0 0 15px #64ffda;
-            transition: all 0.1s ease-out;
-            pointer-events: none;
-        }
+        /* Interactive Background Themes - Moved to styles.css */
 
         .img-thumbnail {
             cursor: pointer;
@@ -257,15 +149,18 @@
         /* PDF Viewer Styles */
         .pdf-viewer-container {
             width: 100%;
-            height: 60vh; /* Adjusted for better viewing */
+            height: 60vh;
+            /* Adjusted for better viewing */
             overflow: auto;
             background: #525659;
             text-align: center;
         }
+
         .pdf-render {
             max-width: 100%;
             direction: ltr;
         }
+
         .pdf-controls {
             display: flex;
             justify-content: center;
@@ -273,16 +168,19 @@
             padding: 10px;
             background-color: #f8f9fa;
         }
+
         .pdf-controls button {
             margin: 0 10px;
         }
+
         .page-num {
             font-weight: bold;
         }
+
         :root.dark-theme .pdf-controls {
             background-color: #343a40;
         }
-        
+
         #theme-toggle {
             position: fixed;
             top: 10px;
@@ -293,399 +191,19 @@
         /* Move theme toggle button on mobile to avoid overlapping the navbar toggler */
         @media (max-width: 991.98px) {
             #theme-toggle {
-                right: 70px; 
+                right: 70px;
             }
         }
 
-        /* Theme Selector Dropdown */
-        .theme-selector {
-            position: fixed;
-            top: 10px;
-            right: 60px;
-            z-index: 1050;
-        }
+        /* Theme Selector Dropdown - Moved to styles.css */
 
-        @media (max-width: 991.98px) {
-            .theme-selector {
-                right: 120px; 
-            }
-        }
-
-        .theme-dropdown {
-            background: rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            padding: 0.5rem;
-            min-width: 200px;
-        }
-
-        .theme-option {
-            display: block;
-            width: 100%;
-            padding: 8px 12px;
-            margin: 2px 0;
-            background: rgba(100, 255, 218, 0.1);
-            color: #64ffda;
-            border: 1px solid #64ffda;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .theme-option:hover, .theme-option.active {
-            background: rgba(100, 255, 218, 0.3);
-            color: white;
-            text-decoration: none;
-        }
-
-        :root.dark-theme .theme-dropdown {
-            background: rgba(40,40,40,0.9);
-        }
-
-        /* Theme-Specific Font Adjustments for Accessibility */
-        
-        /* Default Particles Theme - Original styling */
-        body.theme-particles {
-            /* Uses existing default styling */
-        }
-
-        /* Constellation Theme - Dark background with bright text */
-        body.theme-constellation {
-            --bs-body-color: #ffffff;
-            --bs-link-color: #64ffda;
-            --bs-link-hover-color: #4fd3b8;
-        }
-        body.theme-constellation h1, body.theme-constellation .h1,
-        body.theme-constellation h2, body.theme-constellation .h2,
-        body.theme-constellation h3, body.theme-constellation .h3,
-        body.theme-constellation h4, body.theme-constellation .h4,
-        body.theme-constellation h5, body.theme-constellation .h5,
-        body.theme-constellation h6, body.theme-constellation .h6 {
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            font-weight: 700;
-        }
-        body.theme-constellation .subheading {
-            color: #e0e0e0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-        }
-        body.theme-constellation .text-primary {
-            color: #64ffda !important;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-        }
-        body.theme-constellation p, body.theme-constellation .lead {
-            color: #f0f0f0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-            line-height: 1.7;
-        }
-
-        /* Ripple Theme - Dark purple background with bright text */
-        body.theme-ripple {
-            --bs-body-color: #ffffff;
-            --bs-link-color: #ff6b6b;
-            --bs-link-hover-color: #ff5252;
-        }
-        body.theme-ripple h1, body.theme-ripple .h1,
-        body.theme-ripple h2, body.theme-ripple .h2,
-        body.theme-ripple h3, body.theme-ripple .h3,
-        body.theme-ripple h4, body.theme-ripple .h4,
-        body.theme-ripple h5, body.theme-ripple .h5,
-        body.theme-ripple h6, body.theme-ripple .h6 {
-            color: #ffffff;
-            text-shadow: 2px 2px 6px rgba(26,0,51,0.9);
-            font-weight: 700;
-        }
-        body.theme-ripple .subheading {
-            color: #f0f0f0;
-            text-shadow: 1px 1px 3px rgba(26,0,51,0.8);
-        }
-        body.theme-ripple .text-primary {
-            color: #ff6b6b !important;
-            text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
-        }
-        body.theme-ripple p, body.theme-ripple .lead {
-            color: #f5f5f5;
-            text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
-            line-height: 1.7;
-        }
-
-        /* Scroll Particles Theme - Purple gradient with white text */
-        body.theme-scroll {
-            --bs-body-color: #ffffff;
-            --bs-link-color: #ffffff;
-            --bs-link-hover-color: #f0f0f0;
-        }
-        body.theme-scroll h1, body.theme-scroll .h1,
-        body.theme-scroll h2, body.theme-scroll .h2,
-        body.theme-scroll h3, body.theme-scroll .h3,
-        body.theme-scroll h4, body.theme-scroll .h4,
-        body.theme-scroll h5, body.theme-scroll .h5,
-        body.theme-scroll h6, body.theme-scroll .h6 {
-            color: #ffffff;
-            text-shadow: 2px 2px 6px rgba(102,126,234,0.8);
-            font-weight: 700;
-        }
-        body.theme-scroll .subheading {
-            color: #f0f0f0;
-            text-shadow: 1px 1px 4px rgba(102,126,234,0.7);
-        }
-        body.theme-scroll .text-primary {
-            color: #ffffff !important;
-            text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
-        }
-        body.theme-scroll p, body.theme-scroll .lead {
-            color: #ffffff;
-            text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
-            line-height: 1.7;
-        }
-
-        /* Matrix Theme - Green on black with enhanced readability */
-        body.theme-matrix {
-            --bs-body-color: #00ff00;
-            --bs-link-color: #00ff00;
-            --bs-link-hover-color: #33ff33;
-        }
-        body.theme-matrix h1, body.theme-matrix .h1,
-        body.theme-matrix h2, body.theme-matrix .h2,
-        body.theme-matrix h3, body.theme-matrix .h3,
-        body.theme-matrix h4, body.theme-matrix .h4,
-        body.theme-matrix h5, body.theme-matrix .h5,
-        body.theme-matrix h6, body.theme-matrix .h6 {
-            color: #00ff00;
-            text-shadow: 0 0 10px #00ff00, 2px 2px 4px rgba(0,0,0,0.8);
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-        }
-        body.theme-matrix .subheading {
-            color: #66ff66;
-            text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.7);
-            font-family: 'Courier New', monospace;
-        }
-        body.theme-matrix .text-primary {
-            color: #00ff00 !important;
-            text-shadow: 0 0 8px #00ff00;
-        }
-        body.theme-matrix p, body.theme-matrix .lead {
-            color: #ccffcc;
-            text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.6);
-            line-height: 1.8;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Neural Network Theme - Blue tones with enhanced contrast */
-        body.theme-neural {
-            --bs-body-color: #ffffff;
-            --bs-link-color: #64ffda;
-            --bs-link-hover-color: #4fd3b8;
-        }
-        body.theme-neural h1, body.theme-neural .h1,
-        body.theme-neural h2, body.theme-neural .h2,
-        body.theme-neural h3, body.theme-neural .h3,
-        body.theme-neural h4, body.theme-neural .h4,
-        body.theme-neural h5, body.theme-neural .h5,
-        body.theme-neural h6, body.theme-neural .h6 {
-            color: #ffffff;
-            text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(15,52,96,0.9);
-            font-weight: 700;
-        }
-        body.theme-neural .subheading {
-            color: #e0f7ff;
-            text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(15,52,96,0.8);
-        }
-        body.theme-neural .text-primary {
-            color: #64ffda !important;
-            text-shadow: 0 0 8px #64ffda;
-        }
-        body.theme-neural p, body.theme-neural .lead {
-            color: #f0f8ff;
-            text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(15,52,96,0.7);
-            line-height: 1.7;
-        }
-
-        /* Sound Wave Theme - Brown/orange background with bright text */
-        body.theme-sound {
-            --bs-body-color: #ffffff;
-            --bs-link-color: #4ecdc4;
-            --bs-link-hover-color: #26a69a;
-        }
-        body.theme-sound h1, body.theme-sound .h1,
-        body.theme-sound h2, body.theme-sound .h2,
-        body.theme-sound h3, body.theme-sound .h3,
-        body.theme-sound h4, body.theme-sound .h4,
-        body.theme-sound h5, body.theme-sound .h5,
-        body.theme-sound h6, body.theme-sound .h6 {
-            color: #ffffff;
-            text-shadow: 2px 2px 6px rgba(44,24,16,0.9);
-            font-weight: 700;
-        }
-        body.theme-sound .subheading {
-            color: #f0f0f0;
-            text-shadow: 1px 1px 4px rgba(44,24,16,0.8);
-        }
-        body.theme-sound .text-primary {
-            color: #4ecdc4 !important;
-            text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
-        }
-        body.theme-sound p, body.theme-sound .lead {
-            color: #f5f5f5;
-            text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
-            line-height: 1.7;
-        }
-
-        /* Gravity Theme - Dark purple with bright text */
-        body.theme-gravity {
-            --bs-body-color: #ffffff;
-            --bs-link-color: #64ffda;
-            --bs-link-hover-color: #4fd3b8;
-        }
-        body.theme-gravity h1, body.theme-gravity .h1,
-        body.theme-gravity h2, body.theme-gravity .h2,
-        body.theme-gravity h3, body.theme-gravity .h3,
-        body.theme-gravity h4, body.theme-gravity .h4,
-        body.theme-gravity h5, body.theme-gravity .h5,
-        body.theme-gravity h6, body.theme-gravity .h6 {
-            color: #ffffff;
-            text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(45,27,105,0.9);
-            font-weight: 700;
-        }
-        body.theme-gravity .subheading {
-            color: #e0f7ff;
-            text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(45,27,105,0.8);
-        }
-        body.theme-gravity .text-primary {
-            color: #64ffda !important;
-            text-shadow: 0 0 8px #64ffda;
-        }
-        body.theme-gravity p, body.theme-gravity .lead {
-            color: #f0f8ff;
-            text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(45,27,105,0.7);
-            line-height: 1.7;
-        }
-
-        /* Enhanced button visibility for all themes */
-        body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-        body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-            text-shadow: none;
-            font-weight: 600;
-            border: 2px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        body.theme-constellation .btn:hover, body.theme-ripple .btn:hover, body.theme-scroll .btn:hover,
-        body.theme-matrix .btn:hover, body.theme-neural .btn:hover, body.theme-sound .btn:hover, body.theme-gravity .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        /* Navigation adjustments for themed backgrounds */
-        body.theme-constellation .navbar, body.theme-ripple .navbar, body.theme-scroll .navbar,
-        body.theme-matrix .navbar, body.theme-neural .navbar, body.theme-sound .navbar, body.theme-gravity .navbar {
-            backdrop-filter: blur(15px);
-            background-color: rgba(26, 95, 63, 0.9) !important;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Content sections background for better readability */
-        body.theme-constellation .resume-section, body.theme-ripple .resume-section, 
-        body.theme-scroll .resume-section, body.theme-matrix .resume-section, 
-        body.theme-neural .resume-section, body.theme-sound .resume-section, 
-        body.theme-gravity .resume-section {
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            margin: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Special handling for matrix theme readability */
-        body.theme-matrix .resume-section {
-            background: rgba(0,17,0,0.8);
-            border: 1px solid rgba(0,255,0,0.3);
-        }
-
-        /* Improved link visibility for all themes */
-        body.theme-constellation a, body.theme-ripple a, body.theme-scroll a,
-        body.theme-matrix a, body.theme-neural a, body.theme-sound a, body.theme-gravity a {
-            text-decoration: underline;
-            transition: all 0.3s ease;
-        }
-
-        body.theme-constellation a:hover, body.theme-ripple a:hover, body.theme-scroll a:hover,
-        body.theme-matrix a:hover, body.theme-neural a:hover, body.theme-sound a:hover, body.theme-gravity a:hover {
-            text-shadow: 0 0 8px currentColor;
-            transform: translateY(-1px);
-        }
-
-        /* Social icons enhancement for themed backgrounds */
-        body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
-        body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
-        body.theme-neural .social-icon, body.theme-sound .social-icon, 
-        body.theme-gravity .social-icon {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-        }
-
-        body.theme-constellation .social-icon:hover, body.theme-ripple .social-icon:hover, 
-        body.theme-scroll .social-icon:hover, body.theme-matrix .social-icon:hover, 
-        body.theme-neural .social-icon:hover, body.theme-sound .social-icon:hover, 
-        body.theme-gravity .social-icon:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-
-        /* Accessibility improvements for focus states */
-        body.theme-constellation *:focus, body.theme-ripple *:focus, body.theme-scroll *:focus,
-        body.theme-matrix *:focus, body.theme-neural *:focus, body.theme-sound *:focus, body.theme-gravity *:focus {
-            outline: 2px solid #ffffff;
-            outline-offset: 2px;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            body.theme-constellation, body.theme-ripple, body.theme-scroll,
-            body.theme-matrix, body.theme-neural, body.theme-sound, body.theme-gravity {
-                --bs-body-color: #ffffff;
-            }
-            
-            body.theme-constellation h1, body.theme-constellation h2, body.theme-constellation h3,
-            body.theme-ripple h1, body.theme-ripple h2, body.theme-ripple h3,
-            body.theme-scroll h1, body.theme-scroll h2, body.theme-scroll h3,
-            body.theme-matrix h1, body.theme-matrix h2, body.theme-matrix h3,
-            body.theme-neural h1, body.theme-neural h2, body.theme-neural h3,
-            body.theme-sound h1, body.theme-sound h2, body.theme-sound h3,
-            body.theme-gravity h1, body.theme-gravity h2, body.theme-gravity h3 {
-                text-shadow: 3px 3px 6px rgba(0,0,0,1);
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-            body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-                transition: none;
-            }
-            
-            body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
-            body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
-            body.theme-neural .social-icon, body.theme-sound .social-icon, 
-            body.theme-gravity .social-icon {
-                transition: none;
-            }
-        }
+        /* Theme-Specific Font Adjustments - Moved to styles.css */
 
         /* Dark Theme CSS */
         :root.dark-theme {
             --bs-body-bg: #121212;
-            --bs-body-color: #f0f0f0; /* Brighter text for better readability */
+            --bs-body-color: #f0f0f0;
+            /* Brighter text for better readability */
             --bs-link-color: #bb86fc;
             --bs-link-hover-color: #9a67ea;
             --bs-border-color: #444;
@@ -693,55 +211,74 @@
             --bs-secondary: #2a2a2a;
             --bs-dark: #000;
         }
+
         :root.dark-theme body {
             background-color: var(--bs-body-bg);
             color: var(--bs-body-color);
         }
+
         :root.dark-theme a {
             color: var(--bs-link-color);
         }
+
         :root.dark-theme a:hover {
             color: var(--bs-link-hover-color);
         }
-        :root.dark-theme h1, :root.dark-theme .h1,
-        :root.dark-theme h2, :root.dark-theme .h2,
-        :root.dark-theme h3, :root.dark-theme .h3,
-        :root.dark-theme h4, :root.dark-theme .h4,
-        :root.dark-theme h5, :root.dark-theme .h5,
-        :root.dark-theme h6, :root.dark-theme .h6 {
+
+        :root.dark-theme h1,
+        :root.dark-theme .h1,
+        :root.dark-theme h2,
+        :root.dark-theme .h2,
+        :root.dark-theme h3,
+        :root.dark-theme .h3,
+        :root.dark-theme h4,
+        :root.dark-theme .h4,
+        :root.dark-theme h5,
+        :root.dark-theme .h5,
+        :root.dark-theme h6,
+        :root.dark-theme .h6 {
             color: var(--bs-body-color);
         }
+
         :root.dark-theme .subheading {
             color: #dcdcdc;
         }
+
         :root.dark-theme .text-primary {
             color: #bb86fc !important;
         }
+
         :root.dark-theme .modal-content {
-             background-color: #2a2a2a;
-             color: var(--bs-body-color);
-             border-color: var(--bs-border-color);
+            background-color: #2a2a2a;
+            color: var(--bs-body-color);
+            border-color: var(--bs-border-color);
         }
+
         :root.dark-theme .modal-header {
             border-bottom-color: var(--bs-border-color);
         }
+
         :root.dark-theme .btn-close {
             filter: invert(1) grayscale(100%) brightness(200%);
         }
-         :root.dark-theme #detailsModal .modal-content {
-            background-color: #1e1e1e; /* Darker background for iframe modal */
+
+        :root.dark-theme #detailsModal .modal-content {
+            background-color: #1e1e1e;
+            /* Darker background for iframe modal */
         }
-        
+
         /* Enhanced Video Modal Popup Box */
         .video-modal {
-            display: none; /* This ensures the modal is hidden by default */
+            display: none;
+            /* This ensures the modal is hidden by default */
             position: fixed;
             z-index: 1050;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevent scrolling on the background */
+            overflow: hidden;
+            /* Prevent scrolling on the background */
             background-color: rgba(0, 0, 0, 0.9);
             align-items: center;
             justify-content: center;
@@ -753,14 +290,15 @@
             max-width: 900px;
             background: #000;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             padding-bottom: 150px;
         }
 
         .video-modal-content {
             width: 100%;
             height: auto;
-            border-radius: 15px 15px 0 0; /* Rounded corners only at the top */
+            border-radius: 15px 15px 0 0;
+            /* Rounded corners only at the top */
         }
 
         .close-video {
@@ -773,13 +311,14 @@
             cursor: pointer;
             z-index: 1051;
         }
+
         .close-video:hover,
         .close-video:focus {
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
         }
-        
+
         .player-controls-wrapper {
             position: absolute;
             bottom: 20px;
@@ -789,9 +328,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px; /* Space between progress bar and control buttons */
+            gap: 15px;
+            /* Space between progress bar and control buttons */
         }
-        
+
         .progress-and-time-container {
             width: 100%;
             display: flex;
@@ -838,10 +378,10 @@
         .video-controls button.muted:hover {
             background-color: #c82333;
         }
-        
+
         .progress-container {
             position: relative;
-            flex-grow: 1; 
+            flex-grow: 1;
             height: 10px;
             background-color: #555;
             border-radius: 5px;
@@ -862,7 +402,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 2px 8px;
             border-radius: 4px;
-            white-space: nowrap; 
+            white-space: nowrap;
         }
 
         .gemini-modal-body {
@@ -887,6 +427,7 @@
             0% {
                 transform: rotate(0deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
@@ -894,9 +435,9 @@
 
         @media (max-width: 600px) {
             .video-container {
-                padding-bottom: 220px; 
+                padding-bottom: 220px;
             }
-            
+
             .player-controls-wrapper {
                 bottom: 10px;
                 gap: 10px;
@@ -912,7 +453,7 @@
                 justify-content: center;
                 gap: 8px;
             }
-            
+
             .video-controls button {
                 padding: 6px 10px;
                 font-size: 12px;
@@ -929,6 +470,7 @@
         }
     </style>
 </head>
+
 <body id="page-top">
     <!-- Interactive Theme Background Container -->
     <div id="theme-bg-container" class="theme-bg-container"></div>
@@ -949,9 +491,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Gourab Gorai</span>
-            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="Gourab Gorai" /></span>
+            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+                    src="assets/img/profile.jpg" alt="Gourab Gorai" /></span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
@@ -961,7 +506,8 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Hobbies</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#internships">Internships</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a>
+                </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
             </ul>
@@ -970,24 +516,44 @@
     <!-- Theme Selector Dropdown -->
     <div class="theme-selector">
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 <i class="fas fa-palette"></i> Themes
             </button>
             <div class="dropdown-menu theme-dropdown" aria-labelledby="themeDropdown">
-                <button class="theme-option active" data-theme="particles">Default Particles</button>
-                <button class="theme-option" data-theme="constellation">Mouse Trail</button>
-                <button class="theme-option" data-theme="ripple">Click Ripples</button>
-                <button class="theme-option" data-theme="scroll">Scroll Particles</button>
-                <button class="theme-option" data-theme="matrix">Typing Matrix</button>
-                <button class="theme-option" data-theme="neural">Neural Network</button>
-                <button class="theme-option" data-theme="sound">Sound Waves</button>
-                <button class="theme-option" data-theme="gravity">Gravity Field</button>
+                <div class="theme-help-text" style="padding: 8px 12px; font-size: 11px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;">
+                    <i class="fas fa-keyboard"></i> Use Alt+1-8 for quick access
+                </div>
+                <button class="theme-option active" data-theme="particles" title="Default particles background with floating tech icons">
+                    <i class="fas fa-circle"></i> Default Particles <span class="theme-shortcut">Alt+1</span>
+                </button>
+                <button class="theme-option" data-theme="constellation" title="Interactive star constellation that follows your mouse">
+                    <i class="fas fa-star"></i> Mouse Trail <span class="theme-shortcut">Alt+2</span>
+                </button>
+                <button class="theme-option" data-theme="ripple" title="Click anywhere to create expanding ripple effects">
+                    <i class="fas fa-water"></i> Click Ripples <span class="theme-shortcut">Alt+3</span>
+                </button>
+                <button class="theme-option" data-theme="scroll" title="Particles that react to your scrolling motion">
+                    <i class="fas fa-arrows-alt-v"></i> Scroll Particles <span class="theme-shortcut">Alt+4</span>
+                </button>
+                <button class="theme-option" data-theme="matrix" title="Matrix-style code rain that responds to typing">
+                    <i class="fas fa-code"></i> Typing Matrix <span class="theme-shortcut">Alt+5</span>
+                </button>
+                <button class="theme-option" data-theme="neural" title="Interactive neural network with hoverable nodes">
+                    <i class="fas fa-project-diagram"></i> Neural Network <span class="theme-shortcut">Alt+6</span>
+                </button>
+                <button class="theme-option" data-theme="sound" title="Sound wave visualization that follows your mouse">
+                    <i class="fas fa-wave-square"></i> Sound Waves <span class="theme-shortcut">Alt+7</span>
+                </button>
+                <button class="theme-option" data-theme="gravity" title="Particles attracted to your cursor like gravity">
+                    <i class="fas fa-atom"></i> Gravity Field <span class="theme-shortcut">Alt+8</span>
+                </button>
             </div>
         </div>
     </div>
-    
+
     <button id="theme-toggle" class="btn btn-secondary"><i class="fas fa-adjust"></i></button>
-    
+
     <!-- Page Content-->
     <div class="container-fluid p-0">
         <!-- About-->
@@ -998,11 +564,27 @@
                     WEST BENGAL, INDIA · PH- 7908039405 ·
                     <a href="mailto:gourabg30march@gmail.com">gourabg30march@gmail.com</a>
                 </div>
-                <p class="lead mb-5" data-aos="fade-right" data-aos-delay="200">I am Gourab Gorai, a driven and innovative computer science enthusiast with a strong foundation in programming and machine learning. I am currently pursuing a Bachelor of Computer Application (BCA) from Dr. B.C. Roy Academy of Professional Courses, expected to graduate in 2025. I completed my higher-secondary education in Commerce from Bidhan Chandra Institution in 2022 and my secondary education from Durgapur Ispat Vidyalaya in 2020. As a scholar of the Reliance Foundation Scholarships, 2022, I am committed to leveraging technology to solve real-world problems. My technical skills include proficiency in Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript. I have earned certifications in Machine Learning using Python from the National Institute for Industrial Training and Front-End Web Development from the Reliance Foundation Skill Academy. I also completed an internship in AI with TechSaksham, under the guidance of Microsoft, SAP, AICTE, and Edunet Foundation. Some of my projects include an Image Recognition System using Logistic Regression, Crypto Prediction using Linear Regression, and Stock Price Prediction using Random Forest, all of which showcase my expertise in machine learning. In my free time, I enjoy watching movies, web series, and staying updated with the latest tech news.</p>
+                <p class="lead mb-5" data-aos="fade-right" data-aos-delay="200">I am Gourab Gorai, a driven and
+                    innovative computer science enthusiast with a strong foundation in programming and machine learning.
+                    I am currently pursuing a Bachelor of Computer Application (BCA) from Dr. B.C. Roy Academy of
+                    Professional Courses, expected to graduate in 2025. I completed my higher-secondary education in
+                    Commerce from Bidhan Chandra Institution in 2022 and my secondary education from Durgapur Ispat
+                    Vidyalaya in 2020. As a scholar of the Reliance Foundation Scholarships, 2022, I am committed to
+                    leveraging technology to solve real-world problems. My technical skills include proficiency in
+                    Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript. I have earned certifications in
+                    Machine Learning using Python from the National Institute for Industrial Training and Front-End Web
+                    Development from the Reliance Foundation Skill Academy. I also completed an internship in AI with
+                    TechSaksham, under the guidance of Microsoft, SAP, AICTE, and Edunet Foundation. Some of my projects
+                    include an Image Recognition System using Logistic Regression, Crypto Prediction using Linear
+                    Regression, and Stock Price Prediction using Random Forest, all of which showcase my expertise in
+                    machine learning. In my free time, I enjoy watching movies, web series, and staying updated with the
+                    latest tech news.</p>
                 <div class="social-icons" data-aos="fade-up" data-aos-delay="300">
-                    <a class="social-icon" href="https://www.linkedin.com/in/gourab-gorai-4a51541ba"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-icon" href="https://www.linkedin.com/in/gourab-gorai-4a51541ba"><i
+                            class="fab fa-linkedin-in"></i></a>
                     <a class="social-icon" href="https://github.com/GourabGorai"><i class="fab fa-github"></i></a>
-                    <a class="social-icon" href="https://www.facebook.com/gourab.gorai.986"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="https://www.facebook.com/gourab.gorai.986"><i
+                            class="fab fa-facebook-f"></i></a>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="400">
                     <a href="assets/pdf/resume.pdf" download class="btn btn-primary mt-4">Download Resume</a>
@@ -1019,36 +601,52 @@
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Image Recognition System</h3>
                         <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/trial (2).mp4">Play Demo</button>
-                        <button class="open-modal btn btn-secondary" data-page="details/page3.html">View Details</button>
-                        <button class="btn btn-info generate-summary" data-title="Image Recognition System" data-tech="Logistic Regression, Machine Learning">✨ Generate Summary</button>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/trial (2).mp4">Play
+                            Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/page3.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Image Recognition System"
+                            data-tech="Logistic Regression, Machine Learning">✨ Generate Summary</button>
                     </div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="100">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Crypto Prediction</h3>
                         <div class="subheading mb-3">Linear Regression, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mkv">Play Demo</button>
-                        <button class="open-modal btn btn-secondary" data-page="details/aboutp2.html">View Details</button>
-                        <button class="btn btn-info generate-summary" data-title="Crypto Prediction" data-tech="Linear Regression, Machine Learning">✨ Generate Summary</button>
+                        <button class="play-video btn btn-primary" data-video="assets/videos/crypto_prediction.mkv">Play
+                            Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp2.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Crypto Prediction"
+                            data-tech="Linear Regression, Machine Learning">✨ Generate Summary</button>
                     </div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="200">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="200">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Stock Price Prediction</h3>
                         <div class="subheading mb-3">Random Forest, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/stock_price_prediction.mkv">Play Demo</button>
-                        <button class="open-modal btn btn-secondary" data-page="details/aboutp3.html">View Details</button>
-                        <button class="btn btn-info generate-summary" data-title="Stock Price Prediction" data-tech="Random Forest, Machine Learning">✨ Generate Summary</button>
+                        <button class="play-video btn btn-primary"
+                            data-video="assets/videos/stock_price_prediction.mkv">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp3.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Stock Price Prediction"
+                            data-tech="Random Forest, Machine Learning">✨ Generate Summary</button>
                     </div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="300">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="300">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Salary Prediction</h3>
                         <div class="subheading mb-3">Random Forest, Machine Learning</div>
-                        <button class="play-video btn btn-primary" data-video="assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv">Play Demo</button>
-                        <button class="open-modal btn btn-secondary" data-page="details/aboutp4.html">View Details</button>
-                        <button class="btn btn-info generate-summary" data-title="Salary Prediction" data-tech="Random Forest, Machine Learning">✨ Generate Summary</button>
+                        <button class="play-video btn btn-primary"
+                            data-video="assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv">Play
+                            Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp4.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Salary Prediction"
+                            data-tech="Random Forest, Machine Learning">✨ Generate Summary</button>
                     </div>
                 </div>
             </div>
@@ -1071,14 +669,16 @@
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">2022 - 2025</span></div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="100">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Bidhan Chandra Institution</h3>
                         <div class="subheading mb-3">Higher Secondary Education - Commerce</div>
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">2022</span></div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="200">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="200">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Durgapur Ispat Vidyalaya</h3>
                         <div class="subheading mb-3">Secondary Education</div>
@@ -1119,13 +719,16 @@
                 <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1" onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
+                        <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1"
+                            onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2" onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
+                        <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2"
+                            onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/intern3.jpg" class="img-thumbnail" alt="Internship 3" onclick="openInternshipModal('assets/img/intern3.jpg', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', 'assets/pdf/intern3.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')" />
+                        <img src="assets/img/intern3.jpg" class="img-thumbnail" alt="Internship 3"
+                            onclick="openInternshipModal('assets/img/intern3.jpg', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', 'assets/pdf/intern3.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')" />
                     </div>
                 </div>
             </div>
@@ -1138,19 +741,24 @@
                 <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1" onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')" />
+                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1"
+                            onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2" onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')" />
+                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2"
+                            onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3" onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')" />
+                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3"
+                            onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4" onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')" />
+                        <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4"
+                            onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/image5.jpg" class="img-thumbnail" alt="Image 5" onclick="openModal('assets/img/image5.jpg', 'BCA 2022-2025 BATCH', ' ')" />
+                        <img src="assets/img/image5.jpg" class="img-thumbnail" alt="Image 5"
+                            onclick="openModal('assets/img/image5.jpg', 'BCA 2022-2025 BATCH', ' ')" />
                     </div>
                 </div>
             </div>
@@ -1163,34 +771,44 @@
                 <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1" onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
+                        <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1"
+                            onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2" onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
+                        <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2"
+                            onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3" onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
+                        <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3"
+                            onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4" onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
+                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4"
+                            onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5" onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
+                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5"
+                            onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6" onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
+                        <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6"
+                            onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7" onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')" />
+                        <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7"
+                            onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 8" onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification', '')" />
+                        <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 8"
+                            onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification', '')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 9" onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals', '')" />
+                        <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 9"
+                            onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals', '')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 10" onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership', '')" />
+                        <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 10"
+                            onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership', '')" />
                     </div>
                 </div>
             </div>
@@ -1203,7 +821,8 @@
                 <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                 <div class="row">
                     <div class="col-md-4 mb-4" data-aos="fade-up">
-                        <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1" onclick="openModal('assets/img/hack1.png', 'Hackathon 1', 'No Details Available.')" />
+                        <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1"
+                            onclick="openModal('assets/img/hack1.png', 'Hackathon 1', 'No Details Available.')" />
                     </div>
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <img src="assets/img/image-7.png" class="img-thumbnail" alt="Hackathon 2" onclick="openHackathonDetailsModal(
@@ -1225,24 +844,28 @@
         <!-- Contact-->
         <section class="resume-section" id="contact">
             <div class="resume-section-content">
-                <h2 class="mb-5" data-aos="fade-down">Contact Me</h2>
+                <h2 class="mb-5" data-aos="fade-down">Contact Me (Under Development)</h2>
                 <div class="row" data-aos="fade-up">
                     <div class="col-lg-8 mx-auto">
                         <form id="contactForm" name="sentMessage">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." required />
+                                <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                                    required />
                                 <label for="name">Full name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="Enter your email..." required />
+                                <input class="form-control" id="email" type="email" placeholder="Enter your email..."
+                                    required />
                                 <label for="email">Email address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." required />
+                                <input class="form-control" id="phone" type="tel"
+                                    placeholder="Enter your phone number..." required />
                                 <label for="phone">Phone number</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" required maxlength="1200"></textarea>
+                                <textarea class="form-control" id="message" placeholder="Enter your message here..."
+                                    style="height: 10rem" required maxlength="1200"></textarea>
                                 <label for="message">Message (max 200 words)</label>
                             </div>
                             <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
@@ -1253,7 +876,7 @@
             </div>
         </section>
 
-        
+
         <!-- MODALS -->
 
         <!-- Generic Image Modal -->
@@ -1271,9 +894,10 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Hackathon Details Modal -->
-        <div class="modal fade" id="hackathonDetailsModal" tabindex="-1" aria-labelledby="hackathonDetailsModalLabel" aria-hidden="true">
+        <div class="modal fade" id="hackathonDetailsModal" tabindex="-1" aria-labelledby="hackathonDetailsModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1287,12 +911,13 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Video Player Modal -->
         <div id="videoModal" class="video-modal">
             <span class="close-video">×</span>
             <div class="video-container">
-                <video id="videoPlayer" class="video-modal-content" disablePictureInPicture controlsList="nodownload noplaybackrate">
+                <video id="videoPlayer" class="video-modal-content" disablePictureInPicture
+                    controlsList="nodownload noplaybackrate">
                     <source src="" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -1322,7 +947,8 @@
         </div>
 
         <!-- AI Summary Modal -->
-        <div class="modal fade" id="geminiSummaryModal" tabindex="-1" aria-labelledby="geminiSummaryModalLabel" aria-hidden="true">
+        <div class="modal fade" id="geminiSummaryModal" tabindex="-1" aria-labelledby="geminiSummaryModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1336,9 +962,10 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Internship Details Modal with PDF Viewer -->
-        <div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel" aria-hidden="true">
+        <div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1362,7 +989,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Resume Modal with PDF Viewer -->
         <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl"> <!-- Use a larger modal for resume -->
@@ -1378,26 +1005,27 @@
                             <canvas class="pdf-render"></canvas>
                         </div>
                         <div class="pdf-controls mt-2">
-                             <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
-                             <span class="page-num"></span> / <span class="page-count"></span>
-                             <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                            <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                            <span class="page-num"></span> / <span class="page-count"></span>
+                            <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Core JS Files -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Plugin JS Files -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-    
+
     <!-- Your Custom JS File -->
     <script src="js/scripts.js"></script>
 </body>
+
 </html>
