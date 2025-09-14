@@ -1293,3 +1293,62 @@ if (document.readyState === 'loading') {
 } else {
     addMobileMatrixEnhancements();
 }
+
+// Fix text overflow in matrix theme on mobile
+function fixMatrixTextOverflow() {
+    if (document.body.classList.contains('theme-matrix') && window.innerWidth <= 768) {
+        // Find the subheading with email
+        const subheading = document.querySelector('.subheading');
+        if (subheading) {
+            // Split the content by · separator and restructure
+            const content = subheading.innerHTML;
+            const parts = content.split('·');
+            
+            if (parts.length >= 3) {
+                // Restructure for mobile: location, phone, email on separate lines
+                const location = parts[0].trim();
+                const phone = parts[1].trim();
+                const emailPart = parts[2].trim();
+                
+                subheading.innerHTML = `
+                    <div style="margin-bottom: 3px;">${location}</div>
+                    <div style="margin-bottom: 3px;">${phone}</div>
+                    <div style="word-break: break-all; overflow-wrap: break-word;">${emailPart}</div>
+                `;
+            }
+        }
+        
+        // Ensure all text elements have proper overflow handling
+        const textElements = document.querySelectorAll('.resume-section-content p, .resume-section-content div, .resume-section-content span');
+        textElements.forEach(element => {
+            element.style.wordWrap = 'break-word';
+            element.style.overflowWrap = 'break-word';
+            element.style.wordBreak = 'break-word';
+        });
+    }
+}
+
+// Apply text overflow fix when matrix theme is activated
+const originalSwitchTheme = window.switchTheme;
+if (originalSwitchTheme) {
+    window.switchTheme = function(theme) {
+        originalSwitchTheme(theme);
+        if (theme === 'matrix') {
+            setTimeout(fixMatrixTextOverflow, 100);
+        }
+    };
+}
+
+// Apply fix on window resize
+window.addEventListener('resize', function() {
+    if (document.body.classList.contains('theme-matrix')) {
+        setTimeout(fixMatrixTextOverflow, 100);
+    }
+});
+
+// Apply fix on initial load if matrix theme is active
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.body.classList.contains('theme-matrix')) {
+        fixMatrixTextOverflow();
+    }
+});
