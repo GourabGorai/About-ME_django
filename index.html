@@ -521,16 +521,20 @@
                 <i class="fas fa-palette"></i> Themes
             </button>
             <div class="dropdown-menu theme-dropdown" aria-labelledby="themeDropdown">
-                <div class="theme-help-text" style="padding: 8px 12px; font-size: 11px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;">
+                <div class="theme-help-text"
+                    style="padding: 8px 12px; font-size: 11px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;">
                     <i class="fas fa-keyboard"></i> Use Alt+1-8 for quick access
                 </div>
-                <button class="theme-option active" data-theme="particles" title="Default particles background with floating tech icons">
+                <button class="theme-option active" data-theme="particles"
+                    title="Default particles background with floating tech icons">
                     <i class="fas fa-circle"></i> Default Particles <span class="theme-shortcut">Alt+1</span>
                 </button>
-                <button class="theme-option" data-theme="constellation" title="Interactive star constellation that follows your mouse">
+                <button class="theme-option" data-theme="constellation"
+                    title="Interactive star constellation that follows your mouse">
                     <i class="fas fa-star"></i> Mouse Trail <span class="theme-shortcut">Alt+2</span>
                 </button>
-                <button class="theme-option" data-theme="ripple" title="Click anywhere to create expanding ripple effects">
+                <button class="theme-option" data-theme="ripple"
+                    title="Click anywhere to create expanding ripple effects">
                     <i class="fas fa-water"></i> Click Ripples <span class="theme-shortcut">Alt+3</span>
                 </button>
                 <button class="theme-option" data-theme="scroll" title="Particles that react to your scrolling motion">
@@ -539,13 +543,16 @@
                 <button class="theme-option" data-theme="matrix" title="Matrix-style code rain that responds to typing">
                     <i class="fas fa-code"></i> Typing Matrix <span class="theme-shortcut">Alt+5</span>
                 </button>
-                <button class="theme-option" data-theme="neural" title="Interactive neural network with hoverable nodes">
+                <button class="theme-option" data-theme="neural"
+                    title="Interactive neural network with hoverable nodes">
                     <i class="fas fa-project-diagram"></i> Neural Network <span class="theme-shortcut">Alt+6</span>
                 </button>
-                <button class="theme-option" data-theme="sound" title="Sound wave visualization that follows your mouse">
+                <button class="theme-option" data-theme="sound"
+                    title="Sound wave visualization that follows your mouse">
                     <i class="fas fa-wave-square"></i> Sound Waves <span class="theme-shortcut">Alt+7</span>
                 </button>
-                <button class="theme-option" data-theme="gravity" title="Particles attracted to your cursor like gravity">
+                <button class="theme-option" data-theme="gravity"
+                    title="Particles attracted to your cursor like gravity">
                     <i class="fas fa-atom"></i> Gravity Field <span class="theme-shortcut">Alt+8</span>
                 </button>
             </div>
@@ -562,6 +569,7 @@
                 <h1 class="mb-0" data-aos="fade-right">Gourab <span class="text-primary">Gorai</span></h1>
                 <div class="subheading mb-5" data-aos="fade-right" data-aos-delay="100">
                     WEST BENGAL, INDIA
+
                 </div>
                 <p class="lead mb-5" data-aos="fade-right" data-aos-delay="200">I am Gourab Gorai, a driven and
                     innovative computer science enthusiast with a strong foundation in programming and machine learning.
@@ -843,29 +851,42 @@
         <!-- Contact-->
         <section class="resume-section" id="contact">
             <div class="resume-section-content">
-                <h2 class="mb-5" data-aos="fade-down">Contact Me</h2>
+                <h2 class="mb-5" data-aos="fade-down">Contact Me (Under Development)</h2>
                 <div class="row" data-aos="fade-up">
                     <div class="col-lg-8 mx-auto">
+                        <h4 class="mb-4 text-center" data-aos="fade-up" data-aos-delay="100">Get In Touch</h4>
                         <form id="contactForm" name="sentMessage">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..."
-                                    required />
-                                <label for="name">Full name</label>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Name</h5>
+                                <div class="form-floating">
+                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                                        required />
+                                    <label for="name">Full name</label>
+                                </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="Enter your email..."
-                                    required />
-                                <label for="email">Email address</label>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Email</h5>
+                                <div class="form-floating">
+                                    <input class="form-control" id="email" type="email"
+                                        placeholder="Enter your email..." required />
+                                    <label for="email">Email address</label>
+                                </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel"
-                                    placeholder="Enter your phone number..." required />
-                                <label for="phone">Phone number</label>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Phone</h5>
+                                <div class="form-floating">
+                                    <input class="form-control" id="phone" type="tel"
+                                        placeholder="Enter your phone number..." required />
+                                    <label for="phone">Phone number</label>
+                                </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" placeholder="Enter your message here..."
-                                    style="height: 10rem" required maxlength="1200"></textarea>
-                                <label for="message">Message (max 200 words)</label>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Message</h5>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" placeholder="Enter your message here..."
+                                        style="height: 10rem" required maxlength="1200"></textarea>
+                                    <label for="message">Message (max 200 words)</label>
+                                </div>
                             </div>
                             <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
                         </form>
