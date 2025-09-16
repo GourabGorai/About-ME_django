@@ -55,6 +55,17 @@
             /* Place it behind all content */
         }
 
+        /* Enhanced particles visibility for non-default themes */
+        body.theme-constellation #tsparticles,
+        body.theme-ripple #tsparticles,
+        body.theme-scroll #tsparticles,
+        body.theme-matrix #tsparticles,
+        body.theme-neural #tsparticles,
+        body.theme-sound #tsparticles,
+        body.theme-gravity #tsparticles {
+            opacity: 1.0;
+        }
+
         /* Floating Objects Animation */
         .floating-container {
             position: fixed;
@@ -73,11 +84,33 @@
             font-size: 2.5rem;
             opacity: 0.15;
             animation: float 15s infinite linear;
+            z-index: -1;
         }
 
         :root.dark-theme .floating-object {
             color: var(--bs-gray-400);
             opacity: 0.1;
+        }
+
+        /* Enhanced floating objects visibility for non-default themes */
+        body.theme-constellation .floating-object,
+        body.theme-ripple .floating-object,
+        body.theme-scroll .floating-object,
+        body.theme-matrix .floating-object,
+        body.theme-neural .floating-object,
+        body.theme-sound .floating-object,
+        body.theme-gravity .floating-object {
+            opacity: 0.6;
+        }
+
+        :root.dark-theme body.theme-constellation .floating-object,
+        :root.dark-theme body.theme-ripple .floating-object,
+        :root.dark-theme body.theme-scroll .floating-object,
+        :root.dark-theme body.theme-matrix .floating-object,
+        :root.dark-theme body.theme-neural .floating-object,
+        :root.dark-theme body.theme-sound .floating-object,
+        :root.dark-theme body.theme-gravity .floating-object {
+            opacity: 0.5;
         }
 
         @keyframes float {
@@ -851,7 +884,7 @@
         <!-- Contact-->
         <section class="resume-section" id="contact">
             <div class="resume-section-content">
-                <h2 class="mb-5" data-aos="fade-down">Contact Me</h2>
+                <h2 class="mb-5" data-aos="fade-down">Contact Me (Under Development)</h2>
                 <div class="row" data-aos="fade-up">
                     <div class="col-lg-8 mx-auto">
                         <h4 class="mb-4 text-center" data-aos="fade-up" data-aos-delay="100">Get In Touch</h4>
