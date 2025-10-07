@@ -12911,7 +12911,7 @@ body.theme-gravity section.resume-section li {
 :root.dark-theme body.theme-neural section.resume-section h6,
 :root.dark-theme body.theme-sound section.resume-section h6,
 :root.dark-theme body.theme-gravity section.resume-section h6 {
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.95);
 }
 
 :root.dark-theme body.theme-constellation section.resume-section p,
@@ -12935,7 +12935,7 @@ body.theme-gravity section.resume-section li {
 :root.dark-theme body.theme-neural section.resume-section li,
 :root.dark-theme body.theme-sound section.resume-section li,
 :root.dark-theme body.theme-gravity section.resume-section li {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
 }
 
 /* Special styling for matrix theme */
@@ -12977,6 +12977,7 @@ body.theme-matrix section.resume-section li {
 
 /* Mobile responsive adjustments for transparency - non-default themes only */
 @media (max-width: 767px) {
+
   body.theme-constellation section.resume-section,
   body.theme-ripple section.resume-section,
   body.theme-scroll section.resume-section,
@@ -12989,7 +12990,7 @@ body.theme-matrix section.resume-section li {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(1px);
   }
-  
+
   :root.dark-theme body.theme-constellation section.resume-section,
   :root.dark-theme body.theme-ripple section.resume-section,
   :root.dark-theme body.theme-scroll section.resume-section,
@@ -13015,8 +13016,15 @@ body {
 
 /* Add subtle animation to content sections - non-default themes only */
 @keyframes contentFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 body.theme-constellation section.resume-section,
@@ -13911,230 +13919,244 @@ body {
 
 /* Interactive Background Themes */
 .theme-bg-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
 }
 
 .theme-bg-container.interactive {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 
 /* Theme 1: Mouse Trail Constellation */
 .constellation-bg {
-    background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
 }
 
 .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #64ffda;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #64ffda;
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #64ffda;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #64ffda;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
 }
 
 .constellation-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #64ffda, transparent);
-    transform-origin: left center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
 /* Theme 2: Ripple Effect */
 .ripple-bg {
-    background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 100%);
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 100%);
 }
 
 .ripple {
-    position: absolute;
-    border: 2px solid #ff6b6b;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple-expand 2s ease-out forwards;
-    pointer-events: none;
+  position: absolute;
+  border: 2px solid #ff6b6b;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-expand 2s ease-out forwards;
+  pointer-events: none;
 }
 
 @keyframes ripple-expand {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(20); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(20);
+    opacity: 0;
+  }
 }
 
 /* Theme 3: Scroll-Reactive Particles */
 .scroll-particles-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .scroll-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.7;
-    transition: transform 0.1s ease-out;
-    pointer-events: none;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: transform 0.1s ease-out;
+  pointer-events: none;
 }
 
 /* Theme 4: Code Matrix */
 .reactive-matrix-bg {
-    background: linear-gradient(135deg, #001100 0%, #003300 100%);
+  background: linear-gradient(135deg, #001100 0%, #003300 100%);
 }
 
 .matrix-char {
-    position: absolute;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    color: #00ff00;
-    text-shadow: 0 0 5px #00ff00;
-    opacity: 0.3;
-    transition: all 0.2s ease;
-    pointer-events: none;
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+  opacity: 0.3;
+  transition: all 0.2s ease;
+  pointer-events: none;
 }
 
 .matrix-char.active {
-    opacity: 1;
-    transform: scale(1.2);
-    color: #ffffff;
-    text-shadow: 0 0 15px #00ff00;
+  opacity: 1;
+  transform: scale(1.2);
+  color: #ffffff;
+  text-shadow: 0 0 15px #00ff00;
 }
 
 /* Theme 5: Neural Network */
 .interactive-neural-bg {
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
 .neural-node {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #64ffda;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #64ffda;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    z-index: 10;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #64ffda;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #64ffda;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .neural-node:hover {
-    transform: scale(2);
-    box-shadow: 0 0 30px #64ffda;
+  transform: scale(2);
+  box-shadow: 0 0 30px #64ffda;
 }
 
 .neural-node.activated {
-    background: #ff6b6b;
-    box-shadow: 0 0 30px #ff6b6b;
-    transform: scale(1.5);
+  background: #ff6b6b;
+  box-shadow: 0 0 30px #ff6b6b;
+  transform: scale(1.5);
 }
 
 .neural-connection {
-    position: absolute;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #64ffda, transparent);
-    transform-origin: left center;
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+  transform-origin: left center;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .neural-connection.active {
-    opacity: 1;
-    background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
-    animation: pulse-connection 0.5s ease-out;
+  opacity: 1;
+  background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
+  animation: pulse-connection 0.5s ease-out;
 }
 
 @keyframes pulse-connection {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(3); }
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(3);
+  }
 }
 
 /* Theme 6: Sound Wave */
 .sound-wave-bg {
-    background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
+  background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
 }
 
 .wave-bar {
-    position: absolute;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(to top, #ff6b6b, #4ecdc4);
-    transition: height 0.1s ease;
-    pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to top, #ff6b6b, #4ecdc4);
+  transition: height 0.1s ease;
+  pointer-events: none;
 }
 
 /* Theme 7: Gravity Particles */
 .gravity-bg {
-    background: linear-gradient(135deg, #0f0f0f 0%, #2d1b69 100%);
+  background: linear-gradient(135deg, #0f0f0f 0%, #2d1b69 100%);
 }
 
 .gravity-particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: radial-gradient(circle, #ffffff, #64ffda);
-    border-radius: 50%;
-    box-shadow: 0 0 15px #64ffda;
-    transition: all 0.1s ease-out;
-    pointer-events: none;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffffff, #64ffda);
+  border-radius: 50%;
+  box-shadow: 0 0 15px #64ffda;
+  transition: all 0.1s ease-out;
+  pointer-events: none;
 }
 
 /* Theme Selector Dropdown */
 .theme-selector {
-    position: fixed;
-    top: 10px;
-    right: 60px;
-    z-index: 1050;
+  position: fixed;
+  top: 10px;
+  right: 60px;
+  z-index: 1050;
 }
 
 @media (max-width: 991.98px) {
-    .theme-selector {
-        right: 120px; 
-    }
+  .theme-selector {
+    right: 120px;
+  }
 }
 
 .theme-dropdown {
-    background: rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    padding: 0.5rem;
-    min-width: 200px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-width: 200px;
 }
 
 .theme-option {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    margin: 2px 0;
-    background: rgba(100, 255, 218, 0.1);
-    color: #64ffda;
-    border: 1px solid #64ffda;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    text-align: left;
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  margin: 2px 0;
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  text-align: left;
 }
 
-.theme-option:hover, 
+.theme-option:hover,
 .theme-option.active {
-    background: rgba(100, 255, 218, 0.3);
-    color: white;
-    text-decoration: none;
+  background: rgba(100, 255, 218, 0.3);
+  color: white;
+  text-decoration: none;
 }
 
 :root.dark-theme .theme-dropdown {
-    background: rgba(40,40,40,0.9);
+  background: rgba(40, 40, 40, 0.9);
 }
 
 /* ========================================
@@ -14143,255 +14165,297 @@ body {
 
 /* Default Particles Theme - Original styling */
 body.theme-particles {
-    /* Uses existing default styling */
+  /* Uses existing default styling */
 }
 
 /* Constellation Theme - Dark background with bright text */
 body.theme-constellation {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #64ffda;
-    --bs-link-hover-color: #4fd3b8;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #64ffda;
+  --bs-link-hover-color: #4fd3b8;
 }
 
-body.theme-constellation h1, body.theme-constellation .h1,
-body.theme-constellation h2, body.theme-constellation .h2,
-body.theme-constellation h3, body.theme-constellation .h3,
-body.theme-constellation h4, body.theme-constellation .h4,
-body.theme-constellation h5, body.theme-constellation .h5,
-body.theme-constellation h6, body.theme-constellation .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    font-weight: 700;
+body.theme-constellation h1,
+body.theme-constellation .h1,
+body.theme-constellation h2,
+body.theme-constellation .h2,
+body.theme-constellation h3,
+body.theme-constellation .h3,
+body.theme-constellation h4,
+body.theme-constellation .h4,
+body.theme-constellation h5,
+body.theme-constellation .h5,
+body.theme-constellation h6,
+body.theme-constellation .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
 }
 
 body.theme-constellation .subheading {
-    color: #e0e0e0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  color: #e0e0e0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 body.theme-constellation .text-primary {
-    color: #64ffda !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  color: #64ffda !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-body.theme-constellation p, 
+body.theme-constellation p,
 body.theme-constellation .lead {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-    line-height: 1.7;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  line-height: 1.7;
 }
 
 /* Ripple Theme - Dark purple background with bright text */
 body.theme-ripple {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #ff6b6b;
-    --bs-link-hover-color: #ff5252;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #ff6b6b;
+  --bs-link-hover-color: #ff5252;
 }
 
-body.theme-ripple h1, body.theme-ripple .h1,
-body.theme-ripple h2, body.theme-ripple .h2,
-body.theme-ripple h3, body.theme-ripple .h3,
-body.theme-ripple h4, body.theme-ripple .h4,
-body.theme-ripple h5, body.theme-ripple .h5,
-body.theme-ripple h6, body.theme-ripple .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(26,0,51,0.9);
-    font-weight: 700;
+body.theme-ripple h1,
+body.theme-ripple .h1,
+body.theme-ripple h2,
+body.theme-ripple .h2,
+body.theme-ripple h3,
+body.theme-ripple .h3,
+body.theme-ripple h4,
+body.theme-ripple .h4,
+body.theme-ripple h5,
+body.theme-ripple .h5,
+body.theme-ripple h6,
+body.theme-ripple .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(26, 0, 51, 0.9);
+  font-weight: 700;
 }
 
 body.theme-ripple .subheading {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 3px rgba(26,0,51,0.8);
+  color: #f0f0f0;
+  text-shadow: 1px 1px 3px rgba(26, 0, 51, 0.8);
 }
 
 body.theme-ripple .text-primary {
-    color: #ff6b6b !important;
-    text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
+  color: #ff6b6b !important;
+  text-shadow: 1px 1px 3px rgba(26, 0, 51, 0.7);
 }
 
-body.theme-ripple p, 
+body.theme-ripple p,
 body.theme-ripple .lead {
-    color: #f5f5f5;
-    text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
-    line-height: 1.7;
+  color: #f5f5f5;
+  text-shadow: 1px 1px 3px rgba(26, 0, 51, 0.7);
+  line-height: 1.7;
 }
 
 /* Scroll Particles Theme - Purple gradient with white text */
 body.theme-scroll {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #ffffff;
-    --bs-link-hover-color: #f0f0f0;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #ffffff;
+  --bs-link-hover-color: #f0f0f0;
 }
 
-body.theme-scroll h1, body.theme-scroll .h1,
-body.theme-scroll h2, body.theme-scroll .h2,
-body.theme-scroll h3, body.theme-scroll .h3,
-body.theme-scroll h4, body.theme-scroll .h4,
-body.theme-scroll h5, body.theme-scroll .h5,
-body.theme-scroll h6, body.theme-scroll .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(102,126,234,0.8);
-    font-weight: 700;
+body.theme-scroll h1,
+body.theme-scroll .h1,
+body.theme-scroll h2,
+body.theme-scroll .h2,
+body.theme-scroll h3,
+body.theme-scroll .h3,
+body.theme-scroll h4,
+body.theme-scroll .h4,
+body.theme-scroll h5,
+body.theme-scroll .h5,
+body.theme-scroll h6,
+body.theme-scroll .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(102, 126, 234, 0.8);
+  font-weight: 700;
 }
 
 body.theme-scroll .subheading {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 4px rgba(102,126,234,0.7);
+  color: #f0f0f0;
+  text-shadow: 1px 1px 4px rgba(102, 126, 234, 0.7);
 }
 
 body.theme-scroll .text-primary {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
+  color: #ffffff !important;
+  text-shadow: 1px 1px 4px rgba(102, 126, 234, 0.6);
 }
 
-body.theme-scroll p, 
+body.theme-scroll p,
 body.theme-scroll .lead {
-    color: #ffffff;
-    text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
-    line-height: 1.7;
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(102, 126, 234, 0.6);
+  line-height: 1.7;
 }
 
 /* Matrix Theme - Green on black with enhanced readability */
 body.theme-matrix {
-    --bs-body-color: #00ff00;
-    --bs-link-color: #00ff00;
-    --bs-link-hover-color: #33ff33;
+  --bs-body-color: #00ff00;
+  --bs-link-color: #00ff00;
+  --bs-link-hover-color: #33ff33;
 }
 
-body.theme-matrix h1, body.theme-matrix .h1,
-body.theme-matrix h2, body.theme-matrix .h2,
-body.theme-matrix h3, body.theme-matrix .h3,
-body.theme-matrix h4, body.theme-matrix .h4,
-body.theme-matrix h5, body.theme-matrix .h5,
-body.theme-matrix h6, body.theme-matrix .h6 {
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00, 2px 2px 4px rgba(0,0,0,0.8);
-    font-weight: 700;
-    font-family: 'Courier New', monospace;
+body.theme-matrix h1,
+body.theme-matrix .h1,
+body.theme-matrix h2,
+body.theme-matrix .h2,
+body.theme-matrix h3,
+body.theme-matrix .h3,
+body.theme-matrix h4,
+body.theme-matrix .h4,
+body.theme-matrix h5,
+body.theme-matrix .h5,
+body.theme-matrix h6,
+body.theme-matrix .h6 {
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
 }
 
 body.theme-matrix .subheading {
-    color: #66ff66;
-    text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.7);
-    font-family: 'Courier New', monospace;
+  color: #66ff66;
+  text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-family: 'Courier New', monospace;
 }
 
 body.theme-matrix .text-primary {
-    color: #00ff00 !important;
-    text-shadow: 0 0 8px #00ff00;
+  color: #00ff00 !important;
+  text-shadow: 0 0 8px #00ff00;
 }
 
-body.theme-matrix p, 
+body.theme-matrix p,
 body.theme-matrix .lead {
-    color: #ccffcc;
-    text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.6);
-    line-height: 1.8;
-    font-family: 'Courier New', monospace;
+  color: #ccffcc;
+  text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.6);
+  line-height: 1.8;
+  font-family: 'Courier New', monospace;
 }
 
 /* Neural Network Theme - Blue tones with enhanced contrast */
 body.theme-neural {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #64ffda;
-    --bs-link-hover-color: #4fd3b8;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #64ffda;
+  --bs-link-hover-color: #4fd3b8;
 }
 
-body.theme-neural h1, body.theme-neural .h1,
-body.theme-neural h2, body.theme-neural .h2,
-body.theme-neural h3, body.theme-neural .h3,
-body.theme-neural h4, body.theme-neural .h4,
-body.theme-neural h5, body.theme-neural .h5,
-body.theme-neural h6, body.theme-neural .h6 {
-    color: #ffffff;
-    text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(15,52,96,0.9);
-    font-weight: 700;
+body.theme-neural h1,
+body.theme-neural .h1,
+body.theme-neural h2,
+body.theme-neural .h2,
+body.theme-neural h3,
+body.theme-neural .h3,
+body.theme-neural h4,
+body.theme-neural .h4,
+body.theme-neural h5,
+body.theme-neural .h5,
+body.theme-neural h6,
+body.theme-neural .h6 {
+  color: #ffffff;
+  text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(15, 52, 96, 0.9);
+  font-weight: 700;
 }
 
 body.theme-neural .subheading {
-    color: #e0f7ff;
-    text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(15,52,96,0.8);
+  color: #e0f7ff;
+  text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(15, 52, 96, 0.8);
 }
 
 body.theme-neural .text-primary {
-    color: #64ffda !important;
-    text-shadow: 0 0 8px #64ffda;
+  color: #64ffda !important;
+  text-shadow: 0 0 8px #64ffda;
 }
 
-body.theme-neural p, 
+body.theme-neural p,
 body.theme-neural .lead {
-    color: #f0f8ff;
-    text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(15,52,96,0.7);
-    line-height: 1.7;
+  color: #f0f8ff;
+  text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(15, 52, 96, 0.7);
+  line-height: 1.7;
 }
 
 /* Sound Wave Theme - Brown/orange background with bright text */
 body.theme-sound {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #4ecdc4;
-    --bs-link-hover-color: #26a69a;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #4ecdc4;
+  --bs-link-hover-color: #26a69a;
 }
 
-body.theme-sound h1, body.theme-sound .h1,
-body.theme-sound h2, body.theme-sound .h2,
-body.theme-sound h3, body.theme-sound .h3,
-body.theme-sound h4, body.theme-sound .h4,
-body.theme-sound h5, body.theme-sound .h5,
-body.theme-sound h6, body.theme-sound .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(44,24,16,0.9);
-    font-weight: 700;
+body.theme-sound h1,
+body.theme-sound .h1,
+body.theme-sound h2,
+body.theme-sound .h2,
+body.theme-sound h3,
+body.theme-sound .h3,
+body.theme-sound h4,
+body.theme-sound .h4,
+body.theme-sound h5,
+body.theme-sound .h5,
+body.theme-sound h6,
+body.theme-sound .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(44, 24, 16, 0.9);
+  font-weight: 700;
 }
 
 body.theme-sound .subheading {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 4px rgba(44,24,16,0.8);
+  color: #f0f0f0;
+  text-shadow: 1px 1px 4px rgba(44, 24, 16, 0.8);
 }
 
 body.theme-sound .text-primary {
-    color: #4ecdc4 !important;
-    text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
+  color: #4ecdc4 !important;
+  text-shadow: 1px 1px 4px rgba(44, 24, 16, 0.7);
 }
 
-body.theme-sound p, 
+body.theme-sound p,
 body.theme-sound .lead {
-    color: #f5f5f5;
-    text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
-    line-height: 1.7;
+  color: #f5f5f5;
+  text-shadow: 1px 1px 4px rgba(44, 24, 16, 0.7);
+  line-height: 1.7;
 }
 
 /* Gravity Theme - Dark purple with bright text */
 body.theme-gravity {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #64ffda;
-    --bs-link-hover-color: #4fd3b8;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #64ffda;
+  --bs-link-hover-color: #4fd3b8;
 }
 
-body.theme-gravity h1, body.theme-gravity .h1,
-body.theme-gravity h2, body.theme-gravity .h2,
-body.theme-gravity h3, body.theme-gravity .h3,
-body.theme-gravity h4, body.theme-gravity .h4,
-body.theme-gravity h5, body.theme-gravity .h5,
-body.theme-gravity h6, body.theme-gravity .h6 {
-    color: #ffffff;
-    text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(45,27,105,0.9);
-    font-weight: 700;
+body.theme-gravity h1,
+body.theme-gravity .h1,
+body.theme-gravity h2,
+body.theme-gravity .h2,
+body.theme-gravity h3,
+body.theme-gravity .h3,
+body.theme-gravity h4,
+body.theme-gravity .h4,
+body.theme-gravity h5,
+body.theme-gravity .h5,
+body.theme-gravity h6,
+body.theme-gravity .h6 {
+  color: #ffffff;
+  text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(45, 27, 105, 0.9);
+  font-weight: 700;
 }
 
 body.theme-gravity .subheading {
-    color: #e0f7ff;
-    text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(45,27,105,0.8);
+  color: #e0f7ff;
+  text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(45, 27, 105, 0.8);
 }
 
 body.theme-gravity .text-primary {
-    color: #64ffda !important;
-    text-shadow: 0 0 8px #64ffda;
+  color: #64ffda !important;
+  text-shadow: 0 0 8px #64ffda;
 }
 
-body.theme-gravity p, 
+body.theme-gravity p,
 body.theme-gravity .lead {
-    color: #f0f8ff;
-    text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(45,27,105,0.7);
-    line-height: 1.7;
+  color: #f0f8ff;
+  text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(45, 27, 105, 0.7);
+  line-height: 1.7;
 }
 
 /* ========================================
@@ -14399,79 +14463,113 @@ body.theme-gravity .lead {
    ======================================== */
 
 /* Enhanced button visibility for all themes */
-body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-    text-shadow: none;
-    font-weight: 600;
-    border: 2px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+body.theme-constellation .btn,
+body.theme-ripple .btn,
+body.theme-scroll .btn,
+body.theme-matrix .btn,
+body.theme-neural .btn,
+body.theme-sound .btn,
+body.theme-gravity .btn {
+  text-shadow: none;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-body.theme-constellation .btn:hover, body.theme-ripple .btn:hover, body.theme-scroll .btn:hover,
-body.theme-matrix .btn:hover, body.theme-neural .btn:hover, body.theme-sound .btn:hover, body.theme-gravity .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+body.theme-constellation .btn:hover,
+body.theme-ripple .btn:hover,
+body.theme-scroll .btn:hover,
+body.theme-matrix .btn:hover,
+body.theme-neural .btn:hover,
+body.theme-sound .btn:hover,
+body.theme-gravity .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation adjustments for themed backgrounds */
-body.theme-constellation .navbar, body.theme-ripple .navbar, body.theme-scroll .navbar,
-body.theme-matrix .navbar, body.theme-neural .navbar, body.theme-sound .navbar, body.theme-gravity .navbar {
-    backdrop-filter: blur(15px);
-    background-color: rgba(26, 95, 63, 0.9) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+body.theme-constellation .navbar,
+body.theme-ripple .navbar,
+body.theme-scroll .navbar,
+body.theme-matrix .navbar,
+body.theme-neural .navbar,
+body.theme-sound .navbar,
+body.theme-gravity .navbar {
+  backdrop-filter: blur(15px);
+  background-color: rgba(26, 95, 63, 0.9) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Content sections background for better readability */
-body.theme-constellation .resume-section, body.theme-ripple .resume-section, 
-body.theme-scroll .resume-section, body.theme-matrix .resume-section, 
-body.theme-neural .resume-section, body.theme-sound .resume-section, 
+body.theme-constellation .resume-section,
+body.theme-ripple .resume-section,
+body.theme-scroll .resume-section,
+body.theme-matrix .resume-section,
+body.theme-neural .resume-section,
+body.theme-sound .resume-section,
 body.theme-gravity .resume-section {
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    margin: 20px;
-    padding: 40px;
-    border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Special handling for matrix theme readability */
 body.theme-matrix .resume-section {
-    background: rgba(0,17,0,0.8);
-    border: 1px solid rgba(0,255,0,0.3);
+  background: rgba(0, 17, 0, 0.8);
+  border: 1px solid rgba(0, 255, 0, 0.3);
 }
 
 /* Improved link visibility for all themes */
-body.theme-constellation a, body.theme-ripple a, body.theme-scroll a,
-body.theme-matrix a, body.theme-neural a, body.theme-sound a, body.theme-gravity a {
-    text-decoration: underline;
-    transition: all 0.3s ease;
+body.theme-constellation a,
+body.theme-ripple a,
+body.theme-scroll a,
+body.theme-matrix a,
+body.theme-neural a,
+body.theme-sound a,
+body.theme-gravity a {
+  text-decoration: underline;
+  transition: all 0.3s ease;
 }
 
-body.theme-constellation a:hover, body.theme-ripple a:hover, body.theme-scroll a:hover,
-body.theme-matrix a:hover, body.theme-neural a:hover, body.theme-sound a:hover, body.theme-gravity a:hover {
-    text-shadow: 0 0 8px currentColor;
-    transform: translateY(-1px);
+body.theme-constellation a:hover,
+body.theme-ripple a:hover,
+body.theme-scroll a:hover,
+body.theme-matrix a:hover,
+body.theme-neural a:hover,
+body.theme-sound a:hover,
+body.theme-gravity a:hover {
+  text-shadow: 0 0 8px currentColor;
+  transform: translateY(-1px);
 }
 
 /* Social icons enhancement for themed backgrounds */
-body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
-body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
-body.theme-neural .social-icon, body.theme-sound .social-icon, 
+body.theme-constellation .social-icon,
+body.theme-ripple .social-icon,
+body.theme-scroll .social-icon,
+body.theme-matrix .social-icon,
+body.theme-neural .social-icon,
+body.theme-sound .social-icon,
 body.theme-gravity .social-icon {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
 
-body.theme-constellation .social-icon:hover, body.theme-ripple .social-icon:hover, 
-body.theme-scroll .social-icon:hover, body.theme-matrix .social-icon:hover, 
-body.theme-neural .social-icon:hover, body.theme-sound .social-icon:hover, 
+body.theme-constellation .social-icon:hover,
+body.theme-ripple .social-icon:hover,
+body.theme-scroll .social-icon:hover,
+body.theme-matrix .social-icon:hover,
+body.theme-neural .social-icon:hover,
+body.theme-sound .social-icon:hover,
 body.theme-gravity .social-icon:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* ========================================
@@ -14479,45 +14577,80 @@ body.theme-gravity .social-icon:hover {
    ======================================== */
 
 /* Accessibility improvements for focus states */
-body.theme-constellation *:focus, body.theme-ripple *:focus, body.theme-scroll *:focus,
-body.theme-matrix *:focus, body.theme-neural *:focus, body.theme-sound *:focus, body.theme-gravity *:focus {
-    outline: 2px solid #ffffff;
-    outline-offset: 2px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+body.theme-constellation *:focus,
+body.theme-ripple *:focus,
+body.theme-scroll *:focus,
+body.theme-matrix *:focus,
+body.theme-neural *:focus,
+body.theme-sound *:focus,
+body.theme-gravity *:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    body.theme-constellation, body.theme-ripple, body.theme-scroll,
-    body.theme-matrix, body.theme-neural, body.theme-sound, body.theme-gravity {
-        --bs-body-color: #ffffff;
-    }
-    
-    body.theme-constellation h1, body.theme-constellation h2, body.theme-constellation h3,
-    body.theme-ripple h1, body.theme-ripple h2, body.theme-ripple h3,
-    body.theme-scroll h1, body.theme-scroll h2, body.theme-scroll h3,
-    body.theme-matrix h1, body.theme-matrix h2, body.theme-matrix h3,
-    body.theme-neural h1, body.theme-neural h2, body.theme-neural h3,
-    body.theme-sound h1, body.theme-sound h2, body.theme-sound h3,
-    body.theme-gravity h1, body.theme-gravity h2, body.theme-gravity h3 {
-        text-shadow: 3px 3px 6px rgba(0,0,0,1);
-    }
+
+  body.theme-constellation,
+  body.theme-ripple,
+  body.theme-scroll,
+  body.theme-matrix,
+  body.theme-neural,
+  body.theme-sound,
+  body.theme-gravity {
+    --bs-body-color: #ffffff;
+  }
+
+  body.theme-constellation h1,
+  body.theme-constellation h2,
+  body.theme-constellation h3,
+  body.theme-ripple h1,
+  body.theme-ripple h2,
+  body.theme-ripple h3,
+  body.theme-scroll h1,
+  body.theme-scroll h2,
+  body.theme-scroll h3,
+  body.theme-matrix h1,
+  body.theme-matrix h2,
+  body.theme-matrix h3,
+  body.theme-neural h1,
+  body.theme-neural h2,
+  body.theme-neural h3,
+  body.theme-sound h1,
+  body.theme-sound h2,
+  body.theme-sound h3,
+  body.theme-gravity h1,
+  body.theme-gravity h2,
+  body.theme-gravity h3 {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
+  }
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-    body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-    body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-        transition: none;
-    }
-    
-    body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
-    body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
-    body.theme-neural .social-icon, body.theme-sound .social-icon, 
-    body.theme-gravity .social-icon {
-        transition: none;
-    }
+
+  body.theme-constellation .btn,
+  body.theme-ripple .btn,
+  body.theme-scroll .btn,
+  body.theme-matrix .btn,
+  body.theme-neural .btn,
+  body.theme-sound .btn,
+  body.theme-gravity .btn {
+    transition: none;
+  }
+
+  body.theme-constellation .social-icon,
+  body.theme-ripple .social-icon,
+  body.theme-scroll .social-icon,
+  body.theme-matrix .social-icon,
+  body.theme-neural .social-icon,
+  body.theme-sound .social-icon,
+  body.theme-gravity .social-icon {
+    transition: none;
+  }
 }
+
 /* =======
 =================================
    INTERACTIVE BACKGROUND THEMES
@@ -14525,230 +14658,244 @@ body.theme-matrix *:focus, body.theme-neural *:focus, body.theme-sound *:focus, 
 
 /* Interactive Background Themes */
 .theme-bg-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
 }
 
 .theme-bg-container.interactive {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 
 /* Theme 1: Mouse Trail Constellation */
 .constellation-bg {
-    background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
 }
 
 .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #64ffda;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #64ffda;
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #64ffda;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #64ffda;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
 }
 
 .constellation-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #64ffda, transparent);
-    transform-origin: left center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
 /* Theme 2: Ripple Effect */
 .ripple-bg {
-    background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 100%);
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 100%);
 }
 
 .ripple {
-    position: absolute;
-    border: 2px solid #ff6b6b;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple-expand 2s ease-out forwards;
-    pointer-events: none;
+  position: absolute;
+  border: 2px solid #ff6b6b;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-expand 2s ease-out forwards;
+  pointer-events: none;
 }
 
 @keyframes ripple-expand {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(20); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(20);
+    opacity: 0;
+  }
 }
 
 /* Theme 3: Scroll-Reactive Particles */
 .scroll-particles-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .scroll-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.7;
-    transition: transform 0.1s ease-out;
-    pointer-events: none;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: transform 0.1s ease-out;
+  pointer-events: none;
 }
 
 /* Theme 4: Code Matrix */
 .reactive-matrix-bg {
-    background: linear-gradient(135deg, #001100 0%, #003300 100%);
+  background: linear-gradient(135deg, #001100 0%, #003300 100%);
 }
 
 .matrix-char {
-    position: absolute;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    color: #00ff00;
-    text-shadow: 0 0 5px #00ff00;
-    opacity: 0.3;
-    transition: all 0.2s ease;
-    pointer-events: none;
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+  opacity: 0.3;
+  transition: all 0.2s ease;
+  pointer-events: none;
 }
 
 .matrix-char.active {
-    opacity: 1;
-    transform: scale(1.2);
-    color: #ffffff;
-    text-shadow: 0 0 15px #00ff00;
+  opacity: 1;
+  transform: scale(1.2);
+  color: #ffffff;
+  text-shadow: 0 0 15px #00ff00;
 }
 
 /* Theme 5: Neural Network */
 .interactive-neural-bg {
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
 .neural-node {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #64ffda;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #64ffda;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    z-index: 10;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #64ffda;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #64ffda;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .neural-node:hover {
-    transform: scale(2);
-    box-shadow: 0 0 30px #64ffda;
+  transform: scale(2);
+  box-shadow: 0 0 30px #64ffda;
 }
 
 .neural-node.activated {
-    background: #ff6b6b;
-    box-shadow: 0 0 30px #ff6b6b;
-    transform: scale(1.5);
+  background: #ff6b6b;
+  box-shadow: 0 0 30px #ff6b6b;
+  transform: scale(1.5);
 }
 
 .neural-connection {
-    position: absolute;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #64ffda, transparent);
-    transform-origin: left center;
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+  transform-origin: left center;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .neural-connection.active {
-    opacity: 1;
-    background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
-    animation: pulse-connection 0.5s ease-out;
+  opacity: 1;
+  background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
+  animation: pulse-connection 0.5s ease-out;
 }
 
 @keyframes pulse-connection {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(3); }
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(3);
+  }
 }
 
 /* Theme 6: Sound Wave */
 .sound-wave-bg {
-    background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
+  background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
 }
 
 .wave-bar {
-    position: absolute;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(to top, #ff6b6b, #4ecdc4);
-    transition: height 0.1s ease;
-    pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to top, #ff6b6b, #4ecdc4);
+  transition: height 0.1s ease;
+  pointer-events: none;
 }
 
 /* Theme 7: Gravity Particles */
 .gravity-bg {
-    background: linear-gradient(135deg, #0f0f0f 0%, #2d1b69 100%);
+  background: linear-gradient(135deg, #0f0f0f 0%, #2d1b69 100%);
 }
 
 .gravity-particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: radial-gradient(circle, #ffffff, #64ffda);
-    border-radius: 50%;
-    box-shadow: 0 0 15px #64ffda;
-    transition: all 0.1s ease-out;
-    pointer-events: none;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffffff, #64ffda);
+  border-radius: 50%;
+  box-shadow: 0 0 15px #64ffda;
+  transition: all 0.1s ease-out;
+  pointer-events: none;
 }
 
 /* Theme Selector Dropdown */
 .theme-selector {
-    position: fixed;
-    top: 10px;
-    right: 60px;
-    z-index: 1050;
+  position: fixed;
+  top: 10px;
+  right: 60px;
+  z-index: 1050;
 }
 
 @media (max-width: 991.98px) {
-    .theme-selector {
-        right: 120px; 
-    }
+  .theme-selector {
+    right: 120px;
+  }
 }
 
 .theme-dropdown {
-    background: rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    padding: 0.5rem;
-    min-width: 200px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-width: 200px;
 }
 
 .theme-option {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    margin: 2px 0;
-    background: rgba(100, 255, 218, 0.1);
-    color: #64ffda;
-    border: 1px solid #64ffda;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    text-align: left;
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  margin: 2px 0;
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  text-align: left;
 }
 
-.theme-option:hover, 
+.theme-option:hover,
 .theme-option.active {
-    background: rgba(100, 255, 218, 0.3);
-    color: white;
-    text-decoration: none;
+  background: rgba(100, 255, 218, 0.3);
+  color: white;
+  text-decoration: none;
 }
 
 :root.dark-theme .theme-dropdown {
-    background: rgba(40,40,40,0.9);
+  background: rgba(40, 40, 40, 0.9);
 }
 
 /* ========================================
@@ -14757,255 +14904,297 @@ body.theme-matrix *:focus, body.theme-neural *:focus, body.theme-sound *:focus, 
 
 /* Default Particles Theme - Original styling */
 body.theme-particles {
-    /* Uses existing default styling */
+  /* Uses existing default styling */
 }
 
 /* Constellation Theme - Dark background with bright text */
 body.theme-constellation {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #64ffda;
-    --bs-link-hover-color: #4fd3b8;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #64ffda;
+  --bs-link-hover-color: #4fd3b8;
 }
 
-body.theme-constellation h1, body.theme-constellation .h1,
-body.theme-constellation h2, body.theme-constellation .h2,
-body.theme-constellation h3, body.theme-constellation .h3,
-body.theme-constellation h4, body.theme-constellation .h4,
-body.theme-constellation h5, body.theme-constellation .h5,
-body.theme-constellation h6, body.theme-constellation .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    font-weight: 700;
+body.theme-constellation h1,
+body.theme-constellation .h1,
+body.theme-constellation h2,
+body.theme-constellation .h2,
+body.theme-constellation h3,
+body.theme-constellation .h3,
+body.theme-constellation h4,
+body.theme-constellation .h4,
+body.theme-constellation h5,
+body.theme-constellation .h5,
+body.theme-constellation h6,
+body.theme-constellation .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
 }
 
 body.theme-constellation .subheading {
-    color: #e0e0e0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  color: #e0e0e0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 body.theme-constellation .text-primary {
-    color: #64ffda !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  color: #64ffda !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-body.theme-constellation p, 
+body.theme-constellation p,
 body.theme-constellation .lead {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-    line-height: 1.7;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  line-height: 1.7;
 }
 
 /* Ripple Theme - Dark purple background with bright text */
 body.theme-ripple {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #ff6b6b;
-    --bs-link-hover-color: #ff5252;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #ff6b6b;
+  --bs-link-hover-color: #ff5252;
 }
 
-body.theme-ripple h1, body.theme-ripple .h1,
-body.theme-ripple h2, body.theme-ripple .h2,
-body.theme-ripple h3, body.theme-ripple .h3,
-body.theme-ripple h4, body.theme-ripple .h4,
-body.theme-ripple h5, body.theme-ripple .h5,
-body.theme-ripple h6, body.theme-ripple .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(26,0,51,0.9);
-    font-weight: 700;
+body.theme-ripple h1,
+body.theme-ripple .h1,
+body.theme-ripple h2,
+body.theme-ripple .h2,
+body.theme-ripple h3,
+body.theme-ripple .h3,
+body.theme-ripple h4,
+body.theme-ripple .h4,
+body.theme-ripple h5,
+body.theme-ripple .h5,
+body.theme-ripple h6,
+body.theme-ripple .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(26, 0, 51, 0.9);
+  font-weight: 700;
 }
 
 body.theme-ripple .subheading {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 3px rgba(26,0,51,0.8);
+  color: #f0f0f0;
+  text-shadow: 1px 1px 3px rgba(26, 0, 51, 0.8);
 }
 
 body.theme-ripple .text-primary {
-    color: #ff6b6b !important;
-    text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
+  color: #ff6b6b !important;
+  text-shadow: 1px 1px 3px rgba(26, 0, 51, 0.7);
 }
 
-body.theme-ripple p, 
+body.theme-ripple p,
 body.theme-ripple .lead {
-    color: #f5f5f5;
-    text-shadow: 1px 1px 3px rgba(26,0,51,0.7);
-    line-height: 1.7;
+  color: #f5f5f5;
+  text-shadow: 1px 1px 3px rgba(26, 0, 51, 0.7);
+  line-height: 1.7;
 }
 
 /* Scroll Particles Theme - Purple gradient with white text */
 body.theme-scroll {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #ffffff;
-    --bs-link-hover-color: #f0f0f0;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #ffffff;
+  --bs-link-hover-color: #f0f0f0;
 }
 
-body.theme-scroll h1, body.theme-scroll .h1,
-body.theme-scroll h2, body.theme-scroll .h2,
-body.theme-scroll h3, body.theme-scroll .h3,
-body.theme-scroll h4, body.theme-scroll .h4,
-body.theme-scroll h5, body.theme-scroll .h5,
-body.theme-scroll h6, body.theme-scroll .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(102,126,234,0.8);
-    font-weight: 700;
+body.theme-scroll h1,
+body.theme-scroll .h1,
+body.theme-scroll h2,
+body.theme-scroll .h2,
+body.theme-scroll h3,
+body.theme-scroll .h3,
+body.theme-scroll h4,
+body.theme-scroll .h4,
+body.theme-scroll h5,
+body.theme-scroll .h5,
+body.theme-scroll h6,
+body.theme-scroll .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(102, 126, 234, 0.8);
+  font-weight: 700;
 }
 
 body.theme-scroll .subheading {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 4px rgba(102,126,234,0.7);
+  color: #f0f0f0;
+  text-shadow: 1px 1px 4px rgba(102, 126, 234, 0.7);
 }
 
 body.theme-scroll .text-primary {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
+  color: #ffffff !important;
+  text-shadow: 1px 1px 4px rgba(102, 126, 234, 0.6);
 }
 
-body.theme-scroll p, 
+body.theme-scroll p,
 body.theme-scroll .lead {
-    color: #ffffff;
-    text-shadow: 1px 1px 4px rgba(102,126,234,0.6);
-    line-height: 1.7;
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(102, 126, 234, 0.6);
+  line-height: 1.7;
 }
 
 /* Matrix Theme - Green on black with enhanced readability */
 body.theme-matrix {
-    --bs-body-color: #00ff00;
-    --bs-link-color: #00ff00;
-    --bs-link-hover-color: #33ff33;
+  --bs-body-color: #00ff00;
+  --bs-link-color: #00ff00;
+  --bs-link-hover-color: #33ff33;
 }
 
-body.theme-matrix h1, body.theme-matrix .h1,
-body.theme-matrix h2, body.theme-matrix .h2,
-body.theme-matrix h3, body.theme-matrix .h3,
-body.theme-matrix h4, body.theme-matrix .h4,
-body.theme-matrix h5, body.theme-matrix .h5,
-body.theme-matrix h6, body.theme-matrix .h6 {
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00, 2px 2px 4px rgba(0,0,0,0.8);
-    font-weight: 700;
-    font-family: 'Courier New', monospace;
+body.theme-matrix h1,
+body.theme-matrix .h1,
+body.theme-matrix h2,
+body.theme-matrix .h2,
+body.theme-matrix h3,
+body.theme-matrix .h3,
+body.theme-matrix h4,
+body.theme-matrix .h4,
+body.theme-matrix h5,
+body.theme-matrix .h5,
+body.theme-matrix h6,
+body.theme-matrix .h6 {
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
 }
 
 body.theme-matrix .subheading {
-    color: #66ff66;
-    text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.7);
-    font-family: 'Courier New', monospace;
+  color: #66ff66;
+  text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-family: 'Courier New', monospace;
 }
 
 body.theme-matrix .text-primary {
-    color: #00ff00 !important;
-    text-shadow: 0 0 8px #00ff00;
+  color: #00ff00 !important;
+  text-shadow: 0 0 8px #00ff00;
 }
 
-body.theme-matrix p, 
+body.theme-matrix p,
 body.theme-matrix .lead {
-    color: #ccffcc;
-    text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.6);
-    line-height: 1.8;
-    font-family: 'Courier New', monospace;
+  color: #ccffcc;
+  text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.6);
+  line-height: 1.8;
+  font-family: 'Courier New', monospace;
 }
 
 /* Neural Network Theme - Blue tones with enhanced contrast */
 body.theme-neural {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #64ffda;
-    --bs-link-hover-color: #4fd3b8;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #64ffda;
+  --bs-link-hover-color: #4fd3b8;
 }
 
-body.theme-neural h1, body.theme-neural .h1,
-body.theme-neural h2, body.theme-neural .h2,
-body.theme-neural h3, body.theme-neural .h3,
-body.theme-neural h4, body.theme-neural .h4,
-body.theme-neural h5, body.theme-neural .h5,
-body.theme-neural h6, body.theme-neural .h6 {
-    color: #ffffff;
-    text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(15,52,96,0.9);
-    font-weight: 700;
+body.theme-neural h1,
+body.theme-neural .h1,
+body.theme-neural h2,
+body.theme-neural .h2,
+body.theme-neural h3,
+body.theme-neural .h3,
+body.theme-neural h4,
+body.theme-neural .h4,
+body.theme-neural h5,
+body.theme-neural .h5,
+body.theme-neural h6,
+body.theme-neural .h6 {
+  color: #ffffff;
+  text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(15, 52, 96, 0.9);
+  font-weight: 700;
 }
 
 body.theme-neural .subheading {
-    color: #e0f7ff;
-    text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(15,52,96,0.8);
+  color: #e0f7ff;
+  text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(15, 52, 96, 0.8);
 }
 
 body.theme-neural .text-primary {
-    color: #64ffda !important;
-    text-shadow: 0 0 8px #64ffda;
+  color: #64ffda !important;
+  text-shadow: 0 0 8px #64ffda;
 }
 
-body.theme-neural p, 
+body.theme-neural p,
 body.theme-neural .lead {
-    color: #f0f8ff;
-    text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(15,52,96,0.7);
-    line-height: 1.7;
+  color: #f0f8ff;
+  text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(15, 52, 96, 0.7);
+  line-height: 1.7;
 }
 
 /* Sound Wave Theme - Brown/orange background with bright text */
 body.theme-sound {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #4ecdc4;
-    --bs-link-hover-color: #26a69a;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #4ecdc4;
+  --bs-link-hover-color: #26a69a;
 }
 
-body.theme-sound h1, body.theme-sound .h1,
-body.theme-sound h2, body.theme-sound .h2,
-body.theme-sound h3, body.theme-sound .h3,
-body.theme-sound h4, body.theme-sound .h4,
-body.theme-sound h5, body.theme-sound .h5,
-body.theme-sound h6, body.theme-sound .h6 {
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(44,24,16,0.9);
-    font-weight: 700;
+body.theme-sound h1,
+body.theme-sound .h1,
+body.theme-sound h2,
+body.theme-sound .h2,
+body.theme-sound h3,
+body.theme-sound .h3,
+body.theme-sound h4,
+body.theme-sound .h4,
+body.theme-sound h5,
+body.theme-sound .h5,
+body.theme-sound h6,
+body.theme-sound .h6 {
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(44, 24, 16, 0.9);
+  font-weight: 700;
 }
 
 body.theme-sound .subheading {
-    color: #f0f0f0;
-    text-shadow: 1px 1px 4px rgba(44,24,16,0.8);
+  color: #f0f0f0;
+  text-shadow: 1px 1px 4px rgba(44, 24, 16, 0.8);
 }
 
 body.theme-sound .text-primary {
-    color: #4ecdc4 !important;
-    text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
+  color: #4ecdc4 !important;
+  text-shadow: 1px 1px 4px rgba(44, 24, 16, 0.7);
 }
 
-body.theme-sound p, 
+body.theme-sound p,
 body.theme-sound .lead {
-    color: #f5f5f5;
-    text-shadow: 1px 1px 4px rgba(44,24,16,0.7);
-    line-height: 1.7;
+  color: #f5f5f5;
+  text-shadow: 1px 1px 4px rgba(44, 24, 16, 0.7);
+  line-height: 1.7;
 }
 
 /* Gravity Theme - Dark purple with bright text */
 body.theme-gravity {
-    --bs-body-color: #ffffff;
-    --bs-link-color: #64ffda;
-    --bs-link-hover-color: #4fd3b8;
+  --bs-body-color: #ffffff;
+  --bs-link-color: #64ffda;
+  --bs-link-hover-color: #4fd3b8;
 }
 
-body.theme-gravity h1, body.theme-gravity .h1,
-body.theme-gravity h2, body.theme-gravity .h2,
-body.theme-gravity h3, body.theme-gravity .h3,
-body.theme-gravity h4, body.theme-gravity .h4,
-body.theme-gravity h5, body.theme-gravity .h5,
-body.theme-gravity h6, body.theme-gravity .h6 {
-    color: #ffffff;
-    text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(45,27,105,0.9);
-    font-weight: 700;
+body.theme-gravity h1,
+body.theme-gravity .h1,
+body.theme-gravity h2,
+body.theme-gravity .h2,
+body.theme-gravity h3,
+body.theme-gravity .h3,
+body.theme-gravity h4,
+body.theme-gravity .h4,
+body.theme-gravity h5,
+body.theme-gravity .h5,
+body.theme-gravity h6,
+body.theme-gravity .h6 {
+  color: #ffffff;
+  text-shadow: 0 0 10px #64ffda, 2px 2px 6px rgba(45, 27, 105, 0.9);
+  font-weight: 700;
 }
 
 body.theme-gravity .subheading {
-    color: #e0f7ff;
-    text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(45,27,105,0.8);
+  color: #e0f7ff;
+  text-shadow: 0 0 8px #64ffda, 1px 1px 3px rgba(45, 27, 105, 0.8);
 }
 
 body.theme-gravity .text-primary {
-    color: #64ffda !important;
-    text-shadow: 0 0 8px #64ffda;
+  color: #64ffda !important;
+  text-shadow: 0 0 8px #64ffda;
 }
 
-body.theme-gravity p, 
+body.theme-gravity p,
 body.theme-gravity .lead {
-    color: #f0f8ff;
-    text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(45,27,105,0.7);
-    line-height: 1.7;
+  color: #f0f8ff;
+  text-shadow: 0 0 5px #64ffda, 1px 1px 3px rgba(45, 27, 105, 0.7);
+  line-height: 1.7;
 }
 
 /* ========================================
@@ -15013,79 +15202,113 @@ body.theme-gravity .lead {
    ======================================== */
 
 /* Enhanced button visibility for all themes */
-body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-    text-shadow: none;
-    font-weight: 600;
-    border: 2px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+body.theme-constellation .btn,
+body.theme-ripple .btn,
+body.theme-scroll .btn,
+body.theme-matrix .btn,
+body.theme-neural .btn,
+body.theme-sound .btn,
+body.theme-gravity .btn {
+  text-shadow: none;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-body.theme-constellation .btn:hover, body.theme-ripple .btn:hover, body.theme-scroll .btn:hover,
-body.theme-matrix .btn:hover, body.theme-neural .btn:hover, body.theme-sound .btn:hover, body.theme-gravity .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+body.theme-constellation .btn:hover,
+body.theme-ripple .btn:hover,
+body.theme-scroll .btn:hover,
+body.theme-matrix .btn:hover,
+body.theme-neural .btn:hover,
+body.theme-sound .btn:hover,
+body.theme-gravity .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation adjustments for themed backgrounds */
-body.theme-constellation .navbar, body.theme-ripple .navbar, body.theme-scroll .navbar,
-body.theme-matrix .navbar, body.theme-neural .navbar, body.theme-sound .navbar, body.theme-gravity .navbar {
-    backdrop-filter: blur(15px);
-    background-color: rgba(26, 95, 63, 0.9) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+body.theme-constellation .navbar,
+body.theme-ripple .navbar,
+body.theme-scroll .navbar,
+body.theme-matrix .navbar,
+body.theme-neural .navbar,
+body.theme-sound .navbar,
+body.theme-gravity .navbar {
+  backdrop-filter: blur(15px);
+  background-color: rgba(26, 95, 63, 0.9) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Content sections background for better readability */
-body.theme-constellation .resume-section, body.theme-ripple .resume-section, 
-body.theme-scroll .resume-section, body.theme-matrix .resume-section, 
-body.theme-neural .resume-section, body.theme-sound .resume-section, 
+body.theme-constellation .resume-section,
+body.theme-ripple .resume-section,
+body.theme-scroll .resume-section,
+body.theme-matrix .resume-section,
+body.theme-neural .resume-section,
+body.theme-sound .resume-section,
 body.theme-gravity .resume-section {
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    margin: 20px;
-    padding: 40px;
-    border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Special handling for matrix theme readability */
 body.theme-matrix .resume-section {
-    background: rgba(0,17,0,0.8);
-    border: 1px solid rgba(0,255,0,0.3);
+  background: rgba(0, 17, 0, 0.8);
+  border: 1px solid rgba(0, 255, 0, 0.3);
 }
 
 /* Improved link visibility for all themes */
-body.theme-constellation a, body.theme-ripple a, body.theme-scroll a,
-body.theme-matrix a, body.theme-neural a, body.theme-sound a, body.theme-gravity a {
-    text-decoration: underline;
-    transition: all 0.3s ease;
+body.theme-constellation a,
+body.theme-ripple a,
+body.theme-scroll a,
+body.theme-matrix a,
+body.theme-neural a,
+body.theme-sound a,
+body.theme-gravity a {
+  text-decoration: underline;
+  transition: all 0.3s ease;
 }
 
-body.theme-constellation a:hover, body.theme-ripple a:hover, body.theme-scroll a:hover,
-body.theme-matrix a:hover, body.theme-neural a:hover, body.theme-sound a:hover, body.theme-gravity a:hover {
-    text-shadow: 0 0 8px currentColor;
-    transform: translateY(-1px);
+body.theme-constellation a:hover,
+body.theme-ripple a:hover,
+body.theme-scroll a:hover,
+body.theme-matrix a:hover,
+body.theme-neural a:hover,
+body.theme-sound a:hover,
+body.theme-gravity a:hover {
+  text-shadow: 0 0 8px currentColor;
+  transform: translateY(-1px);
 }
 
 /* Social icons enhancement for themed backgrounds */
-body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
-body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
-body.theme-neural .social-icon, body.theme-sound .social-icon, 
+body.theme-constellation .social-icon,
+body.theme-ripple .social-icon,
+body.theme-scroll .social-icon,
+body.theme-matrix .social-icon,
+body.theme-neural .social-icon,
+body.theme-sound .social-icon,
 body.theme-gravity .social-icon {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
 
-body.theme-constellation .social-icon:hover, body.theme-ripple .social-icon:hover, 
-body.theme-scroll .social-icon:hover, body.theme-matrix .social-icon:hover, 
-body.theme-neural .social-icon:hover, body.theme-sound .social-icon:hover, 
+body.theme-constellation .social-icon:hover,
+body.theme-ripple .social-icon:hover,
+body.theme-scroll .social-icon:hover,
+body.theme-matrix .social-icon:hover,
+body.theme-neural .social-icon:hover,
+body.theme-sound .social-icon:hover,
 body.theme-gravity .social-icon:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* ========================================
@@ -15093,188 +15316,245 @@ body.theme-gravity .social-icon:hover {
    ======================================== */
 
 /* Accessibility improvements for focus states */
-body.theme-constellation *:focus, body.theme-ripple *:focus, body.theme-scroll *:focus,
-body.theme-matrix *:focus, body.theme-neural *:focus, body.theme-sound *:focus, body.theme-gravity *:focus {
-    outline: 2px solid #ffffff;
-    outline-offset: 2px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+body.theme-constellation *:focus,
+body.theme-ripple *:focus,
+body.theme-scroll *:focus,
+body.theme-matrix *:focus,
+body.theme-neural *:focus,
+body.theme-sound *:focus,
+body.theme-gravity *:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    body.theme-constellation, body.theme-ripple, body.theme-scroll,
-    body.theme-matrix, body.theme-neural, body.theme-sound, body.theme-gravity {
-        --bs-body-color: #ffffff;
-    }
-    
-    body.theme-constellation h1, body.theme-constellation h2, body.theme-constellation h3,
-    body.theme-ripple h1, body.theme-ripple h2, body.theme-ripple h3,
-    body.theme-scroll h1, body.theme-scroll h2, body.theme-scroll h3,
-    body.theme-matrix h1, body.theme-matrix h2, body.theme-matrix h3,
-    body.theme-neural h1, body.theme-neural h2, body.theme-neural h3,
-    body.theme-sound h1, body.theme-sound h2, body.theme-sound h3,
-    body.theme-gravity h1, body.theme-gravity h2, body.theme-gravity h3 {
-        text-shadow: 3px 3px 6px rgba(0,0,0,1);
-    }
+
+  body.theme-constellation,
+  body.theme-ripple,
+  body.theme-scroll,
+  body.theme-matrix,
+  body.theme-neural,
+  body.theme-sound,
+  body.theme-gravity {
+    --bs-body-color: #ffffff;
+  }
+
+  body.theme-constellation h1,
+  body.theme-constellation h2,
+  body.theme-constellation h3,
+  body.theme-ripple h1,
+  body.theme-ripple h2,
+  body.theme-ripple h3,
+  body.theme-scroll h1,
+  body.theme-scroll h2,
+  body.theme-scroll h3,
+  body.theme-matrix h1,
+  body.theme-matrix h2,
+  body.theme-matrix h3,
+  body.theme-neural h1,
+  body.theme-neural h2,
+  body.theme-neural h3,
+  body.theme-sound h1,
+  body.theme-sound h2,
+  body.theme-sound h3,
+  body.theme-gravity h1,
+  body.theme-gravity h2,
+  body.theme-gravity h3 {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
+  }
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-    body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-    body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-        transition: none;
-    }
-    
-    body.theme-constellation .social-icon, body.theme-ripple .social-icon, 
-    body.theme-scroll .social-icon, body.theme-matrix .social-icon, 
-    body.theme-neural .social-icon, body.theme-sound .social-icon, 
-    body.theme-gravity .social-icon {
-        transition: none;
-    }
-}/
-* ========================================
-   ENHANCED BUTTON STYLING FOR ALL THEMES
-   ======================================== */
 
+  body.theme-constellation .btn,
+  body.theme-ripple .btn,
+  body.theme-scroll .btn,
+  body.theme-matrix .btn,
+  body.theme-neural .btn,
+  body.theme-sound .btn,
+  body.theme-gravity .btn {
+    transition: none;
+  }
+
+  body.theme-constellation .social-icon,
+  body.theme-ripple .social-icon,
+  body.theme-scroll .social-icon,
+  body.theme-matrix .social-icon,
+  body.theme-neural .social-icon,
+  body.theme-sound .social-icon,
+  body.theme-gravity .social-icon {
+    transition: none;
+  }
+}
+
+/ *========================================ENHANCED BUTTON STYLING FOR ALL THEMES========================================*/
 /* Enhanced button styling overrides for better readability */
-body.theme-constellation .btn, body.theme-ripple .btn, body.theme-scroll .btn,
-body.theme-matrix .btn, body.theme-neural .btn, body.theme-sound .btn, body.theme-gravity .btn {
-    font-weight: 700 !important;
-    border: 2px solid rgba(255,255,255,0.6) !important;
-    backdrop-filter: blur(15px) !important;
-    transition: all 0.3s ease !important;
-    position: relative !important;
-    overflow: hidden !important;
-    letter-spacing: 0.5px !important;
-    text-transform: uppercase !important;
-    font-size: 0.875rem !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important;
+body.theme-constellation .btn,
+body.theme-ripple .btn,
+body.theme-scroll .btn,
+body.theme-matrix .btn,
+body.theme-neural .btn,
+body.theme-sound .btn,
+body.theme-gravity .btn {
+  font-weight: 700 !important;
+  border: 2px solid rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(15px) !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  font-size: 0.875rem !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Primary buttons enhanced styling */
-body.theme-constellation .btn-primary, body.theme-ripple .btn-primary, body.theme-scroll .btn-primary,
-body.theme-matrix .btn-primary, body.theme-neural .btn-primary, body.theme-sound .btn-primary, body.theme-gravity .btn-primary {
-    background: rgba(26, 95, 63, 0.95) !important;
-    border-color: rgba(255,255,255,0.8) !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.9) !important;
+body.theme-constellation .btn-primary,
+body.theme-ripple .btn-primary,
+body.theme-scroll .btn-primary,
+body.theme-matrix .btn-primary,
+body.theme-neural .btn-primary,
+body.theme-sound .btn-primary,
+body.theme-gravity .btn-primary {
+  background: rgba(26, 95, 63, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Secondary buttons enhanced styling */
-body.theme-constellation .btn-secondary, body.theme-ripple .btn-secondary, body.theme-scroll .btn-secondary,
-body.theme-matrix .btn-secondary, body.theme-neural .btn-secondary, body.theme-sound .btn-secondary, body.theme-gravity .btn-secondary {
-    background: rgba(108, 117, 125, 0.95) !important;
-    border-color: rgba(255,255,255,0.7) !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.9) !important;
+body.theme-constellation .btn-secondary,
+body.theme-ripple .btn-secondary,
+body.theme-scroll .btn-secondary,
+body.theme-matrix .btn-secondary,
+body.theme-neural .btn-secondary,
+body.theme-sound .btn-secondary,
+body.theme-gravity .btn-secondary {
+  background: rgba(108, 117, 125, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Info buttons enhanced styling */
-body.theme-constellation .btn-info, body.theme-ripple .btn-info, body.theme-scroll .btn-info,
-body.theme-matrix .btn-info, body.theme-neural .btn-info, body.theme-sound .btn-info, body.theme-gravity .btn-info {
-    background: rgba(13, 202, 240, 0.95) !important;
-    border-color: rgba(255,255,255,0.7) !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.9) !important;
+body.theme-constellation .btn-info,
+body.theme-ripple .btn-info,
+body.theme-scroll .btn-info,
+body.theme-matrix .btn-info,
+body.theme-neural .btn-info,
+body.theme-sound .btn-info,
+body.theme-gravity .btn-info {
+  background: rgba(13, 202, 240, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Enhanced hover effects */
-body.theme-constellation .btn:hover, body.theme-ripple .btn:hover, body.theme-scroll .btn:hover,
-body.theme-matrix .btn:hover, body.theme-neural .btn:hover, body.theme-sound .btn:hover, body.theme-gravity .btn:hover {
-    transform: translateY(-3px) scale(1.02) !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5) !important;
-    border-color: rgba(255,255,255,1) !important;
+body.theme-constellation .btn:hover,
+body.theme-ripple .btn:hover,
+body.theme-scroll .btn:hover,
+body.theme-matrix .btn:hover,
+body.theme-neural .btn:hover,
+body.theme-sound .btn:hover,
+body.theme-gravity .btn:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
 }
 
 /* Theme-specific button customizations */
 
 /* Constellation Theme Buttons */
 body.theme-constellation .btn-primary {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(26, 95, 63, 0.9)) !important;
-    border-color: #64ffda !important;
-    box-shadow: 0 0 15px rgba(100, 255, 218, 0.4) !important;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(26, 95, 63, 0.9)) !important;
+  border-color: #64ffda !important;
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.4) !important;
 }
 
 body.theme-constellation .btn-primary:hover {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 1), rgba(26, 95, 63, 1)) !important;
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.6) !important;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 1), rgba(26, 95, 63, 1)) !important;
+  box-shadow: 0 0 30px rgba(100, 255, 218, 0.6) !important;
 }
 
 /* Ripple Theme Buttons */
 body.theme-ripple .btn-primary {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.9), rgba(220, 53, 69, 0.9)) !important;
-    border-color: #ff6b6b !important;
-    box-shadow: 0 0 15px rgba(255, 107, 107, 0.4) !important;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.9), rgba(220, 53, 69, 0.9)) !important;
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.4) !important;
 }
 
 body.theme-ripple .btn-primary:hover {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 1), rgba(220, 53, 69, 1)) !important;
-    box-shadow: 0 0 30px rgba(255, 107, 107, 0.6) !important;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 1), rgba(220, 53, 69, 1)) !important;
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.6) !important;
 }
 
 /* Scroll Theme Buttons */
 body.theme-scroll .btn-primary {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)) !important;
-    border-color: rgba(255,255,255,0.9) !important;
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.4) !important;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)) !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.4) !important;
 }
 
 body.theme-scroll .btn-primary:hover {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 1), rgba(118, 75, 162, 1)) !important;
-    box-shadow: 0 0 30px rgba(102, 126, 234, 0.6) !important;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 1), rgba(118, 75, 162, 1)) !important;
+  box-shadow: 0 0 30px rgba(102, 126, 234, 0.6) !important;
 }
 
 /* Matrix Theme Buttons */
 body.theme-matrix .btn {
-    font-family: 'Courier New', monospace !important;
-    background: rgba(0, 51, 0, 0.95) !important;
-    border-color: #00ff00 !important;
-    color: #00ff00 !important;
-    text-shadow: 0 0 10px #00ff00, 1px 1px 3px rgba(0,0,0,0.9) !important;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4) !important;
+  font-family: 'Courier New', monospace !important;
+  background: rgba(0, 51, 0, 0.95) !important;
+  border-color: #00ff00 !important;
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px #00ff00, 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.4) !important;
 }
 
 body.theme-matrix .btn:hover {
-    background: rgba(0, 68, 0, 1) !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 15px #00ff00, 1px 1px 3px rgba(0,0,0,1) !important;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6) !important;
+  background: rgba(0, 68, 0, 1) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 15px #00ff00, 1px 1px 3px rgba(0, 0, 0, 1) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.6) !important;
 }
 
 /* Neural Network Theme Buttons */
 body.theme-neural .btn-primary {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(15, 52, 96, 0.9)) !important;
-    border-color: #64ffda !important;
-    box-shadow: 0 0 15px rgba(100, 255, 218, 0.4) !important;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(15, 52, 96, 0.9)) !important;
+  border-color: #64ffda !important;
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.4) !important;
 }
 
 body.theme-neural .btn-primary:hover {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 1), rgba(15, 52, 96, 1)) !important;
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.6) !important;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 1), rgba(15, 52, 96, 1)) !important;
+  box-shadow: 0 0 30px rgba(100, 255, 218, 0.6) !important;
 }
 
 /* Sound Wave Theme Buttons */
 body.theme-sound .btn-primary {
-    background: linear-gradient(135deg, rgba(78, 205, 196, 0.9), rgba(139, 69, 19, 0.9)) !important;
-    border-color: #4ecdc4 !important;
-    box-shadow: 0 0 15px rgba(78, 205, 196, 0.4) !important;
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.9), rgba(139, 69, 19, 0.9)) !important;
+  border-color: #4ecdc4 !important;
+  box-shadow: 0 0 15px rgba(78, 205, 196, 0.4) !important;
 }
 
 body.theme-sound .btn-primary:hover {
-    background: linear-gradient(135deg, rgba(78, 205, 196, 1), rgba(139, 69, 19, 1)) !important;
-    box-shadow: 0 0 30px rgba(78, 205, 196, 0.6) !important;
+  background: linear-gradient(135deg, rgba(78, 205, 196, 1), rgba(139, 69, 19, 1)) !important;
+  box-shadow: 0 0 30px rgba(78, 205, 196, 0.6) !important;
 }
 
 /* Gravity Theme Buttons */
 body.theme-gravity .btn-primary {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(45, 27, 105, 0.9)) !important;
-    border-color: #64ffda !important;
-    box-shadow: 0 0 15px rgba(100, 255, 218, 0.4) !important;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(45, 27, 105, 0.9)) !important;
+  border-color: #64ffda !important;
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.4) !important;
 }
 
 body.theme-gravity .btn-primary:hover {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 1), rgba(45, 27, 105, 1)) !important;
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.6) !important;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 1), rgba(45, 27, 105, 1)) !important;
+  box-shadow: 0 0 30px rgba(100, 255, 218, 0.6) !important;
 }
 
 /* ========================================
@@ -15282,895 +15562,1280 @@ body.theme-gravity .btn-primary:hover {
    ======================================== */
 
 /* Improved content sections with better contrast */
-body.theme-constellation .resume-section, body.theme-ripple .resume-section, 
-body.theme-scroll .resume-section, body.theme-matrix .resume-section, 
-body.theme-neural .resume-section, body.theme-sound .resume-section, 
+body.theme-constellation .resume-section,
+body.theme-ripple .resume-section,
+body.theme-scroll .resume-section,
+body.theme-matrix .resume-section,
+body.theme-neural .resume-section,
+body.theme-sound .resume-section,
 body.theme-gravity .resume-section {
-    background: rgba(0,0,0,0.4) !important;
-    backdrop-filter: blur(15px) !important;
-    border-radius: 20px !important;
-    margin: 25px !important;
-    padding: 45px !important;
-    border: 2px solid rgba(255,255,255,0.2) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(5px) !important;
+  border-radius: 20px !important;
+  margin: 25px !important;
+  padding: 45px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Special matrix theme content styling */
 body.theme-matrix .resume-section {
-    background: rgba(0,17,0,0.9) !important;
-    border: 2px solid rgba(0,255,0,0.4) !important;
-    box-shadow: 0 0 20px rgba(0,255,0,0.3) !important;
+  background: rgba(0, 17, 0, 0.15) !important;
+  border: 1px solid rgba(0, 255, 0, 0.15) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.1) !important;
 }
 
 /* Enhanced navbar for better visibility */
-body.theme-constellation .navbar, body.theme-ripple .navbar, body.theme-scroll .navbar,
-body.theme-matrix .navbar, body.theme-neural .navbar, body.theme-sound .navbar, body.theme-gravity .navbar {
-    backdrop-filter: blur(20px) !important;
-    background-color: rgba(26, 95, 63, 0.95) !important;
-    border-bottom: 2px solid rgba(255,255,255,0.2) !important;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.3) !important;
+body.theme-constellation .navbar,
+body.theme-ripple .navbar,
+body.theme-scroll .navbar,
+body.theme-matrix .navbar,
+body.theme-neural .navbar,
+body.theme-sound .navbar,
+body.theme-gravity .navbar {
+  backdrop-filter: blur(20px) !important;
+  background-color: rgba(26, 95, 63, 0.95) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Enhanced theme selector dropdown */
-body.theme-constellation .theme-dropdown, body.theme-ripple .theme-dropdown, body.theme-scroll .theme-dropdown,
-body.theme-matrix .theme-dropdown, body.theme-neural .theme-dropdown, body.theme-sound .theme-dropdown, body.theme-gravity .theme-dropdown {
-    background: rgba(0,0,0,0.9) !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(15px) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+body.theme-constellation .theme-dropdown,
+body.theme-ripple .theme-dropdown,
+body.theme-scroll .theme-dropdown,
+body.theme-matrix .theme-dropdown,
+body.theme-neural .theme-dropdown,
+body.theme-sound .theme-dropdown,
+body.theme-gravity .theme-dropdown {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Enhanced theme options */
-body.theme-constellation .theme-option, body.theme-ripple .theme-option, body.theme-scroll .theme-option,
-body.theme-matrix .theme-option, body.theme-neural .theme-option, body.theme-sound .theme-option, body.theme-gravity .theme-option {
-    background: rgba(100, 255, 218, 0.15) !important;
-    border: 1px solid rgba(100, 255, 218, 0.5) !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
-    font-weight: 600 !important;
+body.theme-constellation .theme-option,
+body.theme-ripple .theme-option,
+body.theme-scroll .theme-option,
+body.theme-matrix .theme-option,
+body.theme-neural .theme-option,
+body.theme-sound .theme-option,
+body.theme-gravity .theme-option {
+  background: rgba(100, 255, 218, 0.15) !important;
+  border: 1px solid rgba(100, 255, 218, 0.5) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  font-weight: 600 !important;
 }
 
-body.theme-constellation .theme-option:hover, body.theme-ripple .theme-option:hover, body.theme-scroll .theme-option:hover,
-body.theme-matrix .theme-option:hover, body.theme-neural .theme-option:hover, body.theme-sound .theme-option:hover, body.theme-gravity .theme-option:hover {
-    background: rgba(100, 255, 218, 0.4) !important;
-    border-color: rgba(100, 255, 218, 0.8) !important;
-    transform: translateX(5px) !important;
+body.theme-constellation .theme-option:hover,
+body.theme-ripple .theme-option:hover,
+body.theme-scroll .theme-option:hover,
+body.theme-matrix .theme-option:hover,
+body.theme-neural .theme-option:hover,
+body.theme-sound .theme-option:hover,
+body.theme-gravity .theme-option:hover {
+  background: rgba(100, 255, 218, 0.4) !important;
+  border-color: rgba(100, 255, 218, 0.8) !important;
+  transform: translateX(5px) !important;
 }
 
 /* Enhanced modal styling for themed backgrounds */
-body.theme-constellation .modal-content, body.theme-ripple .modal-content, body.theme-scroll .modal-content,
-body.theme-matrix .modal-content, body.theme-neural .modal-content, body.theme-sound .modal-content, body.theme-gravity .modal-content {
-    background: rgba(0,0,0,0.9) !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(15px) !important;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6) !important;
+body.theme-constellation .modal-content,
+body.theme-ripple .modal-content,
+body.theme-scroll .modal-content,
+body.theme-matrix .modal-content,
+body.theme-neural .modal-content,
+body.theme-sound .modal-content,
+body.theme-gravity .modal-content {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Enhanced form elements */
-body.theme-constellation input, body.theme-constellation textarea, 
-body.theme-ripple input, body.theme-ripple textarea,
-body.theme-scroll input, body.theme-scroll textarea,
-body.theme-matrix input, body.theme-matrix textarea,
-body.theme-neural input, body.theme-neural textarea,
-body.theme-sound input, body.theme-sound textarea,
-body.theme-gravity input, body.theme-gravity textarea {
-    background: rgba(255,255,255,0.1) !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    color: #ffffff !important;
-    backdrop-filter: blur(10px) !important;
+body.theme-constellation input,
+body.theme-constellation textarea,
+body.theme-ripple input,
+body.theme-ripple textarea,
+body.theme-scroll input,
+body.theme-scroll textarea,
+body.theme-matrix input,
+body.theme-matrix textarea,
+body.theme-neural input,
+body.theme-neural textarea,
+body.theme-sound input,
+body.theme-sound textarea,
+body.theme-gravity input,
+body.theme-gravity textarea {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-body.theme-constellation input:focus, body.theme-constellation textarea:focus,
-body.theme-ripple input:focus, body.theme-ripple textarea:focus,
-body.theme-scroll input:focus, body.theme-scroll textarea:focus,
-body.theme-matrix input:focus, body.theme-matrix textarea:focus,
-body.theme-neural input:focus, body.theme-neural textarea:focus,
-body.theme-sound input:focus, body.theme-sound textarea:focus,
-body.theme-gravity input:focus, body.theme-gravity textarea:focus {
-    border-color: rgba(255,255,255,0.8) !important;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3) !important;
+body.theme-constellation input:focus,
+body.theme-constellation textarea:focus,
+body.theme-ripple input:focus,
+body.theme-ripple textarea:focus,
+body.theme-scroll input:focus,
+body.theme-scroll textarea:focus,
+body.theme-matrix input:focus,
+body.theme-matrix textarea:focus,
+body.theme-neural input:focus,
+body.theme-neural textarea:focus,
+body.theme-sound input:focus,
+body.theme-sound textarea:focus,
+body.theme-gravity input:focus,
+body.theme-gravity textarea:focus {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Enhanced list items for skills section */
-body.theme-constellation .fa-ul li, body.theme-ripple .fa-ul li, body.theme-scroll .fa-ul li,
-body.theme-matrix .fa-ul li, body.theme-neural .fa-ul li, body.theme-sound .fa-ul li, body.theme-gravity .fa-ul li {
-    background: rgba(255,255,255,0.1) !important;
-    padding: 10px 15px !important;
-    margin: 5px 0 !important;
-    border-radius: 8px !important;
-    border-left: 4px solid rgba(255,255,255,0.5) !important;
-    backdrop-filter: blur(10px) !important;
+body.theme-constellation .fa-ul li,
+body.theme-ripple .fa-ul li,
+body.theme-scroll .fa-ul li,
+body.theme-matrix .fa-ul li,
+body.theme-neural .fa-ul li,
+body.theme-sound .fa-ul li,
+body.theme-gravity .fa-ul li {
+  background: rgba(255, 255, 255, 0.1) !important;
+  padding: 10px 15px !important;
+  margin: 5px 0 !important;
+  border-radius: 8px !important;
+  border-left: 4px solid rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 /* Enhanced image thumbnails */
-body.theme-constellation .img-thumbnail, body.theme-ripple .img-thumbnail, body.theme-scroll .img-thumbnail,
-body.theme-matrix .img-thumbnail, body.theme-neural .img-thumbnail, body.theme-sound .img-thumbnail, body.theme-gravity .img-thumbnail {
-    border: 3px solid rgba(255,255,255,0.4) !important;
-    backdrop-filter: blur(10px) !important;
-    transition: all 0.3s ease !important;
+body.theme-constellation .img-thumbnail,
+body.theme-ripple .img-thumbnail,
+body.theme-scroll .img-thumbnail,
+body.theme-matrix .img-thumbnail,
+body.theme-neural .img-thumbnail,
+body.theme-sound .img-thumbnail,
+body.theme-gravity .img-thumbnail {
+  border: 3px solid rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s ease !important;
 }
 
-body.theme-constellation .img-thumbnail:hover, body.theme-ripple .img-thumbnail:hover, body.theme-scroll .img-thumbnail:hover,
-body.theme-matrix .img-thumbnail:hover, body.theme-neural .img-thumbnail:hover, body.theme-sound .img-thumbnail:hover, body.theme-gravity .img-thumbnail:hover {
-    border-color: rgba(255,255,255,0.8) !important;
-    transform: scale(1.05) !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important;
-}/* 
+body.theme-constellation .img-thumbnail:hover,
+body.theme-ripple .img-thumbnail:hover,
+body.theme-scroll .img-thumbnail:hover,
+body.theme-matrix .img-thumbnail:hover,
+body.theme-neural .img-thumbnail:hover,
+body.theme-sound .img-thumbnail:hover,
+body.theme-gravity .img-thumbnail:hover {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 
 ========================================
    ENHANCED THEME SELECTOR STYLING
    ======================================== */
 
 .theme-help-text {
-    font-style: italic;
-    text-align: center;
+  font-style: italic;
+  text-align: center;
 }
 
 .theme-option {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  position: relative !important;
 }
 
 .theme-option i {
-    margin-right: 8px !important;
-    width: 16px !important;
-    text-align: center !important;
+  margin-right: 8px !important;
+  width: 16px !important;
+  text-align: center !important;
 }
 
 .theme-shortcut {
-    font-size: 10px !important;
-    opacity: 0.7 !important;
-    background: rgba(255,255,255,0.1) !important;
-    padding: 2px 6px !important;
-    border-radius: 3px !important;
-    margin-left: auto !important;
+  font-size: 10px !important;
+  opacity: 0.7 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  margin-left: auto !important;
 }
 
 .theme-option:hover .theme-shortcut {
-    opacity: 1 !important;
-    background: rgba(255,255,255,0.2) !important;
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Enhanced button animations */
 @keyframes buttonPulse {
-    0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(100, 255, 218, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(100, 255, 218, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+  }
 }
 
-body.theme-constellation .btn-primary:focus, body.theme-ripple .btn-primary:focus, body.theme-scroll .btn-primary:focus,
-body.theme-matrix .btn-primary:focus, body.theme-neural .btn-primary:focus, body.theme-sound .btn-primary:focus, body.theme-gravity .btn-primary:focus {
-    animation: buttonPulse 1.5s infinite !important;
+body.theme-constellation .btn-primary:focus,
+body.theme-ripple .btn-primary:focus,
+body.theme-scroll .btn-primary:focus,
+body.theme-matrix .btn-primary:focus,
+body.theme-neural .btn-primary:focus,
+body.theme-sound .btn-primary:focus,
+body.theme-gravity .btn-primary:focus {
+  animation: buttonPulse 1.5s infinite !important;
 }
 
 /* Enhanced loading states */
 .btn.loading {
-    position: relative !important;
-    color: transparent !important;
+  position: relative !important;
+  color: transparent !important;
 }
 
 .btn.loading::after {
-    content: '' !important;
-    position: absolute !important;
-    width: 16px !important;
-    height: 16px !important;
-    top: 50% !important;
-    left: 50% !important;
-    margin-left: -8px !important;
-    margin-top: -8px !important;
-    border: 2px solid transparent !important;
-    border-top-color: #ffffff !important;
-    border-radius: 50% !important;
-    animation: spin 1s linear infinite !important;
+  content: '' !important;
+  position: absolute !important;
+  width: 16px !important;
+  height: 16px !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-left: -8px !important;
+  margin-top: -8px !important;
+  border: 2px solid transparent !important;
+  border-top-color: #ffffff !important;
+  border-radius: 50% !important;
+  animation: spin 1s linear infinite !important;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Enhanced responsive design for themes */
 @media (max-width: 768px) {
-    body.theme-constellation .resume-section, body.theme-ripple .resume-section, 
-    body.theme-scroll .resume-section, body.theme-matrix .resume-section, 
-    body.theme-neural .resume-section, body.theme-sound .resume-section, 
-    body.theme-gravity .resume-section {
-        margin: 15px !important;
-        padding: 25px !important;
-        border-radius: 15px !important;
-    }
-    
-    .theme-shortcut {
-        display: none !important;
-    }
-    
-    .theme-help-text {
-        display: none !important;
-    }
+
+  body.theme-constellation .resume-section,
+  body.theme-ripple .resume-section,
+  body.theme-scroll .resume-section,
+  body.theme-matrix .resume-section,
+  body.theme-neural .resume-section,
+  body.theme-sound .resume-section,
+  body.theme-gravity .resume-section {
+    margin: 15px !important;
+    padding: 25px !important;
+    border-radius: 15px !important;
+  }
+
+  .theme-shortcut {
+    display: none !important;
+  }
+
+  .theme-help-text {
+    display: none !important;
+  }
 }
 
 /* Enhanced print styles for themes */
 @media print {
-    body.theme-constellation, body.theme-ripple, body.theme-scroll,
-    body.theme-matrix, body.theme-neural, body.theme-sound, body.theme-gravity {
-        background: white !important;
-        color: black !important;
-    }
-    
-    body.theme-constellation *, body.theme-ripple *, body.theme-scroll *,
-    body.theme-matrix *, body.theme-neural *, body.theme-sound *, body.theme-gravity * {
-        background: transparent !important;
-        color: black !important;
-        text-shadow: none !important;
-        box-shadow: none !important;
-    }
-}/* 
+
+  body.theme-constellation,
+  body.theme-ripple,
+  body.theme-scroll,
+  body.theme-matrix,
+  body.theme-neural,
+  body.theme-sound,
+  body.theme-gravity {
+    background: white !important;
+    color: black !important;
+  }
+
+  body.theme-constellation *,
+  body.theme-ripple *,
+  body.theme-scroll *,
+  body.theme-matrix *,
+  body.theme-neural *,
+  body.theme-sound *,
+  body.theme-gravity * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* 
 ========================================
    MODAL TEXT READABILITY FIXES FOR THEMES
    ======================================== */
 
 /* Fix modal text colors for better readability in all themes */
-body.theme-constellation .modal-content, body.theme-ripple .modal-content, body.theme-scroll .modal-content,
-body.theme-matrix .modal-content, body.theme-neural .modal-content, body.theme-sound .modal-content, body.theme-gravity .modal-content {
-    color: #ffffff !important;
+body.theme-constellation .modal-content,
+body.theme-ripple .modal-content,
+body.theme-scroll .modal-content,
+body.theme-matrix .modal-content,
+body.theme-neural .modal-content,
+body.theme-sound .modal-content,
+body.theme-gravity .modal-content {
+  color: #ffffff !important;
 }
 
-body.theme-constellation .modal-title, body.theme-ripple .modal-title, body.theme-scroll .modal-title,
-body.theme-matrix .modal-title, body.theme-neural .modal-title, body.theme-sound .modal-title, body.theme-gravity .modal-title {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+body.theme-constellation .modal-title,
+body.theme-ripple .modal-title,
+body.theme-scroll .modal-title,
+body.theme-matrix .modal-title,
+body.theme-neural .modal-title,
+body.theme-sound .modal-title,
+body.theme-gravity .modal-title {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
-body.theme-constellation .modal-body, body.theme-ripple .modal-body, body.theme-scroll .modal-body,
-body.theme-matrix .modal-body, body.theme-neural .modal-body, body.theme-sound .modal-body, body.theme-gravity .modal-body {
-    color: #ffffff !important;
+body.theme-constellation .modal-body,
+body.theme-ripple .modal-body,
+body.theme-scroll .modal-body,
+body.theme-matrix .modal-body,
+body.theme-neural .modal-body,
+body.theme-sound .modal-body,
+body.theme-gravity .modal-body {
+  color: #ffffff !important;
 }
 
-body.theme-constellation .modal-body p, body.theme-ripple .modal-body p, body.theme-scroll .modal-body p,
-body.theme-matrix .modal-body p, body.theme-neural .modal-body p, body.theme-sound .modal-body p, body.theme-gravity .modal-body p {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7) !important;
+body.theme-constellation .modal-body p,
+body.theme-ripple .modal-body p,
+body.theme-scroll .modal-body p,
+body.theme-matrix .modal-body p,
+body.theme-neural .modal-body p,
+body.theme-sound .modal-body p,
+body.theme-gravity .modal-body p {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7) !important;
 }
 
-body.theme-constellation .modal-header, body.theme-ripple .modal-header, body.theme-scroll .modal-header,
-body.theme-matrix .modal-header, body.theme-neural .modal-header, body.theme-sound .modal-header, body.theme-gravity .modal-header {
-    border-bottom-color: rgba(255,255,255,0.3) !important;
+body.theme-constellation .modal-header,
+body.theme-ripple .modal-header,
+body.theme-scroll .modal-header,
+body.theme-matrix .modal-header,
+body.theme-neural .modal-header,
+body.theme-sound .modal-header,
+body.theme-gravity .modal-header {
+  border-bottom-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-body.theme-constellation .modal-footer, body.theme-ripple .modal-footer, body.theme-scroll .modal-footer,
-body.theme-matrix .modal-footer, body.theme-neural .modal-footer, body.theme-sound .modal-footer, body.theme-gravity .modal-footer {
-    border-top-color: rgba(255,255,255,0.3) !important;
+body.theme-constellation .modal-footer,
+body.theme-ripple .modal-footer,
+body.theme-scroll .modal-footer,
+body.theme-matrix .modal-footer,
+body.theme-neural .modal-footer,
+body.theme-sound .modal-footer,
+body.theme-gravity .modal-footer {
+  border-top-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Special handling for Gemini Summary Modal */
-body.theme-constellation #geminiSummaryContent, body.theme-ripple #geminiSummaryContent, body.theme-scroll #geminiSummaryContent,
-body.theme-matrix #geminiSummaryContent, body.theme-neural #geminiSummaryContent, body.theme-sound #geminiSummaryContent, body.theme-gravity #geminiSummaryContent {
-    color: #ffffff !important;
-    background: rgba(0,0,0,0.2) !important;
-    padding: 15px !important;
-    border-radius: 8px !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
-    line-height: 1.6 !important;
+body.theme-constellation #geminiSummaryContent,
+body.theme-ripple #geminiSummaryContent,
+body.theme-scroll #geminiSummaryContent,
+body.theme-matrix #geminiSummaryContent,
+body.theme-neural #geminiSummaryContent,
+body.theme-sound #geminiSummaryContent,
+body.theme-gravity #geminiSummaryContent {
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  padding: 15px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  line-height: 1.6 !important;
 }
 
 /* Matrix theme specific modal styling */
 body.theme-matrix .modal-content {
-    background: rgba(0,17,0,0.95) !important;
-    border: 2px solid rgba(0,255,0,0.5) !important;
-    box-shadow: 0 0 30px rgba(0,255,0,0.3) !important;
+  background: rgba(0, 17, 0, 0.95) !important;
+  border: 2px solid rgba(0, 255, 0, 0.5) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.3) !important;
 }
 
-body.theme-matrix .modal-title, body.theme-matrix .modal-body, body.theme-matrix .modal-body p {
-    color: #00ff00 !important;
-    font-family: 'Courier New', monospace !important;
-    text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.9) !important;
+body.theme-matrix .modal-title,
+body.theme-matrix .modal-body,
+body.theme-matrix .modal-body p {
+  color: #00ff00 !important;
+  font-family: 'Courier New', monospace !important;
+  text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
 }
 
 body.theme-matrix #geminiSummaryContent {
-    color: #ccffcc !important;
-    background: rgba(0,34,0,0.8) !important;
-    border: 1px solid rgba(0,255,0,0.4) !important;
-    text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9) !important;
+  color: #ccffcc !important;
+  background: rgba(0, 34, 0, 0.8) !important;
+  border: 1px solid rgba(0, 255, 0, 0.4) !important;
+  text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Enhanced close button visibility */
-body.theme-constellation .btn-close, body.theme-ripple .btn-close, body.theme-scroll .btn-close,
-body.theme-matrix .btn-close, body.theme-neural .btn-close, body.theme-sound .btn-close, body.theme-gravity .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%) !important;
-    background: rgba(255,255,255,0.2) !important;
-    border-radius: 50% !important;
-    padding: 8px !important;
-    opacity: 0.8 !important;
+body.theme-constellation .btn-close,
+body.theme-ripple .btn-close,
+body.theme-scroll .btn-close,
+body.theme-matrix .btn-close,
+body.theme-neural .btn-close,
+body.theme-sound .btn-close,
+body.theme-gravity .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  padding: 8px !important;
+  opacity: 0.8 !important;
 }
 
-body.theme-constellation .btn-close:hover, body.theme-ripple .btn-close:hover, body.theme-scroll .btn-close:hover,
-body.theme-matrix .btn-close:hover, body.theme-neural .btn-close:hover, body.theme-sound .btn-close:hover, body.theme-gravity .btn-close:hover {
-    opacity: 1 !important;
-    background: rgba(255,255,255,0.3) !important;
-    transform: scale(1.1) !important;
+body.theme-constellation .btn-close:hover,
+body.theme-ripple .btn-close:hover,
+body.theme-scroll .btn-close:hover,
+body.theme-matrix .btn-close:hover,
+body.theme-neural .btn-close:hover,
+body.theme-sound .btn-close:hover,
+body.theme-gravity .btn-close:hover {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.1) !important;
 }
 
 /* Enhanced iframe modal styling */
-body.theme-constellation #detailsModal .modal-content, body.theme-ripple #detailsModal .modal-content, body.theme-scroll #detailsModal .modal-content,
-body.theme-matrix #detailsModal .modal-content, body.theme-neural #detailsModal .modal-content, body.theme-sound #detailsModal .modal-content, body.theme-gravity #detailsModal .modal-content {
-    background: rgba(0,0,0,0.95) !important;
+body.theme-constellation #detailsModal .modal-content,
+body.theme-ripple #detailsModal .modal-content,
+body.theme-scroll #detailsModal .modal-content,
+body.theme-matrix #detailsModal .modal-content,
+body.theme-neural #detailsModal .modal-content,
+body.theme-sound #detailsModal .modal-content,
+body.theme-gravity #detailsModal .modal-content {
+  background: rgba(0, 0, 0, 0.95) !important;
 }
 
 /* Enhanced PDF viewer modal styling */
-body.theme-constellation .pdf-controls, body.theme-ripple .pdf-controls, body.theme-scroll .pdf-controls,
-body.theme-matrix .pdf-controls, body.theme-neural .pdf-controls, body.theme-sound .pdf-controls, body.theme-gravity .pdf-controls {
-    background-color: rgba(0,0,0,0.8) !important;
-    border-top: 1px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(10px) !important;
+body.theme-constellation .pdf-controls,
+body.theme-ripple .pdf-controls,
+body.theme-scroll .pdf-controls,
+body.theme-matrix .pdf-controls,
+body.theme-neural .pdf-controls,
+body.theme-sound .pdf-controls,
+body.theme-gravity .pdf-controls {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-body.theme-constellation .pdf-controls .page-num, body.theme-ripple .pdf-controls .page-num, body.theme-scroll .pdf-controls .page-num,
-body.theme-matrix .pdf-controls .page-num, body.theme-neural .pdf-controls .page-num, body.theme-sound .pdf-controls .page-num, body.theme-gravity .pdf-controls .page-num {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+body.theme-constellation .pdf-controls .page-num,
+body.theme-ripple .pdf-controls .page-num,
+body.theme-scroll .pdf-controls .page-num,
+body.theme-matrix .pdf-controls .page-num,
+body.theme-neural .pdf-controls .page-num,
+body.theme-sound .pdf-controls .page-num,
+body.theme-gravity .pdf-controls .page-num {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Enhanced video modal styling */
-body.theme-constellation .video-modal, body.theme-ripple .video-modal, body.theme-scroll .video-modal,
-body.theme-matrix .video-modal, body.theme-neural .video-modal, body.theme-sound .video-modal, body.theme-gravity .video-modal {
-    background-color: rgba(0, 0, 0, 0.95) !important;
+body.theme-constellation .video-modal,
+body.theme-ripple .video-modal,
+body.theme-scroll .video-modal,
+body.theme-matrix .video-modal,
+body.theme-neural .video-modal,
+body.theme-sound .video-modal,
+body.theme-gravity .video-modal {
+  background-color: rgba(0, 0, 0, 0.95) !important;
 }
 
-body.theme-constellation .close-video, body.theme-ripple .close-video, body.theme-scroll .close-video,
-body.theme-matrix .close-video, body.theme-neural .close-video, body.theme-sound .close-video, body.theme-gravity .close-video {
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.9) !important;
-    background: rgba(0,0,0,0.5) !important;
-    border-radius: 50% !important;
-    width: 50px !important;
-    height: 50px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+body.theme-constellation .close-video,
+body.theme-ripple .close-video,
+body.theme-scroll .close-video,
+body.theme-matrix .close-video,
+body.theme-neural .close-video,
+body.theme-sound .close-video,
+body.theme-gravity .close-video {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border-radius: 50% !important;
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-body.theme-constellation .close-video:hover, body.theme-ripple .close-video:hover, body.theme-scroll .close-video:hover,
-body.theme-matrix .close-video:hover, body.theme-neural .close-video:hover, body.theme-sound .close-video:hover, body.theme-gravity .close-video:hover {
-    background: rgba(255,0,0,0.7) !important;
-    transform: scale(1.1) !important;
+body.theme-constellation .close-video:hover,
+body.theme-ripple .close-video:hover,
+body.theme-scroll .close-video:hover,
+body.theme-matrix .close-video:hover,
+body.theme-neural .close-video:hover,
+body.theme-sound .close-video:hover,
+body.theme-gravity .close-video:hover {
+  background: rgba(255, 0, 0, 0.7) !important;
+  transform: scale(1.1) !important;
 }
 
 /* Enhanced alert and notification styling */
-body.theme-constellation .alert, body.theme-ripple .alert, body.theme-scroll .alert,
-body.theme-matrix .alert, body.theme-neural .alert, body.theme-sound .alert, body.theme-gravity .alert {
-    background: rgba(0,0,0,0.8) !important;
-    color: #ffffff !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+body.theme-constellation .alert,
+body.theme-ripple .alert,
+body.theme-scroll .alert,
+body.theme-matrix .alert,
+body.theme-neural .alert,
+body.theme-sound .alert,
+body.theme-gravity .alert {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
-body.theme-constellation .alert-success, body.theme-ripple .alert-success, body.theme-scroll .alert-success,
-body.theme-matrix .alert-success, body.theme-neural .alert-success, body.theme-sound .alert-success, body.theme-gravity .alert-success {
-    border-color: rgba(25, 135, 84, 0.8) !important;
-    background: rgba(25, 135, 84, 0.2) !important;
+body.theme-constellation .alert-success,
+body.theme-ripple .alert-success,
+body.theme-scroll .alert-success,
+body.theme-matrix .alert-success,
+body.theme-neural .alert-success,
+body.theme-sound .alert-success,
+body.theme-gravity .alert-success {
+  border-color: rgba(25, 135, 84, 0.8) !important;
+  background: rgba(25, 135, 84, 0.2) !important;
 }
 
-body.theme-constellation .alert-danger, body.theme-ripple .alert-danger, body.theme-scroll .alert-danger,
-body.theme-matrix .alert-danger, body.theme-neural .alert-danger, body.theme-sound .alert-danger, body.theme-gravity .alert-danger {
-    border-color: rgba(220, 53, 69, 0.8) !important;
-    background: rgba(220, 53, 69, 0.2) !important;
+body.theme-constellation .alert-danger,
+body.theme-ripple .alert-danger,
+body.theme-scroll .alert-danger,
+body.theme-matrix .alert-danger,
+body.theme-neural .alert-danger,
+body.theme-sound .alert-danger,
+body.theme-gravity .alert-danger {
+  border-color: rgba(220, 53, 69, 0.8) !important;
+  background: rgba(220, 53, 69, 0.2) !important;
 }
 
 /* Enhanced dropdown menu styling */
-body.theme-constellation .dropdown-menu, body.theme-ripple .dropdown-menu, body.theme-scroll .dropdown-menu,
-body.theme-matrix .dropdown-menu, body.theme-neural .dropdown-menu, body.theme-sound .dropdown-menu, body.theme-gravity .dropdown-menu {
-    background: rgba(0,0,0,0.9) !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(15px) !important;
-    color: #ffffff !important;
+body.theme-constellation .dropdown-menu,
+body.theme-ripple .dropdown-menu,
+body.theme-scroll .dropdown-menu,
+body.theme-matrix .dropdown-menu,
+body.theme-neural .dropdown-menu,
+body.theme-sound .dropdown-menu,
+body.theme-gravity .dropdown-menu {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(15px) !important;
+  color: #ffffff !important;
 }
 
-body.theme-constellation .dropdown-item, body.theme-ripple .dropdown-item, body.theme-scroll .dropdown-item,
-body.theme-matrix .dropdown-item, body.theme-neural .dropdown-item, body.theme-sound .dropdown-item, body.theme-gravity .dropdown-item {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+body.theme-constellation .dropdown-item,
+body.theme-ripple .dropdown-item,
+body.theme-scroll .dropdown-item,
+body.theme-matrix .dropdown-item,
+body.theme-neural .dropdown-item,
+body.theme-sound .dropdown-item,
+body.theme-gravity .dropdown-item {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
-body.theme-constellation .dropdown-item:hover, body.theme-ripple .dropdown-item:hover, body.theme-scroll .dropdown-item:hover,
-body.theme-matrix .dropdown-item:hover, body.theme-neural .dropdown-item:hover, body.theme-sound .dropdown-item:hover, body.theme-gravity .dropdown-item:hover {
-    background: rgba(255,255,255,0.2) !important;
-    color: #ffffff !important;
+body.theme-constellation .dropdown-item:hover,
+body.theme-ripple .dropdown-item:hover,
+body.theme-scroll .dropdown-item:hover,
+body.theme-matrix .dropdown-item:hover,
+body.theme-neural .dropdown-item:hover,
+body.theme-sound .dropdown-item:hover,
+body.theme-gravity .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
 }
 
 /* Enhanced tooltip styling */
-body.theme-constellation .tooltip, body.theme-ripple .tooltip, body.theme-scroll .tooltip,
-body.theme-matrix .tooltip, body.theme-neural .tooltip, body.theme-sound .tooltip, body.theme-gravity .tooltip {
-    --bs-tooltip-bg: rgba(0,0,0,0.9) !important;
-    --bs-tooltip-color: #ffffff !important;
+body.theme-constellation .tooltip,
+body.theme-ripple .tooltip,
+body.theme-scroll .tooltip,
+body.theme-matrix .tooltip,
+body.theme-neural .tooltip,
+body.theme-sound .tooltip,
+body.theme-gravity .tooltip {
+  --bs-tooltip-bg: rgba(0, 0, 0, 0.9) !important;
+  --bs-tooltip-color: #ffffff !important;
 }
 
-body.theme-constellation .tooltip-inner, body.theme-ripple .tooltip-inner, body.theme-scroll .tooltip-inner,
-body.theme-matrix .tooltip-inner, body.theme-neural .tooltip-inner, body.theme-sound .tooltip-inner, body.theme-gravity .tooltip-inner {
-    background: rgba(0,0,0,0.9) !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
-    border: 1px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(10px) !important;
-}/
-* ========================================
-   MODAL TEXT READABILITY FOR LIGHT/DARK MODES
-   ======================================== */
+body.theme-constellation .tooltip-inner,
+body.theme-ripple .tooltip-inner,
+body.theme-scroll .tooltip-inner,
+body.theme-matrix .tooltip-inner,
+body.theme-neural .tooltip-inner,
+body.theme-sound .tooltip-inner,
+body.theme-gravity .tooltip-inner {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+}
 
+/ *========================================MODAL TEXT READABILITY FOR LIGHT/DARK MODES========================================*/
 /* LIGHT MODE - Black text on light background for themed backgrounds */
-body.theme-constellation .modal-content, body.theme-ripple .modal-content, body.theme-scroll .modal-content,
-body.theme-matrix .modal-content, body.theme-neural .modal-content, body.theme-sound .modal-content, body.theme-gravity .modal-content {
-    color: #000000 !important;
-    background: rgba(255,255,255,0.95) !important;
-    border: 2px solid rgba(0,0,0,0.2) !important;
+body.theme-constellation .modal-content,
+body.theme-ripple .modal-content,
+body.theme-scroll .modal-content,
+body.theme-matrix .modal-content,
+body.theme-neural .modal-content,
+body.theme-sound .modal-content,
+body.theme-gravity .modal-content {
+  color: #000000 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
 }
 
-body.theme-constellation .modal-title, body.theme-ripple .modal-title, body.theme-scroll .modal-title,
-body.theme-matrix .modal-title, body.theme-neural .modal-title, body.theme-sound .modal-title, body.theme-gravity .modal-title {
-    color: #000000 !important;
-    text-shadow: none !important;
+body.theme-constellation .modal-title,
+body.theme-ripple .modal-title,
+body.theme-scroll .modal-title,
+body.theme-matrix .modal-title,
+body.theme-neural .modal-title,
+body.theme-sound .modal-title,
+body.theme-gravity .modal-title {
+  color: #000000 !important;
+  text-shadow: none !important;
 }
 
-body.theme-constellation .modal-body, body.theme-ripple .modal-body, body.theme-scroll .modal-body,
-body.theme-matrix .modal-body, body.theme-neural .modal-body, body.theme-sound .modal-body, body.theme-gravity .modal-body {
-    color: #000000 !important;
+body.theme-constellation .modal-body,
+body.theme-ripple .modal-body,
+body.theme-scroll .modal-body,
+body.theme-matrix .modal-body,
+body.theme-neural .modal-body,
+body.theme-sound .modal-body,
+body.theme-gravity .modal-body {
+  color: #000000 !important;
 }
 
-body.theme-constellation .modal-body p, body.theme-ripple .modal-body p, body.theme-scroll .modal-body p,
-body.theme-matrix .modal-body p, body.theme-neural .modal-body p, body.theme-sound .modal-body p, body.theme-gravity .modal-body p,
-body.theme-constellation .modal-body div, body.theme-ripple .modal-body div, body.theme-scroll .modal-body div,
-body.theme-matrix .modal-body div, body.theme-neural .modal-body div, body.theme-sound .modal-body div, body.theme-gravity .modal-body div,
-body.theme-constellation .modal-body span, body.theme-ripple .modal-body span, body.theme-scroll .modal-body span,
-body.theme-matrix .modal-body span, body.theme-neural .modal-body span, body.theme-sound .modal-body span, body.theme-gravity .modal-body span {
-    color: #000000 !important;
-    text-shadow: none !important;
+body.theme-constellation .modal-body p,
+body.theme-ripple .modal-body p,
+body.theme-scroll .modal-body p,
+body.theme-matrix .modal-body p,
+body.theme-neural .modal-body p,
+body.theme-sound .modal-body p,
+body.theme-gravity .modal-body p,
+body.theme-constellation .modal-body div,
+body.theme-ripple .modal-body div,
+body.theme-scroll .modal-body div,
+body.theme-matrix .modal-body div,
+body.theme-neural .modal-body div,
+body.theme-sound .modal-body div,
+body.theme-gravity .modal-body div,
+body.theme-constellation .modal-body span,
+body.theme-ripple .modal-body span,
+body.theme-scroll .modal-body span,
+body.theme-matrix .modal-body span,
+body.theme-neural .modal-body span,
+body.theme-sound .modal-body span,
+body.theme-gravity .modal-body span {
+  color: #000000 !important;
+  text-shadow: none !important;
 }
 
-body.theme-constellation .modal-header, body.theme-ripple .modal-header, body.theme-scroll .modal-header,
-body.theme-matrix .modal-header, body.theme-neural .modal-header, body.theme-sound .modal-header, body.theme-gravity .modal-header {
-    border-bottom-color: rgba(0,0,0,0.2) !important;
+body.theme-constellation .modal-header,
+body.theme-ripple .modal-header,
+body.theme-scroll .modal-header,
+body.theme-matrix .modal-header,
+body.theme-neural .modal-header,
+body.theme-sound .modal-header,
+body.theme-gravity .modal-header {
+  border-bottom-color: rgba(0, 0, 0, 0.2) !important;
 }
 
-body.theme-constellation .modal-footer, body.theme-ripple .modal-footer, body.theme-scroll .modal-footer,
-body.theme-matrix .modal-footer, body.theme-neural .modal-footer, body.theme-sound .modal-footer, body.theme-gravity .modal-footer {
-    border-top-color: rgba(0,0,0,0.2) !important;
+body.theme-constellation .modal-footer,
+body.theme-ripple .modal-footer,
+body.theme-scroll .modal-footer,
+body.theme-matrix .modal-footer,
+body.theme-neural .modal-footer,
+body.theme-sound .modal-footer,
+body.theme-gravity .modal-footer {
+  border-top-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 /* DARK MODE - White text on dark background for themed backgrounds */
-:root.dark-theme body.theme-constellation .modal-content, :root.dark-theme body.theme-ripple .modal-content, :root.dark-theme body.theme-scroll .modal-content,
-:root.dark-theme body.theme-matrix .modal-content, :root.dark-theme body.theme-neural .modal-content, :root.dark-theme body.theme-sound .modal-content, :root.dark-theme body.theme-gravity .modal-content {
-    color: #ffffff !important;
-    background: rgba(0,0,0,0.95) !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
+:root.dark-theme body.theme-constellation .modal-content,
+:root.dark-theme body.theme-ripple .modal-content,
+:root.dark-theme body.theme-scroll .modal-content,
+:root.dark-theme body.theme-matrix .modal-content,
+:root.dark-theme body.theme-neural .modal-content,
+:root.dark-theme body.theme-sound .modal-content,
+:root.dark-theme body.theme-gravity .modal-content {
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-:root.dark-theme body.theme-constellation .modal-title, :root.dark-theme body.theme-ripple .modal-title, :root.dark-theme body.theme-scroll .modal-title,
-:root.dark-theme body.theme-matrix .modal-title, :root.dark-theme body.theme-neural .modal-title, :root.dark-theme body.theme-sound .modal-title, :root.dark-theme body.theme-gravity .modal-title {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+:root.dark-theme body.theme-constellation .modal-title,
+:root.dark-theme body.theme-ripple .modal-title,
+:root.dark-theme body.theme-scroll .modal-title,
+:root.dark-theme body.theme-matrix .modal-title,
+:root.dark-theme body.theme-neural .modal-title,
+:root.dark-theme body.theme-sound .modal-title,
+:root.dark-theme body.theme-gravity .modal-title {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
-:root.dark-theme body.theme-constellation .modal-body, :root.dark-theme body.theme-ripple .modal-body, :root.dark-theme body.theme-scroll .modal-body,
-:root.dark-theme body.theme-matrix .modal-body, :root.dark-theme body.theme-neural .modal-body, :root.dark-theme body.theme-sound .modal-body, :root.dark-theme body.theme-gravity .modal-body {
-    color: #ffffff !important;
+:root.dark-theme body.theme-constellation .modal-body,
+:root.dark-theme body.theme-ripple .modal-body,
+:root.dark-theme body.theme-scroll .modal-body,
+:root.dark-theme body.theme-matrix .modal-body,
+:root.dark-theme body.theme-neural .modal-body,
+:root.dark-theme body.theme-sound .modal-body,
+:root.dark-theme body.theme-gravity .modal-body {
+  color: #ffffff !important;
 }
 
-:root.dark-theme body.theme-constellation .modal-body p, :root.dark-theme body.theme-ripple .modal-body p, :root.dark-theme body.theme-scroll .modal-body p,
-:root.dark-theme body.theme-matrix .modal-body p, :root.dark-theme body.theme-neural .modal-body p, :root.dark-theme body.theme-sound .modal-body p, :root.dark-theme body.theme-gravity .modal-body p,
-:root.dark-theme body.theme-constellation .modal-body div, :root.dark-theme body.theme-ripple .modal-body div, :root.dark-theme body.theme-scroll .modal-body div,
-:root.dark-theme body.theme-matrix .modal-body div, :root.dark-theme body.theme-neural .modal-body div, :root.dark-theme body.theme-sound .modal-body div, :root.dark-theme body.theme-gravity .modal-body div,
-:root.dark-theme body.theme-constellation .modal-body span, :root.dark-theme body.theme-ripple .modal-body span, :root.dark-theme body.theme-scroll .modal-body span,
-:root.dark-theme body.theme-matrix .modal-body span, :root.dark-theme body.theme-neural .modal-body span, :root.dark-theme body.theme-sound .modal-body span, :root.dark-theme body.theme-gravity .modal-body span {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7) !important;
+:root.dark-theme body.theme-constellation .modal-body p,
+:root.dark-theme body.theme-ripple .modal-body p,
+:root.dark-theme body.theme-scroll .modal-body p,
+:root.dark-theme body.theme-matrix .modal-body p,
+:root.dark-theme body.theme-neural .modal-body p,
+:root.dark-theme body.theme-sound .modal-body p,
+:root.dark-theme body.theme-gravity .modal-body p,
+:root.dark-theme body.theme-constellation .modal-body div,
+:root.dark-theme body.theme-ripple .modal-body div,
+:root.dark-theme body.theme-scroll .modal-body div,
+:root.dark-theme body.theme-matrix .modal-body div,
+:root.dark-theme body.theme-neural .modal-body div,
+:root.dark-theme body.theme-sound .modal-body div,
+:root.dark-theme body.theme-gravity .modal-body div,
+:root.dark-theme body.theme-constellation .modal-body span,
+:root.dark-theme body.theme-ripple .modal-body span,
+:root.dark-theme body.theme-scroll .modal-body span,
+:root.dark-theme body.theme-matrix .modal-body span,
+:root.dark-theme body.theme-neural .modal-body span,
+:root.dark-theme body.theme-sound .modal-body span,
+:root.dark-theme body.theme-gravity .modal-body span {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7) !important;
 }
 
-:root.dark-theme body.theme-constellation .modal-header, :root.dark-theme body.theme-ripple .modal-header, :root.dark-theme body.theme-scroll .modal-header,
-:root.dark-theme body.theme-matrix .modal-header, :root.dark-theme body.theme-neural .modal-header, :root.dark-theme body.theme-sound .modal-header, :root.dark-theme body.theme-gravity .modal-header {
-    border-bottom-color: rgba(255,255,255,0.3) !important;
+:root.dark-theme body.theme-constellation .modal-header,
+:root.dark-theme body.theme-ripple .modal-header,
+:root.dark-theme body.theme-scroll .modal-header,
+:root.dark-theme body.theme-matrix .modal-header,
+:root.dark-theme body.theme-neural .modal-header,
+:root.dark-theme body.theme-sound .modal-header,
+:root.dark-theme body.theme-gravity .modal-header {
+  border-bottom-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-:root.dark-theme body.theme-constellation .modal-footer, :root.dark-theme body.theme-ripple .modal-footer, :root.dark-theme body.theme-scroll .modal-footer,
-:root.dark-theme body.theme-matrix .modal-footer, :root.dark-theme body.theme-neural .modal-footer, :root.dark-theme body.theme-sound .modal-footer, :root.dark-theme body.theme-gravity .modal-footer {
-    border-top-color: rgba(255,255,255,0.3) !important;
+:root.dark-theme body.theme-constellation .modal-footer,
+:root.dark-theme body.theme-ripple .modal-footer,
+:root.dark-theme body.theme-scroll .modal-footer,
+:root.dark-theme body.theme-matrix .modal-footer,
+:root.dark-theme body.theme-neural .modal-footer,
+:root.dark-theme body.theme-sound .modal-footer,
+:root.dark-theme body.theme-gravity .modal-footer {
+  border-top-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Special handling for Gemini Summary Modal - LIGHT MODE */
-body.theme-constellation #geminiSummaryContent, body.theme-ripple #geminiSummaryContent, body.theme-scroll #geminiSummaryContent,
-body.theme-matrix #geminiSummaryContent, body.theme-neural #geminiSummaryContent, body.theme-sound #geminiSummaryContent, body.theme-gravity #geminiSummaryContent {
-    color: #000000 !important;
-    background: rgba(255,255,255,0.9) !important;
-    padding: 15px !important;
-    border-radius: 8px !important;
-    border: 2px solid rgba(0,0,0,0.2) !important;
-    text-shadow: none !important;
-    line-height: 1.6 !important;
+body.theme-constellation #geminiSummaryContent,
+body.theme-ripple #geminiSummaryContent,
+body.theme-scroll #geminiSummaryContent,
+body.theme-matrix #geminiSummaryContent,
+body.theme-neural #geminiSummaryContent,
+body.theme-sound #geminiSummaryContent,
+body.theme-gravity #geminiSummaryContent {
+  color: #000000 !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  padding: 15px !important;
+  border-radius: 8px !important;
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+  text-shadow: none !important;
+  line-height: 1.6 !important;
 }
 
 /* Special handling for Gemini Summary Modal - DARK MODE */
-:root.dark-theme body.theme-constellation #geminiSummaryContent, :root.dark-theme body.theme-ripple #geminiSummaryContent, :root.dark-theme body.theme-scroll #geminiSummaryContent,
-:root.dark-theme body.theme-matrix #geminiSummaryContent, :root.dark-theme body.theme-neural #geminiSummaryContent, :root.dark-theme body.theme-sound #geminiSummaryContent, :root.dark-theme body.theme-gravity #geminiSummaryContent {
-    color: #ffffff !important;
-    background: rgba(0,0,0,0.8) !important;
-    padding: 15px !important;
-    border-radius: 8px !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
-    line-height: 1.6 !important;
+:root.dark-theme body.theme-constellation #geminiSummaryContent,
+:root.dark-theme body.theme-ripple #geminiSummaryContent,
+:root.dark-theme body.theme-scroll #geminiSummaryContent,
+:root.dark-theme body.theme-matrix #geminiSummaryContent,
+:root.dark-theme body.theme-neural #geminiSummaryContent,
+:root.dark-theme body.theme-sound #geminiSummaryContent,
+:root.dark-theme body.theme-gravity #geminiSummaryContent {
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  padding: 15px !important;
+  border-radius: 8px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  line-height: 1.6 !important;
 }
 
 /* Matrix theme specific modal styling - LIGHT MODE */
 body.theme-matrix .modal-content {
-    background: rgba(240,255,240,0.95) !important;
-    border: 2px solid rgba(0,100,0,0.5) !important;
-    color: #003300 !important;
+  background: rgba(240, 255, 240, 0.95) !important;
+  border: 2px solid rgba(0, 100, 0, 0.5) !important;
+  color: #003300 !important;
 }
 
-body.theme-matrix .modal-title, body.theme-matrix .modal-body, body.theme-matrix .modal-body p,
-body.theme-matrix .modal-body div, body.theme-matrix .modal-body span {
-    color: #003300 !important;
-    font-family: 'Courier New', monospace !important;
-    text-shadow: none !important;
+body.theme-matrix .modal-title,
+body.theme-matrix .modal-body,
+body.theme-matrix .modal-body p,
+body.theme-matrix .modal-body div,
+body.theme-matrix .modal-body span {
+  color: #003300 !important;
+  font-family: 'Courier New', monospace !important;
+  text-shadow: none !important;
 }
 
 body.theme-matrix #geminiSummaryContent {
-    color: #003300 !important;
-    background: rgba(230,255,230,0.9) !important;
-    border: 2px solid rgba(0,100,0,0.4) !important;
-    text-shadow: none !important;
+  color: #003300 !important;
+  background: rgba(230, 255, 230, 0.9) !important;
+  border: 2px solid rgba(0, 100, 0, 0.4) !important;
+  text-shadow: none !important;
 }
 
 /* Matrix theme specific modal styling - DARK MODE */
 :root.dark-theme body.theme-matrix .modal-content {
-    background: rgba(0,17,0,0.95) !important;
-    border: 2px solid rgba(0,255,0,0.5) !important;
-    box-shadow: 0 0 30px rgba(0,255,0,0.3) !important;
+  background: rgba(0, 17, 0, 0.95) !important;
+  border: 2px solid rgba(0, 255, 0, 0.5) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.3) !important;
 }
 
-:root.dark-theme body.theme-matrix .modal-title, :root.dark-theme body.theme-matrix .modal-body, :root.dark-theme body.theme-matrix .modal-body p,
-:root.dark-theme body.theme-matrix .modal-body div, :root.dark-theme body.theme-matrix .modal-body span {
-    color: #00ff00 !important;
-    font-family: 'Courier New', monospace !important;
-    text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0,0,0,0.9) !important;
+:root.dark-theme body.theme-matrix .modal-title,
+:root.dark-theme body.theme-matrix .modal-body,
+:root.dark-theme body.theme-matrix .modal-body p,
+:root.dark-theme body.theme-matrix .modal-body div,
+:root.dark-theme body.theme-matrix .modal-body span {
+  color: #00ff00 !important;
+  font-family: 'Courier New', monospace !important;
+  text-shadow: 0 0 8px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
 }
 
 :root.dark-theme body.theme-matrix #geminiSummaryContent {
-    color: #ccffcc !important;
-    background: rgba(0,34,0,0.8) !important;
-    border: 2px solid rgba(0,255,0,0.4) !important;
-    text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0,0,0,0.9) !important;
+  color: #ccffcc !important;
+  background: rgba(0, 34, 0, 0.8) !important;
+  border: 2px solid rgba(0, 255, 0, 0.4) !important;
+  text-shadow: 0 0 5px #00ff00, 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Enhanced close button visibility - LIGHT MODE */
-body.theme-constellation .btn-close, body.theme-ripple .btn-close, body.theme-scroll .btn-close,
-body.theme-matrix .btn-close, body.theme-neural .btn-close, body.theme-sound .btn-close, body.theme-gravity .btn-close {
-    filter: none !important;
-    background: rgba(0,0,0,0.1) !important;
-    border-radius: 50% !important;
-    padding: 8px !important;
-    opacity: 0.8 !important;
+body.theme-constellation .btn-close,
+body.theme-ripple .btn-close,
+body.theme-scroll .btn-close,
+body.theme-matrix .btn-close,
+body.theme-neural .btn-close,
+body.theme-sound .btn-close,
+body.theme-gravity .btn-close {
+  filter: none !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 50% !important;
+  padding: 8px !important;
+  opacity: 0.8 !important;
 }
 
 /* Enhanced close button visibility - DARK MODE */
-:root.dark-theme body.theme-constellation .btn-close, :root.dark-theme body.theme-ripple .btn-close, :root.dark-theme body.theme-scroll .btn-close,
-:root.dark-theme body.theme-matrix .btn-close, :root.dark-theme body.theme-neural .btn-close, :root.dark-theme body.theme-sound .btn-close, :root.dark-theme body.theme-gravity .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%) !important;
-    background: rgba(255,255,255,0.2) !important;
-    border-radius: 50% !important;
-    padding: 8px !important;
-    opacity: 0.8 !important;
+:root.dark-theme body.theme-constellation .btn-close,
+:root.dark-theme body.theme-ripple .btn-close,
+:root.dark-theme body.theme-scroll .btn-close,
+:root.dark-theme body.theme-matrix .btn-close,
+:root.dark-theme body.theme-neural .btn-close,
+:root.dark-theme body.theme-sound .btn-close,
+:root.dark-theme body.theme-gravity .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  padding: 8px !important;
+  opacity: 0.8 !important;
 }
 
 /* Enhanced alert styling - LIGHT MODE */
-body.theme-constellation .alert, body.theme-ripple .alert, body.theme-scroll .alert,
-body.theme-matrix .alert, body.theme-neural .alert, body.theme-sound .alert, body.theme-gravity .alert {
-    background: rgba(255,255,255,0.9) !important;
-    color: #000000 !important;
-    border: 2px solid rgba(0,0,0,0.2) !important;
-    text-shadow: none !important;
+body.theme-constellation .alert,
+body.theme-ripple .alert,
+body.theme-scroll .alert,
+body.theme-matrix .alert,
+body.theme-neural .alert,
+body.theme-sound .alert,
+body.theme-gravity .alert {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #000000 !important;
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+  text-shadow: none !important;
 }
 
 /* Enhanced alert styling - DARK MODE */
-:root.dark-theme body.theme-constellation .alert, :root.dark-theme body.theme-ripple .alert, :root.dark-theme body.theme-scroll .alert,
-:root.dark-theme body.theme-matrix .alert, :root.dark-theme body.theme-neural .alert, :root.dark-theme body.theme-sound .alert, :root.dark-theme body.theme-gravity .alert {
-    background: rgba(0,0,0,0.8) !important;
-    color: #ffffff !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+:root.dark-theme body.theme-constellation .alert,
+:root.dark-theme body.theme-ripple .alert,
+:root.dark-theme body.theme-scroll .alert,
+:root.dark-theme body.theme-matrix .alert,
+:root.dark-theme body.theme-neural .alert,
+:root.dark-theme body.theme-sound .alert,
+:root.dark-theme body.theme-gravity .alert {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
+
 /* Mobile
  responsiveness for matrix theme */
 @media (max-width: 768px) {
-    .matrix-char {
-        font-size: 12px !important;
-        opacity: 0.2 !important;
-    }
-    
-    .matrix-char.active {
-        transform: scale(1.1) !important;
-        text-shadow: 0 0 10px #00ff00 !important;
-    }
-    
-    /* Reduce matrix character density on mobile */
-    .reactive-matrix-bg {
-        background: linear-gradient(135deg, #001100 0%, #002200 100%) !important;
-    }
-    
-    /* Improve text readability on mobile for matrix theme */
-    body.theme-matrix .resume-section {
-        background: rgba(0,17,0,0.9) !important;
-        border-radius: 10px;
-        margin: 10px;
-        padding: 20px !important;
-    }
-    
-    body.theme-matrix h1, body.theme-matrix .h1 {
-        font-size: 2.5rem !important;
-        text-shadow: 0 0 15px #00ff00, 2px 2px 6px rgba(0,0,0,0.9) !important;
-    }
-    
-    body.theme-matrix h2, body.theme-matrix .h2 {
-        font-size: 2rem !important;
-        text-shadow: 0 0 12px #00ff00, 2px 2px 4px rgba(0,0,0,0.9) !important;
-    }
-    
-    body.theme-matrix .lead {
-        font-size: 1.1rem !important;
-        line-height: 1.6 !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important;
-    }
+  .matrix-char {
+    font-size: 12px !important;
+    opacity: 0.2 !important;
+  }
+
+  .matrix-char.active {
+    transform: scale(1.1) !important;
+    text-shadow: 0 0 10px #00ff00 !important;
+  }
+
+  /* Reduce matrix character density on mobile */
+  .reactive-matrix-bg {
+    background: linear-gradient(135deg, #001100 0%, #002200 100%) !important;
+  }
+
+  /* Improve text readability on mobile for matrix theme */
+  body.theme-matrix .resume-section {
+    background: rgba(0, 17, 0, 0.15) !important;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px !important;
+  }
+
+  body.theme-matrix h1,
+  body.theme-matrix .h1 {
+    font-size: 2.5rem !important;
+    text-shadow: 0 0 15px #00ff00, 2px 2px 6px rgba(0, 0, 0, 0.9) !important;
+  }
+
+  body.theme-matrix h2,
+  body.theme-matrix .h2 {
+    font-size: 2rem !important;
+    text-shadow: 0 0 12px #00ff00, 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+  }
+
+  body.theme-matrix .lead {
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
+  }
 }
 
 @media (max-width: 480px) {
-    .matrix-char {
-        font-size: 10px !important;
-        opacity: 0.15 !important;
-    }
-    
-    .matrix-char.active {
-        transform: scale(1.05) !important;
-        text-shadow: 0 0 8px #00ff00 !important;
-    }
-    
-    /* Further improve readability on small screens */
-    body.theme-matrix .resume-section {
-        margin: 5px !important;
-        padding: 15px !important;
-    }
-    
-    body.theme-matrix h1, body.theme-matrix .h1 {
-        font-size: 2rem !important;
-    }
-    
-    body.theme-matrix h2, body.theme-matrix .h2 {
-        font-size: 1.5rem !important;
-    }
-    
-    body.theme-matrix .lead {
-        font-size: 1rem !important;
-    }
-    
-    body.theme-matrix .subheading {
-        font-size: 0.9rem !important;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
-    }
-}/* 
+  .matrix-char {
+    font-size: 10px !important;
+    opacity: 0.15 !important;
+  }
+
+  .matrix-char.active {
+    transform: scale(1.05) !important;
+    text-shadow: 0 0 8px #00ff00 !important;
+  }
+
+  /* Further improve readability on small screens */
+  body.theme-matrix .resume-section {
+    margin: 5px !important;
+    padding: 15px !important;
+  }
+
+  body.theme-matrix h1,
+  body.theme-matrix .h1 {
+    font-size: 2rem !important;
+  }
+
+  body.theme-matrix h2,
+  body.theme-matrix .h2 {
+    font-size: 1.5rem !important;
+  }
+
+  body.theme-matrix .lead {
+    font-size: 1rem !important;
+  }
+
+  body.theme-matrix .subheading {
+    font-size: 0.9rem !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  }
+}
+
+/* 
 Additional mobile optimizations for matrix theme */
 @media (max-width: 768px) and (orientation: portrait) {
-    body.theme-matrix .navbar {
-        background-color: rgba(0, 17, 0, 0.95) !important;
-    }
-    
-    body.theme-matrix .navbar-brand {
-        color: #00ff00 !important;
-        text-shadow: 0 0 8px #00ff00 !important;
-    }
-    
-    body.theme-matrix .nav-link {
-        color: #ccffcc !important;
-        text-shadow: 0 0 5px #00ff00 !important;
-    }
+  body.theme-matrix .navbar {
+    background-color: rgba(0, 17, 0, 0.95) !important;
+  }
+
+  body.theme-matrix .navbar-brand {
+    color: #00ff00 !important;
+    text-shadow: 0 0 8px #00ff00 !important;
+  }
+
+  body.theme-matrix .nav-link {
+    color: #ccffcc !important;
+    text-shadow: 0 0 5px #00ff00 !important;
+  }
 }
 
 @media (max-width: 480px) and (orientation: landscape) {
-    .matrix-char {
-        font-size: 8px !important;
-        opacity: 0.1 !important;
-    }
-    
-    body.theme-matrix .resume-section {
-        padding: 10px !important;
-        margin: 2px !important;
-    }
+  .matrix-char {
+    font-size: 8px !important;
+    opacity: 0.1 !important;
+  }
+
+  body.theme-matrix .resume-section {
+    padding: 10px !important;
+    margin: 2px !important;
+  }
 }
 
 /* Improve performance on low-end mobile devices */
 @media (max-width: 480px) {
-    .matrix-char {
-        animation: none !important;
-        transition: opacity 0.1s ease !important;
-    }
-    
-    .reactive-matrix-bg {
-        background: #001100 !important; /* Solid color for better performance */
-    }
-}/* Fi
+  .matrix-char {
+    animation: none !important;
+    transition: opacity 0.1s ease !important;
+  }
+
+  .reactive-matrix-bg {
+    background: #001100 !important;
+    /* Solid color for better performance */
+  }
+}
+
+/* Fi
 x email and long text overflow in matrix theme on mobile */
 @media (max-width: 768px) {
-    body.theme-matrix .subheading {
-        word-wrap: break-word !important;
-        word-break: break-all !important;
-        overflow-wrap: break-word !important;
-        hyphens: auto !important;
-        line-height: 1.4 !important;
-    }
-    
-    body.theme-matrix .subheading a {
-        word-wrap: break-word !important;
-        word-break: break-all !important;
-        overflow-wrap: break-word !important;
-        display: inline-block !important;
-        max-width: 100% !important;
-    }
-    
-    /* Ensure content doesn't overflow the container */
-    body.theme-matrix .resume-section-content {
-        overflow: hidden !important;
-        word-wrap: break-word !important;
-    }
-    
-    /* Fix long text in lead paragraphs */
-    body.theme-matrix .lead {
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        hyphens: auto !important;
-    }
+  body.theme-matrix .subheading {
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    line-height: 1.4 !important;
+  }
+
+  body.theme-matrix .subheading a {
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+  }
+
+  /* Ensure content doesn't overflow the container */
+  body.theme-matrix .resume-section-content {
+    overflow: hidden !important;
+    word-wrap: break-word !important;
+  }
+
+  /* Fix long text in lead paragraphs */
+  body.theme-matrix .lead {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+  }
 }
 
 @media (max-width: 480px) {
-    body.theme-matrix .subheading {
-        font-size: 0.85rem !important;
-        line-height: 1.3 !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    /* Break email into multiple lines if needed */
-    body.theme-matrix .subheading a[href^="mailto:"] {
-        display: block !important;
-        margin-top: 5px !important;
-        font-size: 0.8rem !important;
-        word-break: break-all !important;
-    }
-    
-    /* Add some spacing between contact info elements */
-    body.theme-matrix .subheading {
-        white-space: normal !important;
-    }
+  body.theme-matrix .subheading {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Break email into multiple lines if needed */
+  body.theme-matrix .subheading a[href^="mailto:"] {
+    display: block !important;
+    margin-top: 5px !important;
+    font-size: 0.8rem !important;
+    word-break: break-all !important;
+  }
+
+  /* Add some spacing between contact info elements */
+  body.theme-matrix .subheading {
+    white-space: normal !important;
+  }
 }
 
 /* Additional text overflow fixes for matrix theme */
 body.theme-matrix * {
-    box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
 
 @media (max-width: 768px) {
-    body.theme-matrix .container-fluid {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-    
-    body.theme-matrix .resume-section {
-        padding: 15px !important;
-        margin: 8px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.3) !important;
-    }
-}/* Mobi
+  body.theme-matrix .container-fluid {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  body.theme-matrix .resume-section {
+    padding: 15px !important;
+    margin: 8px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3) !important;
+  }
+}
+
+/* Mobi
 le-specific contact info layout for matrix theme */
 @media (max-width: 768px) {
-    body.theme-matrix .subheading {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 5px !important;
-    }
-    
-    /* Style each contact info item separately */
-    body.theme-matrix .subheading::before {
-        content: "" !important;
-        display: block !important;
-        width: 100% !important;
-    }
+  body.theme-matrix .subheading {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 5px !important;
+  }
+
+  /* Style each contact info item separately */
+  body.theme-matrix .subheading::before {
+    content: "" !important;
+    display: block !important;
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 480px) {
-    /* Stack contact information vertically on very small screens */
-    body.theme-matrix .subheading {
-        text-align: left !important;
-        font-size: 0.8rem !important;
-    }
-    
-    /* Make email more readable by adding background */
-    body.theme-matrix .subheading a[href^="mailto:"] {
-        background: rgba(0, 255, 0, 0.1) !important;
-        padding: 3px 6px !important;
-        border-radius: 4px !important;
-        border: 1px solid rgba(0, 255, 0, 0.3) !important;
-        margin: 2px 0 !important;
-    }
-}/* Pre
+
+  /* Stack contact information vertically on very small screens */
+  body.theme-matrix .subheading {
+    text-align: left !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Make email more readable by adding background */
+  body.theme-matrix .subheading a[href^="mailto:"] {
+    background: rgba(0, 255, 0, 0.1) !important;
+    padding: 3px 6px !important;
+    border-radius: 4px !important;
+    border: 1px solid rgba(0, 255, 0, 0.3) !important;
+    margin: 2px 0 !important;
+  }
+}
+
+/* Pre
 vent any horizontal overflow in matrix theme */
 @media (max-width: 768px) {
-    body.theme-matrix {
-        overflow-x: hidden !important;
-    }
-    
-    body.theme-matrix .container-fluid,
-    body.theme-matrix .resume-section,
-    body.theme-matrix .resume-section-content {
-        max-width: 100% !important;
-        overflow-x: hidden !important;
-        box-sizing: border-box !important;
-    }
-    
-    /* Specific fix for the about section where email appears */
-    body.theme-matrix #about .resume-section-content {
-        padding: 15px !important;
-        margin: 0 !important;
-    }
-    
-    body.theme-matrix #about .subheading {
-        max-width: 100% !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
+  body.theme-matrix {
+    overflow-x: hidden !important;
+  }
+
+  body.theme-matrix .container-fluid,
+  body.theme-matrix .resume-section,
+  body.theme-matrix .resume-section-content {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Specific fix for the about section where email appears */
+  body.theme-matrix #about .resume-section-content {
+    padding: 15px !important;
+    margin: 0 !important;
+  }
+
+  body.theme-matrix #about .subheading {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
 }
 
 /* Force text wrapping for all text content in matrix theme on mobile */
 @media (max-width: 480px) {
-    body.theme-matrix * {
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        max-width: 100% !important;
-    }
-    
-    body.theme-matrix a {
-        word-break: break-all !important;
-    }
-}/* Spec
+  body.theme-matrix * {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  body.theme-matrix a {
+    word-break: break-all !important;
+  }
+}
+
+/* Spec
 ific fix for email overflow issue in matrix theme mobile */
 @media (max-width: 768px) {
-    body.theme-matrix .subheading a[href*="gourabg30march"] {
-        display: block !important;
-        word-break: break-all !important;
-        overflow-wrap: break-word !important;
-        font-size: 0.85rem !important;
-        line-height: 1.2 !important;
-        margin-top: 8px !important;
-        padding: 4px 8px !important;
-        background: rgba(0, 255, 0, 0.15) !important;
-        border: 1px solid rgba(0, 255, 0, 0.4) !important;
-        border-radius: 6px !important;
-        text-decoration: none !important;
-        color: #00ff00 !important;
-        text-shadow: 0 0 8px #00ff00 !important;
-    }
+  body.theme-matrix .subheading a[href*="gourabg30march"] {
+    display: block !important;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.85rem !important;
+    line-height: 1.2 !important;
+    margin-top: 8px !important;
+    padding: 4px 8px !important;
+    background: rgba(0, 255, 0, 0.15) !important;
+    border: 1px solid rgba(0, 255, 0, 0.4) !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    color: #00ff00 !important;
+    text-shadow: 0 0 8px #00ff00 !important;
+  }
 }
 
 @media (max-width: 480px) {
-    body.theme-matrix .subheading a[href*="gourabg30march"] {
-        font-size: 0.75rem !important;
-        padding: 3px 6px !important;
-        margin-top: 6px !important;
-    }
-    
-    /* Ensure the parent container doesn't cause overflow */
-    body.theme-matrix .subheading {
-        width: 100% !important;
-        max-width: calc(100vw - 40px) !important;
-        box-sizing: border-box !important;
-    }
+  body.theme-matrix .subheading a[href*="gourabg30march"] {
+    font-size: 0.75rem !important;
+    padding: 3px 6px !important;
+    margin-top: 6px !important;
+  }
+
+  /* Ensure the parent container doesn't cause overflow */
+  body.theme-matrix .subheading {
+    width: 100% !important;
+    max-width: calc(100vw - 40px) !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* --- 
+Video Quality Selector --- */
+.video-controls .quality-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #6c757d;
+  /* Same as other secondary buttons */
+  text-transform: uppercase;
+}
+
+.video-controls .quality-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Style for the currently active quality button */
+.video-controls .quality-btn.active {
+  background-color: #007bff;
+  /* Same as play button */
+  color: white;
+  border: 1px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+}/
+* Enhanced text visibility for ultra-transparent backgrounds */
+body.theme-matrix h1,
+body.theme-matrix .h1,
+body.theme-matrix h2,
+body.theme-matrix .h2,
+body.theme-matrix h3,
+body.theme-matrix .h3,
+body.theme-matrix h4,
+body.theme-matrix .h4,
+body.theme-matrix h5,
+body.theme-matrix .h5,
+body.theme-matrix h6,
+body.theme-matrix .h6 {
+  text-shadow: 0 0 12px #00ff00, 2px 2px 5px rgba(0, 0, 0, 0.9) !important;
+}
+
+body.theme-matrix p,
+body.theme-matrix .lead {
+  text-shadow: 0 0 7px #00ff00, 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
 }

@@ -99,6 +99,9 @@ class PdfViewer {
 // --- Global Variables ---
 let internshipViewer = null;
 let resumeViewer = null;
+// --- ADD NEW GLOBAL VARIABLES ---
+let currentVideoSources = {};
+let currentQuality = 'sd'; // Default quality
 
 
 // --- Main Application Logic ---
@@ -236,14 +239,77 @@ window.addEventListener('DOMContentLoaded', event => {
         }
 
         // --- Video Player Logic ---
+        const qualitySelectorContainer = document.getElementById('qualitySelectorContainer');
+
+        function changeVideoQuality(newQuality) {
+            if (newQuality === currentQuality || !currentVideoSources[newQuality]) return;
+
+            const currentTime = videoPlayer.currentTime;
+            const isPaused = videoPlayer.paused;
+
+            currentQuality = newQuality;
+            videoPlayer.src = currentVideoSources[newQuality];
+
+            // Wait for the new source to load metadata
+            videoPlayer.addEventListener('loadeddata', () => {
+                videoPlayer.currentTime = currentTime;
+                if (!isPaused) {
+                    videoPlayer.play();
+                }
+                updateActiveQualityButton();
+            }, { once: true }); // Ensure this listener only runs once
+        }
+
+        function updateActiveQualityButton() {
+            document.querySelectorAll('.quality-btn').forEach(btn => {
+                if (btn.dataset.quality === currentQuality) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function populateQualitySelector() {
+            qualitySelectorContainer.innerHTML = ''; // Clear previous buttons
+
+            Object.keys(currentVideoSources).forEach(quality => {
+                const qualityBtn = document.createElement('button');
+                qualityBtn.className = 'quality-btn';
+                qualityBtn.dataset.quality = quality;
+                qualityBtn.textContent = quality;
+                qualityBtn.onclick = () => changeVideoQuality(quality);
+                qualitySelectorContainer.appendChild(qualityBtn);
+            });
+
+            updateActiveQualityButton();
+        }
+
         document.querySelectorAll('.play-video').forEach(button => {
             button.addEventListener('click', function () {
-                const videoSrc = this.getAttribute('data-video');
-                videoPlayer.src = videoSrc;
-                videoModal.style.display = 'flex';
-                videoPlayer.play();
-                updatePlayPauseButton();
-                updateMuteButton();
+                // Find all video sources from data attributes
+                currentVideoSources = {};
+                for (const attr of this.attributes) {
+                    if (attr.name.startsWith('data-video-')) {
+                        const quality = attr.name.replace('data-video-', '');
+                        currentVideoSources[quality] = attr.value;
+                    }
+                }
+
+                // Set default quality and source
+                currentQuality = 'sd'; // Always start with SD
+                const videoSrc = currentVideoSources[currentQuality];
+
+                if (videoSrc) {
+                    videoPlayer.src = videoSrc;
+                    populateQualitySelector();
+                    videoModal.style.display = 'flex';
+                    videoPlayer.play();
+                    updatePlayPauseButton();
+                    updateMuteButton();
+                } else {
+                    console.error("No default 'sd' video source found for this button.");
+                }
             });
         });
 
@@ -252,9 +318,12 @@ window.addEventListener('DOMContentLoaded', event => {
                 videoModal.style.display = 'none';
                 videoPlayer.pause();
                 videoPlayer.src = '';
+                qualitySelectorContainer.innerHTML = ''; // Clear quality buttons
+                currentVideoSources = {}; // Reset sources
             });
         }
 
+        // ... (The rest of the original video player code remains the same)
         if (playPauseBtn) {
             playPauseBtn.addEventListener('click', () => {
                 if (videoPlayer.paused) {
