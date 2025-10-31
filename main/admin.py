@@ -66,7 +66,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(ContentItem)
 class ContentItemAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'content_type', 'is_featured', 'is_active', 'order', 'created_at', 'view_on_site']
+    list_display = ['title', 'category', 'content_type', 'media_status', 'is_featured', 'is_active', 'order', 'created_at', 'view_on_site']
     list_filter = ['category', 'content_type', 'is_featured', 'is_active', 'created_at', 'start_date']
     search_fields = ['title', 'description', 'technologies', 'short_description']
     prepopulated_fields = {'slug': ('title',)}
@@ -97,6 +97,23 @@ class ContentItemAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('category')
+
+    def media_status(self, obj):
+        """Show which media files are uploaded."""
+        status = []
+        if obj.image:
+            status.append('<span style="color: green;">📷 IMG</span>')
+        if obj.video:
+            status.append('<span style="color: blue;">🎥 VID</span>')
+        if obj.pdf_file:
+            status.append('<span style="color: red;">📄 PDF</span>')
+        if obj.detail_html_file:
+            status.append('<span style="color: purple;">🌐 HTML</span>')
+        
+        if status:
+            return format_html(' '.join(status))
+        return format_html('<span style="color: gray;">No media</span>')
+    media_status.short_description = 'Media Files'
 
     def view_on_site(self, obj):
         if obj.slug:

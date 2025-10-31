@@ -274,17 +274,34 @@
                             {% endfor %}
                         </div>
                     {% elif category.slug == 'experience' %}
-                        <!-- Projects Section - Exact match to original static website -->
+                        <!-- Projects Section - Dynamic content with fallback to static files -->
                         {% for item in category.items.all %}
                             {% if item.is_active %}
                                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
                                     <div class="flex-grow-1">
                                         <h3 class="mb-0">{{ item.title }}</h3>
                                         <div class="subheading mb-3">{{ item.short_description }}</div>
-                                        <button class="play-video btn btn-primary" 
-                                                data-video-sd="{% if item.video %}{{ item.video.url }}{% elif item.title == 'Image Recognition System' %}{% static 'assets/videos/trial (2).mp4' %}{% elif item.title == 'Crypto Prediction' %}{% static 'assets/videos/crypto_prediction.mkv' %}{% elif item.title == 'Stock Price Prediction' %}{% static 'assets/videos/stock_price_prediction.mkv' %}{% elif item.title == 'Salary Prediction' %}{% static 'assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv' %}{% else %}{% static 'assets/videos/trial (2).mp4' %}{% endif %}"
-                                                data-video-hd="{% if item.video %}{{ item.video.url }}{% elif item.title == 'Image Recognition System' %}{% static 'assets/videos/trial (2).mp4' %}{% elif item.title == 'Crypto Prediction' %}{% static 'assets/videos/crypto_prediction.mkv' %}{% elif item.title == 'Stock Price Prediction' %}{% static 'assets/videos/stock_price_prediction.mkv' %}{% elif item.title == 'Salary Prediction' %}{% static 'assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv' %}{% else %}{% static 'assets/videos/trial (2).mp4' %}{% endif %}">Play Demo</button>
-                                        <button class="open-modal btn btn-secondary" data-page="{% static 'details/' %}{% if item.title == 'Image Recognition System' %}page3.html{% elif item.title == 'Crypto Prediction' %}aboutp2.html{% elif item.title == 'Stock Price Prediction' %}aboutp3.html{% elif item.title == 'Salary Prediction' %}aboutp4.html{% else %}page3.html{% endif %}">View Details</button>
+                                        
+                                        <!-- Dynamic Video Button -->
+                                        {% if item.video %}
+                                            <button class="play-video btn btn-primary" 
+                                                    data-video-sd="{{ item.video.url }}"
+                                                    data-video-hd="{{ item.video.url }}">Play Demo</button>
+                                        {% else %}
+                                            <!-- Fallback to static videos for existing projects -->
+                                            <button class="play-video btn btn-primary" 
+                                                    data-video-sd="{% if item.title == 'Image Recognition System' %}{% static 'assets/videos/trial (2).mp4' %}{% elif item.title == 'Crypto Prediction' %}{% static 'assets/videos/crypto_prediction.mkv' %}{% elif item.title == 'Stock Price Prediction' %}{% static 'assets/videos/stock_price_prediction.mkv' %}{% elif item.title == 'Salary Prediction' %}{% static 'assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv' %}{% else %}{% static 'assets/videos/trial (2).mp4' %}{% endif %}"
+                                                    data-video-hd="{% if item.title == 'Image Recognition System' %}{% static 'assets/videos/trial (2).mp4' %}{% elif item.title == 'Crypto Prediction' %}{% static 'assets/videos/crypto_prediction.mkv' %}{% elif item.title == 'Stock Price Prediction' %}{% static 'assets/videos/stock_price_prediction.mkv' %}{% elif item.title == 'Salary Prediction' %}{% static 'assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv' %}{% else %}{% static 'assets/videos/trial (2).mp4' %}{% endif %}">Play Demo</button>
+                                        {% endif %}
+                                        
+                                        <!-- Dynamic HTML Details Button -->
+                                        {% if item.detail_html_file %}
+                                            <button class="open-modal btn btn-secondary" data-page="{% url 'project_detail_html' item.slug %}">View Details</button>
+                                        {% else %}
+                                            <!-- Fallback to static HTML files for existing projects -->
+                                            <button class="open-modal btn btn-secondary" data-page="{% static 'details/' %}{% if item.title == 'Image Recognition System' %}page3.html{% elif item.title == 'Crypto Prediction' %}aboutp2.html{% elif item.title == 'Stock Price Prediction' %}aboutp3.html{% elif item.title == 'Salary Prediction' %}aboutp4.html{% else %}page3.html{% endif %}">View Details</button>
+                                        {% endif %}
+                                        
                                         <button class="btn btn-info generate-summary" data-title="{{ item.title }}" data-tech="{{ item.short_description }}">✨ Generate Summary</button>
                                     </div>
                                 </div>

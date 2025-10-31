@@ -79,6 +79,12 @@
                         {% endif %}
 
                         <div class="d-grid gap-2 mt-3">
+                            {% if item.detail_html_file %}
+                                <a href="{% url 'project_detail_html' item.slug %}" target="_blank" class="btn btn-info">
+                                    <i class="fas fa-file-code"></i> Detailed View
+                                </a>
+                            {% endif %}
+                            
                             {% if item.github_url %}
                                 <a href="{{ item.github_url }}" target="_blank" class="btn btn-dark">
                                     <i class="fab fa-github"></i> View on GitHub

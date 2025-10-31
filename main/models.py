@@ -117,6 +117,19 @@ class ContentItem(models.Model):
         """Return title with category for admin display."""
         return f"{self.title} [{self.category.name}]"
 
+    def get_video_url(self):
+        """Get the video URL if available."""
+        if self.video:
+            return self.video.url
+        return None
+
+    def get_detail_html_url(self):
+        """Get the detail HTML URL if available."""
+        if self.detail_html_file:
+            from django.urls import reverse
+            return reverse('project_detail_html', kwargs={'slug': self.slug})
+        return None
+
 
 class PersonalInfo(models.Model):
     """Model for personal information displayed on the site."""
