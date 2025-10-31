@@ -4,6 +4,7 @@ from django.http import JsonResponse, HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.utils import timezone
 from .models import Category, ContentItem, PersonalInfo, ContactMessage
 from .forms import ContactForm
 import os
@@ -148,3 +149,26 @@ def project_detail_html(request, slug):
         'item': item,
     }
     return render(request, 'main/project_detail_iframe.html', context)
+
+
+def health_check(request):
+    """Health check endpoint for monitoring."""
+    from django.db import connection
+    from django.http import JsonResponse
+    
+    try:
+        # Check database connection
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+        
+        return JsonResponse({
+            'status': 'healthy',
+            'database': 'connected',
+            'timestamp': timezone.now().isoformat()
+        })
+    except Exception as e:
+        return JsonResponse({
+            'status': 'unhealthy',
+            'error': str(e),
+            'timestamp': timezone.now().isoformat()
+        }, status=500)
