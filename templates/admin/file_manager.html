@@ -1,0 +1,246 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}File Manager - {{ block.super }}{% endblock %}
+
+{% block extrahead %}
+<style>
+.file-manager {
+    padding: 20px;
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.file-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    background: white;
+    transition: box-shadow 0.3s;
+}
+
+.file-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.file-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.file-icon.image { color: #28a745; }
+.file-icon.video { color: #007bff; }
+.file-icon.document { color: #dc3545; }
+.file-icon.html { color: #fd7e14; }
+.file-icon.directory { color: #6f42c1; }
+
+.file-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+.file-info {
+    font-size: 12px;
+    color: #666;
+}
+
+.breadcrumb {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: #007cba;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.file-actions {
+    margin-top: 10px;
+}
+
+.btn-sm {
+    padding: 2px 8px;
+    font-size: 11px;
+    margin: 0 2px;
+}
+
+.preview-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.preview-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.preview-content img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+}
+
+.close-preview {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="file-manager">
+    <h1>File Manager</h1>
+    
+    <div class="breadcrumb">
+        <a href="?path=">Root</a>
+        {% if current_path %}
+            {% for part in current_path|split:"/" %}
+                {% if part %}
+                    / <a href="?path={% for p in current_path|split:"/"|slice:":forloop.counter" %}{{ p }}/{% endfor %}">{{ part }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <div class="file-grid">
+        {% if current_path %}
+        <div class="file-item" onclick="navigateUp()">
+            <div class="file-icon directory">📁</div>
+            <div class="file-name">..</div>
+            <div class="file-info">Go up</div>
+        </div>
+        {% endif %}
+        
+        {% for dir in directories %}
+        <div class="file-item" onclick="navigateToDirectory('{{ dir.path }}')">
+            <div class="file-icon directory">📁</div>
+            <div class="file-name">{{ dir.name }}</div>
+            <div class="file-info">Directory</div>
+        </div>
+        {% endfor %}
+        
+        {% for file in files %}
+        <div class="file-item">
+            <div class="file-icon {{ file.type }}">
+                {% if file.type == 'image' %}🖼️
+                {% elif file.type == 'video' %}🎥
+                {% elif file.type == 'document' %}📄
+                {% elif file.type == 'html' %}🌐
+                {% else %}📄{% endif %}
+            </div>
+            <div class="file-name">{{ file.name }}</div>
+            <div class="file-info">
+                {{ file.size_human }}<br>
+                {{ file.modified }}
+            </div>
+            <div class="file-actions">
+                {% if file.url %}
+                    {% if file.type == 'image' %}
+                    <button class="btn btn-sm" onclick="previewImage('{{ file.url }}', '{{ file.name }}')">Preview</button>
+                    {% endif %}
+                    <a href="{{ file.url }}" target="_blank" class="btn btn-sm">View</a>
+                {% endif %}
+                <button class="btn btn-sm" onclick="deleteFile('{{ file.path }}', '{{ file.name }}')">Delete</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% if not directories and not files %}
+    <div style="text-align: center; padding: 40px; color: #666;">
+        <p>No files found in this directory.</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Preview Modal -->
+<div id="previewModal" class="preview-modal">
+    <span class="close-preview" onclick="closePreview()">&times;</span>
+    <div class="preview-content">
+        <img id="previewImage" src="" alt="">
+    </div>
+</div>
+
+<script>
+function navigateToDirectory(path) {
+    window.location.href = '?path=' + encodeURIComponent(path);
+}
+
+function navigateUp() {
+    const currentPath = '{{ current_path }}';
+    const parts = currentPath.split('/').filter(p => p);
+    parts.pop();
+    const newPath = parts.join('/');
+    window.location.href = '?path=' + encodeURIComponent(newPath);
+}
+
+function previewImage(url, name) {
+    document.getElementById('previewImage').src = url;
+    document.getElementById('previewImage').alt = name;
+    document.getElementById('previewModal').style.display = 'block';
+}
+
+function closePreview() {
+    document.getElementById('previewModal').style.display = 'none';
+}
+
+function deleteFile(path, name) {
+    if (confirm(`Are you sure you want to delete "${name}"?`)) {
+        fetch('{% url "admin:delete_file" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({path: path})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error deleting file: ' + error);
+        });
+    }
+}
+
+// Close modal when clicking outside
+document.getElementById('previewModal').onclick = function(event) {
+    if (event.target === this) {
+        closePreview();
+    }
+}
+</script>
+{% endblock %}

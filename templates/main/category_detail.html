@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }} - Portfolio{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">{{ category.name }}</li>
+            </ol>
+        </nav>
+
+        <h1 class="mb-4">
+            {% if category.icon %}<i class="{{ category.icon }}"></i> {% endif %}
+            {{ category.name }}
+        </h1>
+        
+        {% if category.description %}
+            <p class="lead mb-5">{{ category.description }}</p>
+        {% endif %}
+
+        <div class="row">
+            {% for item in items %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            {% if item.short_description %}
+                                <p class="card-text">{{ item.short_description|truncatewords:20 }}</p>
+                            {% else %}
+                                <p class="card-text">{{ item.description|truncatewords:20 }}</p>
+                            {% endif %}
+                            
+                            {% if item.get_technologies_list %}
+                                <div class="mb-2">
+                                    {% for tech in item.get_technologies_list|slice:":3" %}
+                                        <span class="badge bg-secondary me-1">{{ tech }}</span>
+                                    {% endfor %}
+                                    {% if item.get_technologies_list|length > 3 %}
+                                        <span class="badge bg-light text-dark">+{{ item.get_technologies_list|length|add:"-3" }} more</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            
+                            <div class="mt-auto">
+                                <a href="{% url 'content_detail' item.slug %}" class="btn btn-primary">View Details</a>
+                                {% if item.github_url %}
+                                    <a href="{{ item.github_url }}" target="_blank" class="btn btn-outline-dark btn-sm">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                {% endif %}
+                                {% if item.demo_url %}
+                                    <a href="{{ item.demo_url }}" target="_blank" class="btn btn-outline-success btn-sm">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if item.start_date or item.end_date %}
+                            <div class="card-footer text-muted">
+                                {% if item.start_date %}{{ item.start_date|date:"M Y" }}{% endif %}
+                                {% if item.end_date %} - {{ item.end_date|date:"M Y" }}{% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-info">
+                        <h4>No items found</h4>
+                        <p>There are currently no items in this category.</p>
+                        <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Gourab Gorai's Portfolio" />
+    <meta name="author" content="Gourab Gorai" />
+    <title>Gourab Gorai</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <meta property="og:title" content="Check out my Portfolio website" />
+    <meta property="og:description" content="Know about me." />
+    <meta property="og:image" content="assets/img/image1.jpg" />
+    <meta property="og:url" content="gourabgorai.netlify.app" />
+    <meta property="og:type" content="website" />
+
+    <!-- Google tag (gtag.js) is now loaded and configured from scripts.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2TRYVGY4X"></script>
+
+    <!-- Font Awesome icons -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
+        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+
+    <!-- Animate On Scroll Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <!-- PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <!-- The worker script is now specified in scripts.js -->
+
+    <style>
+        /* Security CSS */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Particles.js Background */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Place it behind all content */
+        }
+
+        /* Enhanced particles visibility for non-default themes */
+        body.theme-constellation #tsparticles,
+        body.theme-ripple #tsparticles,
+        body.theme-scroll #tsparticles,
+        body.theme-matrix #tsparticles,
+        body.theme-neural #tsparticles,
+        body.theme-sound #tsparticles,
+        body.theme-gravity #tsparticles {
+            opacity: 1.0;
+        }
+
+        /* Floating Objects Animation */
+        .floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Make container non-interactive */
+            z-index: 0;
+        }
+
+        .floating-object {
+            position: absolute;
+            color: var(--bs-gray-500);
+            font-size: 2.5rem;
+            opacity: 0.15;
+            animation: float 15s infinite linear;
+            z-index: -1;
+        }
+
+        :root.dark-theme .floating-object {
+            color: var(--bs-gray-400);
+            opacity: 0.1;
+        }
+
+        /* Enhanced floating objects visibility for non-default themes */
+        body.theme-constellation .floating-object,
+        body.theme-ripple .floating-object,
+        body.theme-scroll .floating-object,
+        body.theme-matrix .floating-object,
+        body.theme-neural .floating-object,
+        body.theme-sound .floating-object,
+        body.theme-gravity .floating-object {
+            opacity: 0.6;
+        }
+
+        :root.dark-theme body.theme-constellation .floating-object,
+        :root.dark-theme body.theme-ripple .floating-object,
+        :root.dark-theme body.theme-scroll .floating-object,
+        :root.dark-theme body.theme-matrix .floating-object,
+        :root.dark-theme body.theme-neural .floating-object,
+        :root.dark-theme body.theme-sound .floating-object,
+        :root.dark-theme body.theme-gravity .floating-object {
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-15px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(15px) rotate(270deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        .obj1 {
+            top: 15%;
+            left: 20%;
+            animation-duration: 18s;
+            font-size: 2rem;
+        }
+
+        .obj2 {
+            top: 25%;
+            left: 85%;
+            animation-duration: 14s;
+            animation-delay: 3s;
+            font-size: 3rem;
+        }
+
+        .obj3 {
+            top: 65%;
+            left: 18%;
+            animation-duration: 22s;
+            animation-delay: 1s;
+            font-size: 2.5rem;
+        }
+
+        .obj4 {
+            top: 80%;
+            left: 92%;
+            animation-duration: 12s;
+            animation-delay: 5s;
+            font-size: 3.5rem;
+        }
+
+        .obj5 {
+            top: 45%;
+            left: 50%;
+            animation-duration: 25s;
+            font-size: 2rem;
+        }
+
+        /* Interactive Background Themes - Moved to styles.css */
+
+        .img-thumbnail {
+            cursor: pointer;
+        }
+
+        /* PDF Viewer Styles */
+        .pdf-viewer-container {
+            width: 100%;
+            height: 60vh;
+            /* Adjusted for better viewing */
+            overflow: auto;
+            background: #525659;
+            text-align: center;
+        }
+
+        .pdf-render {
+            max-width: 100%;
+            direction: ltr;
+        }
+
+        .pdf-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+
+        .pdf-controls button {
+            margin: 0 10px;
+        }
+
+        .page-num {
+            font-weight: bold;
+        }
+
+        :root.dark-theme .pdf-controls {
+            background-color: #343a40;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1050;
+        }
+
+        /* Move theme toggle button on mobile to avoid overlapping the navbar toggler */
+        @media (max-width: 991.98px) {
+            #theme-toggle {
+                right: 70px;
+            }
+        }
+
+        /* Theme Selector Dropdown - Moved to styles.css */
+
+        /* Theme-Specific Font Adjustments - Moved to styles.css */
+
+        /* Dark Theme CSS */
+        :root.dark-theme {
+            --bs-body-bg: #121212;
+            --bs-body-color: #f0f0f0;
+            /* Brighter text for better readability */
+            --bs-link-color: #bb86fc;
+            --bs-link-hover-color: #9a67ea;
+            --bs-border-color: #444;
+            --bs-primary: #1a1a1a;
+            --bs-secondary: #2a2a2a;
+            --bs-dark: #000;
+        }
+
+        :root.dark-theme body {
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+
+        :root.dark-theme a {
+            color: var(--bs-link-color);
+        }
+
+        :root.dark-theme a:hover {
+            color: var(--bs-link-hover-color);
+        }
+
+        :root.dark-theme h1,
+        :root.dark-theme .h1,
+        :root.dark-theme h2,
+        :root.dark-theme .h2,
+        :root.dark-theme h3,
+        :root.dark-theme .h3,
+        :root.dark-theme h4,
+        :root.dark-theme .h4,
+        :root.dark-theme h5,
+        :root.dark-theme .h5,
+        :root.dark-theme h6,
+        :root.dark-theme .h6 {
+            color: var(--bs-body-color);
+        }
+
+        :root.dark-theme .subheading {
+            color: #dcdcdc;
+        }
+
+        :root.dark-theme .text-primary {
+            color: #bb86fc !important;
+        }
+
+        :root.dark-theme .modal-content {
+            background-color: #2a2a2a;
+            color: var(--bs-body-color);
+            border-color: var(--bs-border-color);
+        }
+
+        :root.dark-theme .modal-header {
+            border-bottom-color: var(--bs-border-color);
+        }
+
+        :root.dark-theme .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
+        :root.dark-theme #detailsModal .modal-content {
+            background-color: #1e1e1e;
+            /* Darker background for iframe modal */
+        }
+
+        /* Enhanced Video Modal Popup Box */
+        .video-modal {
+            display: none;
+            /* This ensures the modal is hidden by default */
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* Prevent scrolling on the background */
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: #000;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding-bottom: 150px;
+        }
+
+        .video-modal-content {
+            width: 100%;
+            height: auto;
+            border-radius: 15px 15px 0 0;
+            /* Rounded corners only at the top */
+        }
+
+        .close-video {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1051;
+        }
+
+        .close-video:hover,
+        .close-video:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .player-controls-wrapper {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            /* Space between progress bar and control buttons */
+        }
+
+        .progress-and-time-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .video-controls button {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .video-controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .video-controls button.muted {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .video-controls button.muted:hover {
+            background-color: #c82333;
+        }
+
+        .progress-container {
+            position: relative;
+            flex-grow: 1;
+            height: 10px;
+            background-color: #555;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #007bff;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .gemini-modal-body {
+            position: relative;
+            min-height: 150px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s ease infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .video-container {
+                padding-bottom: 220px;
+            }
+
+            .player-controls-wrapper {
+                bottom: 10px;
+                gap: 10px;
+            }
+
+            .video-controls {
+                flex-direction: column;
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .video-controls .control-group {
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .video-controls button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .progress-and-time-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .progress-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <!-- Interactive Theme Background Container -->
+    <div id="theme-bg-container" class="theme-bg-container"></div>
+
+    <!-- Particle background container -->
+    <div id="tsparticles"></div>
+
+    <!-- Floating objects container -->
+    <div class="floating-container">
+        <div class="floating-object obj1"><i class="fas fa-code"></i></div>
+        <div class="floating-object obj2"><i class="fas fa-microchip"></i></div>
+        <div class="floating-object obj3"><i class="fas fa-cogs"></i></div>
+        <div class="floating-object obj4"><i class="fas fa-database"></i></div>
+        <div class="floating-object obj5"><i class="fab fa-python"></i></div>
+    </div>
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Gourab Gorai</span>
+            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+                    src="assets/img/profile.jpg" alt="Gourab Gorai" /></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Projects</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Hobbies</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#internships">Internships</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a>
+                </li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Theme Selector Dropdown -->
+    <div class="theme-selector">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-palette"></i> Themes
+            </button>
+            <div class="dropdown-menu theme-dropdown" aria-labelledby="themeDropdown">
+                <div class="theme-help-text"
+                    style="padding: 8px 12px; font-size: 11px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;">
+                    <i class="fas fa-keyboard"></i> Use Alt+1-8 for quick access
+                </div>
+                <button class="theme-option active" data-theme="particles"
+                    title="Default particles background with floating tech icons">
+                    <i class="fas fa-circle"></i> Default Particles <span class="theme-shortcut">Alt+1</span>
+                </button>
+                <button class="theme-option" data-theme="constellation"
+                    title="Interactive star constellation that follows your mouse">
+                    <i class="fas fa-star"></i> Mouse Trail <span class="theme-shortcut">Alt+2</span>
+                </button>
+                <button class="theme-option" data-theme="ripple"
+                    title="Click anywhere to create expanding ripple effects">
+                    <i class="fas fa-water"></i> Click Ripples <span class="theme-shortcut">Alt+3</span>
+                </button>
+                <button class="theme-option" data-theme="scroll" title="Particles that react to your scrolling motion">
+                    <i class="fas fa-arrows-alt-v"></i> Scroll Particles <span class="theme-shortcut">Alt+4</span>
+                </button>
+                <button class="theme-option" data-theme="matrix" title="Matrix-style code rain that responds to typing">
+                    <i class="fas fa-code"></i> Typing Matrix <span class="theme-shortcut">Alt+5</span>
+                </button>
+                <button class="theme-option" data-theme="neural"
+                    title="Interactive neural network with hoverable nodes">
+                    <i class="fas fa-project-diagram"></i> Neural Network <span class="theme-shortcut">Alt+6</span>
+                </button>
+                <button class="theme-option" data-theme="sound"
+                    title="Sound wave visualization that follows your mouse">
+                    <i class="fas fa-wave-square"></i> Sound Waves <span class="theme-shortcut">Alt+7</span>
+                </button>
+                <button class="theme-option" data-theme="gravity"
+                    title="Particles attracted to your cursor like gravity">
+                    <i class="fas fa-atom"></i> Gravity Field <span class="theme-shortcut">Alt+8</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="theme-toggle" class="btn btn-secondary"><i class="fas fa-adjust"></i></button>
+
+    <!-- Page Content-->
+    <div class="container-fluid p-0">
+        <!-- About-->
+        <section class="resume-section" id="about">
+            <div class="resume-section-content">
+                <h1 class="mb-0" data-aos="fade-right">Gourab <span class="text-primary">Gorai</span></h1>
+                <div class="subheading mb-5" data-aos="fade-right" data-aos-delay="100">
+                    WEST BENGAL, INDIA
+
+                </div>
+                <p class="lead mb-5" data-aos="fade-right" data-aos-delay="200">I am Gourab Gorai, a driven and
+                    innovative computer science enthusiast with a strong foundation in programming and machine learning.
+                    I have completed Bachelor of Computer Application (BCA) from Dr. B.C. Roy Academy of
+                    Professional Courses, graduate in 2025. I completed my higher-secondary education in
+                    Commerce from Bidhan Chandra Institution in 2022 and my secondary education from Durgapur Ispat
+                    Vidyalaya in 2020. As a scholar of the Reliance Foundation Scholarships, 2022, I am committed to
+                    leveraging technology to solve real-world problems. My technical skills include proficiency in
+                    Python, Java, Machine Learning, DBMS, HTML, CSS, and JavaScript. I have earned certifications in
+                    Machine Learning using Python from the National Institute for Industrial Training and Front-End Web
+                    Development from the Reliance Foundation Skill Academy. I also completed an internship in AI with
+                    TechSaksham, under the guidance of Microsoft, SAP, AICTE, and Edunet Foundation. Some of my projects
+                    include an Image Recognition System using Logistic Regression, Crypto Prediction using Linear
+                    Regression, and Stock Price Prediction using Random Forest, all of which showcase my expertise in
+                    machine learning. In my free time, I enjoy watching movies, web series, and staying updated with the
+                    latest tech news.</p>
+                <div class="social-icons" data-aos="fade-up" data-aos-delay="300">
+                    <a class="social-icon" href="https://www.linkedin.com/in/gourab-gorai-4a51541ba"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a class="social-icon" href="https://github.com/GourabGorai"><i class="fab fa-github"></i></a>
+                    <a class="social-icon" href="https://www.facebook.com/gourab.gorai.986"><i
+                            class="fab fa-facebook-f"></i></a>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <a href="assets/pdf/resume.pdf" download class="btn btn-primary mt-4">Download Resume</a>
+                    <button class="btn btn-secondary mt-4 ms-2" onclick="openResumeModal()">View Resume</button>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Projects-->
+        <section class="resume-section" id="experience">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Projects</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Image Recognition System</h3>
+                        <div class="subheading mb-3">Logistic Regression, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video-sd="assets/videos/trial (2).mp4"
+                            data-video-hd="assets/videos/trial_hd.mp4">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/page3.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Image Recognition System"
+                            data-tech="Logistic Regression, Machine Learning">✨ Generate Summary</button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Crypto Prediction</h3>
+                        <div class="subheading mb-3">Linear Regression, Machine Learning</div>
+                        <button class="play-video btn btn-primary" data-video-sd="assets/videos/crypto_prediction.mkv"
+                            data-video-hd="assets/videos/crypto_prediction_hd.mkv">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp2.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Crypto Prediction"
+                            data-tech="Linear Regression, Machine Learning">✨ Generate Summary</button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Stock Price Prediction</h3>
+                        <div class="subheading mb-3">Random Forest, Machine Learning</div>
+                        <button class="play-video btn btn-primary"
+                            data-video-sd="assets/videos/stock_price_prediction.mkv"
+                            data-video-hd="assets/videos/stock_price_prediction_hd.mkv">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp3.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Stock Price Prediction"
+                            data-tech="Random Forest, Machine Learning">✨ Generate Summary</button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Salary Prediction</h3>
+                        <div class="subheading mb-3">Random Forest, Machine Learning</div>
+                        <button class="play-video btn btn-primary"
+                            data-video-sd="assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv"
+                            data-video-hd="assets/videos/salary_prediction_hd.mkv">Play Demo</button>
+                        <button class="open-modal btn btn-secondary" data-page="details/aboutp4.html">View
+                            Details</button>
+                        <button class="btn btn-info generate-summary" data-title="Salary Prediction"
+                            data-tech="Random Forest, Machine Learning">✨ Generate Summary</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <iframe id="modalIframe" src="" style="width: 100%; height: 80vh;"></iframe>
+            </div>
+        </div>
+        <hr class="m-0" />
+        <!-- Education-->
+        <section class="resume-section" id="education">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Education</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">DR. B.C. Roy Academy of Professional Courses</h3>
+                        <div class="subheading mb-3">Bachelor of Computer Application (BCA)</div>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">2022 - 2025</span></div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Bidhan Chandra Institution</h3>
+                        <div class="subheading mb-3">Higher Secondary Education - Commerce</div>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">2022</span></div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Durgapur Ispat Vidyalaya</h3>
+                        <div class="subheading mb-3">Secondary Education</div>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">2020</span></div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Skills-->
+        <section class="resume-section" id="skills">
+            <div class="resume-section-content" data-aos="zoom-in">
+                <h2 class="mb-5">Skills</h2>
+                <ul class="fa-ul mb-0">
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Python (Intermediate)</li>
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Java (Beginner)</li>
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Machine Learning (Beginner)</li>
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>DBMS (Beginner)</li>
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>HTML (Intermediate)</li>
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>CSS (Beginner)</li>
+                    <li><span class="fa-li"><i class="fas fa-check"></i></span>JavaScript (Beginner)</li>
+                </ul>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Hobbies-->
+        <section class="resume-section" id="interests">
+            <div class="resume-section-content" data-aos="zoom-in">
+                <h2 class="mb-5">Hobbies</h2>
+                <p>Watching movies and web series, tech news enthusiast.</p>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Internships-->
+        <section class="resume-section" id="internships">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Internships</h2>
+                <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                <div class="row">
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/intern1.jpg" class="img-thumbnail" alt="Internship 1"
+                            onclick="openInternshipModal('assets/img/intern1.jpg', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', 'assets/pdf/intern1.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/intern2.jpg" class="img-thumbnail" alt="Internship 2"
+                            onclick="openInternshipModal('assets/img/intern2.jpg', 'Internship at Deloitte and Forage', 'assets/pdf/intern2.pdf', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/intern3.jpg" class="img-thumbnail" alt="Internship 3"
+                            onclick="openInternshipModal('assets/img/intern3.jpg', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', 'assets/pdf/intern3.pdf', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Gallery-->
+        <section class="resume-section" id="gallery">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Gallery</h2>
+                <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                <div class="row">
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/image1.jpg" class="img-thumbnail" alt="Image 1"
+                            onclick="openModal('assets/img/image1.jpg', 'Scholar Marchandise', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/image2.jpg" class="img-thumbnail" alt="Image 2"
+                            onclick="openModal('assets/img/image2.jpg', 'NIIT Industrial Training Batch 2024', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/image3.jpg" class="img-thumbnail" alt="Image 3"
+                            onclick="openModal('assets/img/image3.jpg', 'Anti-Ragging Ceremony', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/image4.jpg" class="img-thumbnail" alt="Image 4"
+                            onclick="openModal('assets/img/image4.jpg', 'Selection Letter of RF Scholarship', ' ')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/image5.jpg" class="img-thumbnail" alt="Image 5"
+                            onclick="openModal('assets/img/image5.jpg', 'BCA 2022-2025 BATCH', ' ')" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Certifications-->
+        <section class="resume-section" id="certifications">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Certifications</h2>
+                <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                <div class="row">
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/cert1.jpg" class="img-thumbnail" alt="Certification 1"
+                            onclick="openModal('assets/img/cert1.jpg', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/cert2.jpg" class="img-thumbnail" alt="Certification 2"
+                            onclick="openModal('assets/img/cert2.jpg', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/cert3.jpg" class="img-thumbnail" alt="Certification 3"
+                            onclick="openModal('assets/img/cert3.jpg', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/cert4.png" class="img-thumbnail" alt="Certification 4"
+                            onclick="openModal('assets/img/cert4.png', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/cert5.jpg" class="img-thumbnail" alt="Certification 5"
+                            onclick="openModal('assets/img/cert5.jpg', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/cert6.jpg" class="img-thumbnail" alt="Certification 6"
+                            onclick="openModal('assets/img/cert6.jpg', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/cert7.jpg" class="img-thumbnail" alt="Certification 7"
+                            onclick="openModal('assets/img/cert7.jpg', 'Project Manager ROLE, LinkedIn', '')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/cert8.jpg" class="img-thumbnail" alt="Certification 8"
+                            onclick="openModal('assets/img/cert8.jpg', 'Python Foundation Certification', '')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/cert9.jpg" class="img-thumbnail" alt="Certification 9"
+                            onclick="openModal('assets/img/cert9.jpg', 'Artificial Intelligence Fundamentals', '')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/cert10.jpg" class="img-thumbnail" alt="Certification 10"
+                            onclick="openModal('assets/img/cert10.jpg', 'ServiceNow IT Leadership', '')" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Hackathons-->
+        <section class="resume-section" id="hackathons">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Hackathons</h2>
+                <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                <div class="row">
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <img src="assets/img/hack1.png" class="img-thumbnail" alt="Hackathon 1"
+                            onclick="openModal('assets/img/hack1.png', 'Hackathon 1', 'No Details Available.')" />
+                    </div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/image-7.png" class="img-thumbnail" alt="Hackathon 2" onclick="openHackathonDetailsModal(
+                           'Google Solution Challenge 2025',
+                           [
+                               'assets/img/image-7.png',
+                               'assets/img/hack2.jpg',
+                               'assets/img/hack2_detail1.jpg',
+                               'assets/img/hack2_detail2.jpg',
+                               'assets/img/hack2_detail3.jpg'
+                           ],
+                           'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations’ 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
+                       )" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Contact-->
+        <section class="resume-section" id="contact">
+            <div class="resume-section-content">
+                <h2 class="mb-5" data-aos="fade-down">Contact Me</h2>
+                <div class="row" data-aos="fade-up">
+                    <div class="col-lg-8 mx-auto">
+                        <h4 class="mb-4 text-center" data-aos="fade-up" data-aos-delay="100">Get In Touch</h4>
+                        <form id="contactForm" name="sentMessage">
+                            <div class="mb-4">
+                                <h5 class="mb-2">Name</h5>
+                                <div class="form-floating">
+                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                                        required />
+                                    <label for="name">Full name</label>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Email</h5>
+                                <div class="form-floating">
+                                    <input class="form-control" id="email" type="email"
+                                        placeholder="Enter your email..." required />
+                                    <label for="email">Email address</label>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Phone</h5>
+                                <div class="form-floating">
+                                    <input class="form-control" id="phone" type="tel"
+                                        placeholder="Enter your phone number..." required />
+                                    <label for="phone">Phone number</label>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Message</h5>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" placeholder="Enter your message here..."
+                                        style="height: 10rem" required maxlength="1200"></textarea>
+                                    <label for="message">Message (max 200 words)</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
+                        </form>
+                        <div id="form-status" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- MODALS -->
+
+        <!-- Generic Image Modal -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Image Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="modalImage" src="" alt="Modal Image" class="img-fluid">
+                        <p id="modalDescription" class="mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hackathon Details Modal -->
+        <div class="modal fade" id="hackathonDetailsModal" tabindex="-1" aria-labelledby="hackathonDetailsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hackathonDetailsModalLabel">Hackathon Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="hackathonImages" class="row"></div>
+                        <p id="hackathonDescription" class="mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Player Modal -->
+        <div id="videoModal" class="video-modal">
+            <span class="close-video">×</span>
+            <div class="video-container">
+                <video id="videoPlayer" class="video-modal-content" disablePictureInPicture
+                    controlsList="nodownload noplaybackrate">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="player-controls-wrapper">
+                    <div class="progress-and-time-container">
+                        <div class="progress-container" id="progressContainer">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                        <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
+                    </div>
+                    <div class="video-controls">
+                        <button id="playPauseBtn">Play</button>
+                        <div class="control-group">
+                            <button id="skip10Btn">Skip +10s</button>
+                            <button id="skip20Btn">Skip +20s</button>
+                            <button id="skip30Btn">Skip +30s</button>
+                        </div>
+                        <div class="control-group">
+                            <button id="back10Btn">Back -10s</button>
+                            <button id="back20Btn">Back -20s</button>
+                            <button id="back30Btn">Back -30s</button>
+                        </div>
+                        <button id="muteBtn">Mute</button>
+                        <div id="qualitySelectorContainer" class="control-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Summary Modal -->
+        <div class="modal fade" id="geminiSummaryModal" tabindex="-1" aria-labelledby="geminiSummaryModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="geminiSummaryModalLabel">✨ AI-Generated Project Summary</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body gemini-modal-body">
+                        <div id="geminiSpinner" class="spinner" style="display: none;"></div>
+                        <p id="geminiSummaryContent"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internship Details Modal with PDF Viewer -->
+        <div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="internshipModalLabel">Internship Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
+                        <p id="internshipDescription"></p>
+                        <!-- PDF.js Viewer Container -->
+                        <div class="pdf-viewer-container">
+                            <div class="spinner" style="display: none;"></div>
+                            <canvas class="pdf-render"></canvas>
+                        </div>
+                        <div class="pdf-controls mt-2">
+                            <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                            <span class="page-num"></span> / <span class="page-count"></span>
+                            <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume Modal with PDF Viewer -->
+        <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl"> <!-- Use a larger modal for resume -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resumeModalLabel">My Resume</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- PDF.js Viewer Container for Resume -->
+                        <div class="pdf-viewer-container">
+                            <div class="spinner" style="display: none;"></div>
+                            <canvas class="pdf-render"></canvas>
+                        </div>
+                        <div class="pdf-controls mt-2">
+                            <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                            <span class="page-num"></span> / <span class="page-count"></span>
+                            <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
+    <!-- Your Custom JS File -->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

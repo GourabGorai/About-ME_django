@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ item.title }} - Portfolio{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'category_detail' item.category.slug %}">{{ item.category.name }}</a></li>
+                <li class="breadcrumb-item active">{{ item.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="mb-3">{{ item.title }}</h1>
+                
+                {% if item.short_description %}
+                    <p class="lead">{{ item.short_description }}</p>
+                {% endif %}
+
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid mb-4 rounded">
+                {% endif %}
+
+                <div class="content-description">
+                    {{ item.description|linebreaks }}
+                </div>
+
+                {% if item.get_technologies_list %}
+                    <div class="mt-4">
+                        <h4>Technologies Used</h4>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tech in item.get_technologies_list %}
+                                <span class="badge bg-primary">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if item.video %}
+                    <div class="mt-4">
+                        <h4>Demo Video</h4>
+                        <video class="w-100 rounded" controls>
+                            <source src="{{ item.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                {% endif %}
+
+                {% if item.pdf_file %}
+                    <div class="mt-4">
+                        <h4>Documentation</h4>
+                        <a href="{{ item.pdf_file.url }}" target="_blank" class="btn btn-outline-primary">
+                            <i class="fas fa-file-pdf"></i> View PDF
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Project Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Category:</strong> {{ item.category.name }}</p>
+                        <p><strong>Type:</strong> {{ item.get_content_type_display }}</p>
+                        
+                        {% if item.start_date %}
+                            <p><strong>Start Date:</strong> {{ item.start_date|date:"F Y" }}</p>
+                        {% endif %}
+                        
+                        {% if item.end_date %}
+                            <p><strong>End Date:</strong> {{ item.end_date|date:"F Y" }}</p>
+                        {% endif %}
+
+                        <div class="d-grid gap-2 mt-3">
+                            {% if item.github_url %}
+                                <a href="{{ item.github_url }}" target="_blank" class="btn btn-dark">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            {% endif %}
+                            
+                            {% if item.demo_url %}
+                                <a href="{{ item.demo_url }}" target="_blank" class="btn btn-success">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                {% if related_items %}
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Related Projects</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for related in related_items %}
+                                <div class="mb-3">
+                                    <h6><a href="{% url 'content_detail' related.slug %}">{{ related.title }}</a></h6>
+                                    <p class="small text-muted">{{ related.short_description|truncatewords:15 }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

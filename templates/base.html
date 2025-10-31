@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="{% block meta_description %}Portfolio Website{% endblock %}" />
+    <meta name="author" content="{% if personal_info %}{{ personal_info.name }}{% endif %}" />
+    <title>{% block title %}Portfolio{% endblock %}</title>
+    
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}" />
+    
+    <!-- Font Awesome icons -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    
+    <!-- Animate On Scroll Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    
+    {% block extra_css %}{% endblock %}
+    
+    <style>
+        /* Security CSS */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Particles.js Background */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Floating Objects Animation */
+        .floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-object {
+            position: absolute;
+            color: var(--bs-gray-500);
+            font-size: 2.5rem;
+            opacity: 0.15;
+            animation: float 15s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(15px) rotate(270deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .obj1 { top: 15%; left: 20%; animation-duration: 18s; font-size: 2rem; }
+        .obj2 { top: 25%; left: 85%; animation-duration: 14s; animation-delay: 3s; font-size: 3rem; }
+        .obj3 { top: 65%; left: 18%; animation-duration: 22s; animation-delay: 1s; font-size: 2.5rem; }
+        .obj4 { top: 80%; left: 92%; animation-duration: 12s; animation-delay: 5s; font-size: 3.5rem; }
+        .obj5 { top: 45%; left: 50%; animation-duration: 25s; font-size: 2rem; }
+
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1050;
+        }
+
+        @media (max-width: 991.98px) {
+            #theme-toggle {
+                right: 70px;
+            }
+        }
+
+        /* Theme Selector Dropdown */
+        .theme-selector {
+            position: fixed;
+            top: 60px;
+            right: 10px;
+            z-index: 1050;
+        }
+
+        .theme-dropdown {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 5px 0;
+            min-width: 250px;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 8px 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+
+        .theme-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-option.active {
+            background-color: rgba(26, 95, 63, 0.8);
+        }
+
+        .theme-shortcut {
+            font-size: 10px;
+            opacity: 0.7;
+        }
+
+        /* PDF Viewer Styles */
+        .pdf-viewer-container {
+            width: 100%;
+            height: 60vh;
+            overflow: auto;
+            background: #525659;
+            text-align: center;
+        }
+
+        .pdf-render {
+            max-width: 100%;
+            direction: ltr;
+        }
+
+        .pdf-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+
+        .pdf-controls button {
+            margin: 0 10px;
+        }
+
+        .page-num {
+            font-weight: bold;
+        }
+
+        :root.dark-theme .pdf-controls {
+            background-color: #343a40;
+        }
+
+        /* Dark Theme CSS */
+        :root.dark-theme {
+            --bs-body-bg: #121212;
+            --bs-body-color: #f0f0f0;
+            --bs-link-color: #bb86fc;
+            --bs-link-hover-color: #9a67ea;
+            --bs-border-color: #444;
+            --bs-primary: #1a1a1a;
+            --bs-secondary: #2a2a2a;
+            --bs-dark: #000;
+        }
+
+        :root.dark-theme body {
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+
+        :root.dark-theme a {
+            color: var(--bs-link-color);
+        }
+
+        :root.dark-theme a:hover {
+            color: var(--bs-link-hover-color);
+        }
+
+        :root.dark-theme .modal-content {
+            background-color: #2a2a2a;
+            color: var(--bs-body-color);
+            border-color: var(--bs-border-color);
+        }
+
+        :root.dark-theme .modal-header {
+            border-bottom-color: var(--bs-border-color);
+        }
+
+        :root.dark-theme .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
+        /* Enhanced Video Modal Popup Box */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: #000;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding-bottom: 150px;
+        }
+
+        .video-modal-content {
+            width: 100%;
+            height: auto;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .close-video {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1051;
+        }
+
+        .close-video:hover,
+        .close-video:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .player-controls-wrapper {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-and-time-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .video-controls button {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .video-controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .video-controls button.muted {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .video-controls button.muted:hover {
+            background-color: #c82333;
+        }
+
+        .progress-container {
+            position: relative;
+            flex-grow: 1;
+            height: 10px;
+            background-color: #555;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #007bff;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .gemini-modal-body {
+            position: relative;
+            min-height: 150px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s ease infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Project Details Modal */
+        #detailsModal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        #detailsModal .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border: none;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 10px;
+        }
+
+        #detailsModal .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            z-index: 1051;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #detailsModal .close:hover,
+        #detailsModal .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        :root.dark-theme #detailsModal .modal-content {
+            background-color: #1e1e1e;
+        }
+
+        @media (max-width: 600px) {
+            .video-container {
+                padding-bottom: 220px;
+            }
+
+            .player-controls-wrapper {
+                bottom: 10px;
+                gap: 10px;
+            }
+
+            .video-controls {
+                flex-direction: column;
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .video-controls .control-group {
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .video-controls button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .progress-and-time-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .progress-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <!-- Interactive Theme Background Container -->
+    <div id="theme-bg-container" class="theme-bg-container"></div>
+
+    <!-- Particle background container -->
+    <div id="tsparticles"></div>
+
+    <!-- Floating objects container -->
+    <div class="floating-container">
+        <div class="floating-object obj1"><i class="fas fa-code"></i></div>
+        <div class="floating-object obj2"><i class="fas fa-microchip"></i></div>
+        <div class="floating-object obj3"><i class="fas fa-cogs"></i></div>
+        <div class="floating-object obj4"><i class="fas fa-database"></i></div>
+        <div class="floating-object obj5"><i class="fab fa-python"></i></div>
+    </div></body>
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">
+            <span class="d-block d-lg-none">{% if personal_info %}{{ personal_info.name }}{% else %}Portfolio{% endif %}</span>
+            <span class="d-none d-lg-block">
+                {% if personal_info and personal_info.profile_image %}
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ personal_info.profile_image.url }}" alt="{{ personal_info.name }}" />
+                {% else %}
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'assets/img/profile.jpg' %}" alt="Profile" />
+                {% endif %}
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Projects</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Hobbies</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#internships">Internships</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hackathons">Hackathons</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Theme Selector Dropdown -->
+    <div class="theme-selector">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-palette"></i> Themes
+            </button>
+            <div class="dropdown-menu theme-dropdown" aria-labelledby="themeDropdown">
+                <div class="theme-help-text"
+                    style="padding: 8px 12px; font-size: 11px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;">
+                    <i class="fas fa-keyboard"></i> Use Alt+1-8 for quick access
+                </div>
+                <button class="theme-option active" data-theme="particles"
+                    title="Default particles background with floating tech icons">
+                    <i class="fas fa-circle"></i> Default Particles <span class="theme-shortcut">Alt+1</span>
+                </button>
+                <button class="theme-option" data-theme="constellation"
+                    title="Interactive star constellation that follows your mouse">
+                    <i class="fas fa-star"></i> Mouse Trail <span class="theme-shortcut">Alt+2</span>
+                </button>
+                <button class="theme-option" data-theme="ripple"
+                    title="Click anywhere to create expanding ripple effects">
+                    <i class="fas fa-water"></i> Click Ripples <span class="theme-shortcut">Alt+3</span>
+                </button>
+                <button class="theme-option" data-theme="scroll" title="Particles that react to your scrolling motion">
+                    <i class="fas fa-arrows-alt-v"></i> Scroll Particles <span class="theme-shortcut">Alt+4</span>
+                </button>
+                <button class="theme-option" data-theme="matrix" title="Matrix-style code rain that responds to typing">
+                    <i class="fas fa-code"></i> Typing Matrix <span class="theme-shortcut">Alt+5</span>
+                </button>
+                <button class="theme-option" data-theme="neural"
+                    title="Interactive neural network with hoverable nodes">
+                    <i class="fas fa-project-diagram"></i> Neural Network <span class="theme-shortcut">Alt+6</span>
+                </button>
+                <button class="theme-option" data-theme="sound"
+                    title="Sound wave visualization that follows your mouse">
+                    <i class="fas fa-wave-square"></i> Sound Waves <span class="theme-shortcut">Alt+7</span>
+                </button>
+                <button class="theme-option" data-theme="gravity"
+                    title="Particles attracted to your cursor like gravity">
+                    <i class="fas fa-atom"></i> Gravity Field <span class="theme-shortcut">Alt+8</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="theme-toggle" class="btn btn-secondary"><i class="fas fa-adjust"></i></button>
+
+    <!-- Page Content-->
+    <div class="container-fluid p-0">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Core JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Custom JS -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

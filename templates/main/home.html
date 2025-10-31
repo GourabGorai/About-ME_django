@@ -1,0 +1,878 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {% if personal_info %}{{ personal_info.name }} - Portfolio{% else %}Portfolio{% endif %}
+{% endblock %}
+
+{% block content %}
+    <!-- About Section -->
+    <section class="resume-section" id="about">
+        <div class="resume-section-content">
+            {% if personal_info %}
+                <h1 class="mb-0" data-aos="fade-right">Gourab <span class="text-primary">Gorai</span></h1>
+                <div class="subheading mb-5" data-aos="fade-right" data-aos-delay="100">
+                    {{ personal_info.location }}
+                </div>
+                <p class="lead mb-5" data-aos="fade-right" data-aos-delay="200">
+                    {{ personal_info.bio }}
+                </p>
+                <div class="social-icons" data-aos="fade-up" data-aos-delay="300">
+                    {% if personal_info.linkedin_url %}
+                        <a class="social-icon" href="{{ personal_info.linkedin_url }}" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    {% endif %}
+                    {% if personal_info.github_url %}
+                        <a class="social-icon" href="{{ personal_info.github_url }}" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    {% endif %}
+                    {% if personal_info.facebook_url %}
+                        <a class="social-icon" href="{{ personal_info.facebook_url }}" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    {% endif %}
+                    {% if personal_info.twitter_url %}
+                        <a class="social-icon" href="{{ personal_info.twitter_url }}" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <a href="{% static 'assets/pdf/resume.pdf' %}" download class="btn btn-primary mt-4">Download Resume</a>
+                    <button class="btn btn-secondary mt-4 ms-2" onclick="openResumeModal()">View Resume</button>
+                </div>
+            {% else %}
+                <h1 class="mb-0" data-aos="fade-right">Welcome to <span class="text-primary">My Portfolio</span></h1>
+                <p class="lead mb-5" data-aos="fade-right" data-aos-delay="200">
+                    Please add your personal information through the Django admin panel.
+                </p>
+            {% endif %}
+        </div>
+    </section>
+    
+    <hr class="m-0" />
+
+    <!-- Dynamic Category Sections -->
+    {% for category in categories %}
+        {% if category.is_active and category.items.exists %}
+            <section class="resume-section" id="{{ category.slug }}">
+                <div class="resume-section-content">
+                    <h2 class="mb-5" data-aos="fade-down">
+                        {% if category.icon %}<i class="{{ category.icon }}"></i> {% endif %}
+                        {{ category.name }}
+                    </h2>
+                    {% if category.description %}
+                        <p class="mb-4" data-aos="fade-in">{{ category.description }}</p>
+                    {% endif %}
+                    
+                    {% if category.slug == 'skills' %}
+                        <div data-aos="zoom-in">
+                            <ul class="fa-ul mb-0">
+                                {% for item in category.items.all %}
+                                    {% if item.is_active %}
+                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>{{ item.title }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% elif category.slug == 'interests' %}
+                        <div data-aos="zoom-in">
+                            {% for item in category.items.all %}
+                                {% if item.is_active %}
+                                    <p>{{ item.description }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% elif category.slug == 'internships' %}
+                        <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                        <div class="row">
+                            <!-- Original Hardcoded Internships -->
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/intern1.jpg' %}" class="img-thumbnail" alt="Internship 1"
+                                    onclick="openInternshipModal('{% static 'assets/img/intern1.jpg' %}', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', '{% static 'assets/pdf/intern1.pdf' %}', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/intern2.jpg' %}" class="img-thumbnail" alt="Internship 2"
+                                    onclick="openInternshipModal('{% static 'assets/img/intern2.jpg' %}', 'Internship at Deloitte and Forage', '{% static 'assets/pdf/intern2.pdf' %}', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <img src="{% static 'assets/img/intern3.jpg' %}" class="img-thumbnail" alt="Internship 3"
+                                    onclick="openInternshipModal('{% static 'assets/img/intern3.jpg' %}', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', '{% static 'assets/pdf/intern3.pdf' %}', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')" />
+                            </div>
+                            
+                            <!-- Dynamic Admin-Added Internships -->
+                            {% for item in category.items.all %}
+                                {% if item.is_active %}
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:300 }}">
+                                        {% if item.image and item.pdf_file %}
+                                            <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                                                onclick="openInternshipModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.pdf_file.url }}', '{{ item.description|escapejs }}')" />
+                                        {% elif item.image %}
+                                            <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                                                onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
+                                        {% else %}
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ item.title }}</h5>
+                                                    <p class="card-text">{{ item.description|truncatewords:20 }}</p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% elif category.slug == 'gallery' %}
+                        <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                        <div class="row">
+                            <!-- Original Hardcoded Gallery Items -->
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/image1.jpg' %}" class="img-thumbnail" alt="Image 1"
+                                    onclick="openModal('{% static 'assets/img/image1.jpg' %}', 'Scholar Merchandise', ' ')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/image2.jpg' %}" class="img-thumbnail" alt="Image 2"
+                                    onclick="openModal('{% static 'assets/img/image2.jpg' %}', 'NIIT Industrial Training Batch 2024', ' ')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <img src="{% static 'assets/img/image3.jpg' %}" class="img-thumbnail" alt="Image 3"
+                                    onclick="openModal('{% static 'assets/img/image3.jpg' %}', 'Anti-Ragging Ceremony', ' ')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/image4.jpg' %}" class="img-thumbnail" alt="Image 4"
+                                    onclick="openModal('{% static 'assets/img/image4.jpg' %}', 'Selection Letter of RF Scholarship', ' ')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/image5.jpg' %}" class="img-thumbnail" alt="Image 5"
+                                    onclick="openModal('{% static 'assets/img/image5.jpg' %}', 'BCA 2022-2025 BATCH', ' ')" />
+                            </div>
+                            
+                            <!-- Dynamic Admin-Added Gallery Items -->
+                            {% for item in category.items.all %}
+                                {% if item.is_active %}
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:500 }}">
+                                        {% if item.image %}
+                                            <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                                                onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
+                                        {% else %}
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ item.title }}</h5>
+                                                    <p class="card-text">{{ item.description|truncatewords:20 }}</p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% elif category.slug == 'certifications' %}
+                        <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                        <div class="row">
+                            <!-- Original Hardcoded Certifications -->
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/cert1.jpg' %}" class="img-thumbnail" alt="Certification 1"
+                                    onclick="openModal('{% static 'assets/img/cert1.jpg' %}', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/cert2.jpg' %}" class="img-thumbnail" alt="Certification 2"
+                                    onclick="openModal('{% static 'assets/img/cert2.jpg' %}', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <img src="{% static 'assets/img/cert3.jpg' %}" class="img-thumbnail" alt="Certification 3"
+                                    onclick="openModal('{% static 'assets/img/cert3.jpg' %}', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/cert4.png' %}" class="img-thumbnail" alt="Certification 4"
+                                    onclick="openModal('{% static 'assets/img/cert4.png' %}', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/cert5.jpg' %}" class="img-thumbnail" alt="Certification 5"
+                                    onclick="openModal('{% static 'assets/img/cert5.jpg' %}', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <img src="{% static 'assets/img/cert6.jpg' %}" class="img-thumbnail" alt="Certification 6"
+                                    onclick="openModal('{% static 'assets/img/cert6.jpg' %}', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/cert7.jpg' %}" class="img-thumbnail" alt="Certification 7"
+                                    onclick="openModal('{% static 'assets/img/cert7.jpg' %}', 'Project Manager ROLE, LinkedIn', '')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/cert8.jpg' %}" class="img-thumbnail" alt="Certification 8"
+                                    onclick="openModal('{% static 'assets/img/cert8.jpg' %}', 'Python Foundation Certification', '')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <img src="{% static 'assets/img/cert9.jpg' %}" class="img-thumbnail" alt="Certification 9"
+                                    onclick="openModal('{% static 'assets/img/cert9.jpg' %}', 'Artificial Intelligence Fundamentals', '')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/cert10.jpg' %}" class="img-thumbnail" alt="Certification 10"
+                                    onclick="openModal('{% static 'assets/img/cert10.jpg' %}', 'ServiceNow IT Leadership', '')" />
+                            </div>
+                            
+                            <!-- Dynamic Admin-Added Certifications -->
+                            {% for item in category.items.all %}
+                                {% if item.is_active %}
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1000 }}">
+                                        {% if item.image %}
+                                            <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                                                onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
+                                        {% else %}
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ item.title }}</h5>
+                                                    <p class="card-text">{{ item.description|truncatewords:20 }}</p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% elif category.slug == 'hackathons' %}
+                        <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
+                        <div class="row">
+                            <!-- Original Hardcoded Hackathons -->
+                            <div class="col-md-4 mb-4" data-aos="fade-up">
+                                <img src="{% static 'assets/img/hack1.png' %}" class="img-thumbnail" alt="Hackathon 1"
+                                    onclick="openModal('{% static 'assets/img/hack1.png' %}', 'Hackathon 1', 'No Details Available.')" />
+                            </div>
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <img src="{% static 'assets/img/image-7.png' %}" class="img-thumbnail" alt="Hackathon 2" onclick="openHackathonDetailsModal(
+                                   'Google Solution Challenge 2025',
+                                   [
+                                       '{% static 'assets/img/image-7.png' %}',
+                                       '{% static 'assets/img/hack2.jpg' %}',
+                                       '{% static 'assets/img/hack2_detail1.jpg' %}',
+                                       '{% static 'assets/img/hack2_detail2.jpg' %}',
+                                       '{% static 'assets/img/hack2_detail3.jpg' %}'
+                                   ],
+                                   'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations\' 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
+                               )" />
+                            </div>
+                            
+                            <!-- Dynamic Admin-Added Hackathons -->
+                            {% for item in category.items.all %}
+                                {% if item.is_active %}
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:200 }}">
+                                        {% if item.image %}
+                                            <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                                                onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
+                                        {% else %}
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ item.title }}</h5>
+                                                    <p class="card-text">{{ item.description|truncatewords:20 }}</p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% elif category.slug == 'experience' %}
+                        <!-- Projects Section - Exact match to original static website -->
+                        {% for item in category.items.all %}
+                            {% if item.is_active %}
+                                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+                                    <div class="flex-grow-1">
+                                        <h3 class="mb-0">{{ item.title }}</h3>
+                                        <div class="subheading mb-3">{{ item.short_description }}</div>
+                                        <button class="play-video btn btn-primary" 
+                                                data-video-sd="{% if item.video %}{{ item.video.url }}{% elif item.title == 'Image Recognition System' %}{% static 'assets/videos/trial (2).mp4' %}{% elif item.title == 'Crypto Prediction' %}{% static 'assets/videos/crypto_prediction.mkv' %}{% elif item.title == 'Stock Price Prediction' %}{% static 'assets/videos/stock_price_prediction.mkv' %}{% elif item.title == 'Salary Prediction' %}{% static 'assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv' %}{% else %}{% static 'assets/videos/trial (2).mp4' %}{% endif %}"
+                                                data-video-hd="{% if item.video %}{{ item.video.url }}{% elif item.title == 'Image Recognition System' %}{% static 'assets/videos/trial (2).mp4' %}{% elif item.title == 'Crypto Prediction' %}{% static 'assets/videos/crypto_prediction.mkv' %}{% elif item.title == 'Stock Price Prediction' %}{% static 'assets/videos/stock_price_prediction.mkv' %}{% elif item.title == 'Salary Prediction' %}{% static 'assets/videos/2025-08-01 20-02-16 (online-video-cutter.com) (1).mkv' %}{% else %}{% static 'assets/videos/trial (2).mp4' %}{% endif %}">Play Demo</button>
+                                        <button class="open-modal btn btn-secondary" data-page="{% static 'details/' %}{% if item.title == 'Image Recognition System' %}page3.html{% elif item.title == 'Crypto Prediction' %}aboutp2.html{% elif item.title == 'Stock Price Prediction' %}aboutp3.html{% elif item.title == 'Salary Prediction' %}aboutp4.html{% else %}page3.html{% endif %}">View Details</button>
+                                        <button class="btn btn-info generate-summary" data-title="{{ item.title }}" data-tech="{{ item.short_description }}">✨ Generate Summary</button>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for item in category.items.all %}
+                            {% if item.is_active %}
+                                <div class="d-flex flex-column flex-md-row justify-content-between mb-5" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+                                    <div class="flex-grow-1">
+                                        <h3 class="mb-0">{{ item.title }}</h3>
+                                        {% if item.short_description %}
+                                            <div class="subheading mb-3">{{ item.short_description }}</div>
+                                        {% elif item.get_technologies_list %}
+                                            <div class="subheading mb-3">{{ item.get_technologies_list|join:", " }}</div>
+                                        {% endif %}
+                                        <p>{{ item.description }}</p>
+                                    </div>
+                                    {% if item.start_date or item.end_date %}
+                                        <div class="flex-shrink-0">
+                                            <span class="text-primary">
+                                                {% if item.start_date %}{{ item.start_date|date:"Y" }}{% endif %}
+                                                {% if item.end_date %} - {{ item.end_date|date:"Y" }}{% endif %}
+                                            </span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+            <hr class="m-0" />
+        {% endif %}
+    {% endfor %}
+
+    <!-- Contact Section -->
+    <section class="resume-section" id="contact">
+        <div class="resume-section-content">
+            <h2 class="mb-5" data-aos="fade-down">Contact Me</h2>
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-8 mx-auto">
+                    <h4 class="mb-4 text-center" data-aos="fade-up" data-aos-delay="100">Get In Touch</h4>
+                    <form id="contactForm" method="post">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <h5 class="mb-2">Name</h5>
+                            <div class="form-floating">
+                                <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />
+                                <label for="name">Full name</label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="mb-2">Email</h5>
+                            <div class="form-floating">
+                                <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." required />
+                                <label for="email">Email address</label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="mb-2">Phone</h5>
+                            <div class="form-floating">
+                                <input class="form-control" id="phone" name="phone" type="tel" placeholder="Enter your phone number..." />
+                                <label for="phone">Phone number</label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="mb-2">Message</h5>
+                            <div class="form-floating">
+                                <textarea class="form-control" id="message" name="message" placeholder="Enter your message here..." style="height: 10rem" required maxlength="1200"></textarea>
+                                <label for="message">Message (max 200 words)</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
+                    </form>
+                    <div id="form-status" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generic Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Image Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Modal Image" class="img-fluid">
+                    <p id="modalDescription" class="mt-3"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Project Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <iframe id="modalIframe" src="" style="width: 100%; height: 80vh;"></iframe>
+        </div>
+    </div>
+
+    <!-- Enhanced Video Modal Popup Box -->
+    <div id="videoModal" class="video-modal">
+        <span class="close-video">×</span>
+        <div class="video-container">
+            <video id="videoPlayer" class="video-modal-content" disablePictureInPicture controlsList="nodownload noplaybackrate">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="player-controls-wrapper">
+                <div class="progress-and-time-container">
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
+                </div>
+                <div class="video-controls">
+                    <button id="playPauseBtn">Play</button>
+                    <div class="control-group">
+                        <button id="skip10Btn">Skip +10s</button>
+                        <button id="skip20Btn">Skip +20s</button>
+                        <button id="skip30Btn">Skip +30s</button>
+                    </div>
+                    <div class="control-group">
+                        <button id="back10Btn">Back -10s</button>
+                        <button id="back20Btn">Back -20s</button>
+                        <button id="back30Btn">Back -30s</button>
+                    </div>
+                    <button id="muteBtn">Mute</button>
+                    <div id="qualitySelectorContainer" class="control-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Summary Modal -->
+    <div class="modal fade" id="geminiSummaryModal" tabindex="-1" aria-labelledby="geminiSummaryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="geminiSummaryModalLabel">✨ AI-Generated Project Summary</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body gemini-modal-body">
+                    <div id="geminiSpinner" class="spinner" style="display: none;"></div>
+                    <p id="geminiSummaryContent"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Internship Details Modal with PDF Viewer -->
+    <div class="modal fade" id="internshipModal" tabindex="-1" aria-labelledby="internshipModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="internshipModalLabel">Internship Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="internshipImage" src="" alt="Internship Image" class="img-fluid mb-3">
+                    <p id="internshipDescription"></p>
+                    <!-- PDF.js Viewer Container -->
+                    <div class="pdf-viewer-container">
+                        <div class="spinner" style="display: none;"></div>
+                        <canvas class="pdf-render"></canvas>
+                    </div>
+                    <div class="pdf-controls mt-2">
+                        <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                        <span class="page-num"></span> / <span class="page-count"></span>
+                        <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hackathon Details Modal -->
+    <div class="modal fade" id="hackathonDetailsModal" tabindex="-1" aria-labelledby="hackathonDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hackathonDetailsModalLabel">Hackathon Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="hackathonImages" class="row"></div>
+                    <p id="hackathonDescription" class="mt-3"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Modal with PDF Viewer -->
+    <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resumeModalLabel">My Resume</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="pdf-viewer-container">
+                        <div class="spinner" style="display: none;"></div>
+                        <canvas class="pdf-render"></canvas>
+                    </div>
+                    <div class="pdf-controls mt-2">
+                        <button class="btn btn-secondary prev-page"><i class="fas fa-arrow-left"></i></button>
+                        <span class="page-num"></span> / <span class="page-count"></span>
+                        <button class="btn btn-secondary next-page"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Global functions for onclick attributes - must be in global scope
+    function openModal(imgSrc, imgTitle, imgDescription) {
+        document.getElementById("modalImage").src = imgSrc;
+        document.getElementById("imageModalLabel").innerText = imgTitle;
+        document.getElementById("modalDescription").innerText = imgDescription;
+        const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
+        myModal.show();
+    }
+
+    function openResumeModal() {
+        const modalElement = document.getElementById('resumeModal');
+        const modal = new bootstrap.Modal(modalElement);
+        if (typeof resumeViewer !== 'undefined' && resumeViewer) {
+            resumeViewer.load('{% static "assets/pdf/resume.pdf" %}');
+        }
+        modal.show();
+    }
+
+    function openInternshipModal(imgSrc, title, pdfSrc, description) {
+        const modalElement = document.getElementById('internshipModal');
+        const modal = new bootstrap.Modal(modalElement);
+
+        modalElement.querySelector('#internshipImage').src = imgSrc;
+        modalElement.querySelector('#internshipModalLabel').innerText = title;
+        modalElement.querySelector('#internshipDescription').innerText = description;
+
+        if (typeof internshipViewer !== 'undefined' && internshipViewer) {
+            internshipViewer.load(pdfSrc);
+        }
+        modal.show();
+    }
+
+    function openHackathonDetailsModal(title, images, description) {
+        document.getElementById("hackathonDetailsModalLabel").innerText = title;
+        document.getElementById("hackathonDescription").innerText = description;
+
+        const imagesContainer = document.getElementById("hackathonImages");
+        imagesContainer.innerHTML = ''; // Clear previous images
+        images.forEach(src => {
+            const col = document.createElement("div");
+            col.className = "col-md-4 mb-3";
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "Hackathon Detail Image";
+            img.className = "img-fluid";
+            col.appendChild(img);
+            imagesContainer.appendChild(col);
+        });
+
+        const myModal = new bootstrap.Modal(document.getElementById('hackathonDetailsModal'));
+        myModal.show();
+    }
+
+    // Wait for DOM to be fully loaded before initializing
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize video player functionality
+        initializeVideoPlayer();
+        
+        // Initialize project details modal
+        initializeProjectDetailsModal();
+        
+        // Initialize AI summary functionality
+        initializeAISummary();
+    });
+
+    // Video Player Functionality
+    function initializeVideoPlayer() {
+        let currentVideoSources = {};
+        let currentQuality = 'sd';
+
+        const videoModal = document.getElementById('videoModal');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const closeVideo = document.querySelector('.close-video');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const qualitySelectorContainer = document.getElementById('qualitySelectorContainer');
+
+        // Play video button event listeners
+        document.querySelectorAll('.play-video').forEach(button => {
+            button.addEventListener('click', function () {
+                // Find all video sources from data attributes
+                currentVideoSources = {};
+                for (const attr of this.attributes) {
+                    if (attr.name.startsWith('data-video-')) {
+                        const quality = attr.name.replace('data-video-', '');
+                        currentVideoSources[quality] = attr.value;
+                    }
+                }
+
+                // Set default quality and source
+                currentQuality = 'sd';
+                const videoSrc = currentVideoSources[currentQuality];
+
+                if (videoSrc) {
+                    videoPlayer.src = videoSrc;
+                    populateQualitySelector();
+                    videoModal.style.display = 'flex';
+                    videoPlayer.play();
+                    updatePlayPauseButton();
+                    updateMuteButton();
+                } else {
+                    console.error("No default 'sd' video source found for this button.");
+                }
+            });
+        });
+
+        // Close video modal
+        if (closeVideo) {
+            closeVideo.addEventListener('click', () => {
+                videoModal.style.display = 'none';
+                videoPlayer.pause();
+                videoPlayer.src = '';
+                qualitySelectorContainer.innerHTML = '';
+                currentVideoSources = {};
+            });
+        }
+
+        // Play/Pause functionality
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', () => {
+                if (videoPlayer.paused) {
+                    videoPlayer.play();
+                } else {
+                    videoPlayer.pause();
+                }
+                updatePlayPauseButton();
+            });
+        }
+
+        // Mute functionality
+        if (muteBtn) {
+            muteBtn.addEventListener('click', () => {
+                videoPlayer.muted = !videoPlayer.muted;
+                updateMuteButton();
+            });
+        }
+
+        // Skip buttons
+        const skipTime = (amount) => {
+            if (videoPlayer.duration) {
+                videoPlayer.currentTime = Math.max(0, Math.min(videoPlayer.duration, videoPlayer.currentTime + amount));
+            }
+        };
+
+        document.getElementById('skip10Btn')?.addEventListener('click', () => skipTime(10));
+        document.getElementById('skip20Btn')?.addEventListener('click', () => skipTime(20));
+        document.getElementById('skip30Btn')?.addEventListener('click', () => skipTime(30));
+        document.getElementById('back10Btn')?.addEventListener('click', () => skipTime(-10));
+        document.getElementById('back20Btn')?.addEventListener('click', () => skipTime(-20));
+        document.getElementById('back30Btn')?.addEventListener('click', () => skipTime(-30));
+
+        // Video event listeners
+        if (videoPlayer) {
+            videoPlayer.addEventListener('play', updatePlayPauseButton);
+            videoPlayer.addEventListener('pause', updatePlayPauseButton);
+            videoPlayer.addEventListener('volumechange', updateMuteButton);
+
+            videoPlayer.addEventListener('timeupdate', () => {
+                const { currentTime, duration } = videoPlayer;
+                if (duration) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    if (progressBar) progressBar.style.width = `${progressPercent}%`;
+                    if (timeDisplay) timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+                }
+            });
+        }
+
+        // Progress bar seeking
+        if (progressContainer) {
+            let isSeeking = false;
+            const startSeek = (e) => { isSeeking = true; updateSeek(e); };
+            const stopSeek = () => { isSeeking = false; };
+            const updateSeek = (e) => {
+                if (!isSeeking || !videoPlayer.duration) return;
+                e.preventDefault();
+                const event = e.touches ? e.touches[0] : e;
+                const rect = progressContainer.getBoundingClientRect();
+                const newTime = ((event.clientX - rect.left) / progressContainer.clientWidth) * videoPlayer.duration;
+                videoPlayer.currentTime = Math.max(0, Math.min(newTime, videoPlayer.duration));
+            };
+
+            progressContainer.addEventListener('mousedown', startSeek);
+            document.addEventListener('mousemove', updateSeek);
+            document.addEventListener('mouseup', stopSeek);
+        }
+
+        function updatePlayPauseButton() {
+            if (playPauseBtn) playPauseBtn.textContent = videoPlayer.paused ? 'Play' : 'Pause';
+        }
+
+        function updateMuteButton() {
+            if (muteBtn) {
+                muteBtn.textContent = videoPlayer.muted ? 'Unmute' : 'Mute';
+                muteBtn.classList.toggle('muted', videoPlayer.muted);
+            }
+        }
+
+        function populateQualitySelector() {
+            qualitySelectorContainer.innerHTML = '';
+            Object.keys(currentVideoSources).forEach(quality => {
+                const qualityBtn = document.createElement('button');
+                qualityBtn.className = 'quality-btn';
+                qualityBtn.dataset.quality = quality;
+                qualityBtn.textContent = quality.toUpperCase();
+                qualityBtn.onclick = () => changeVideoQuality(quality);
+                qualitySelectorContainer.appendChild(qualityBtn);
+            });
+            updateActiveQualityButton();
+        }
+
+        function changeVideoQuality(newQuality) {
+            if (newQuality === currentQuality || !currentVideoSources[newQuality]) return;
+            const currentTime = videoPlayer.currentTime;
+            const isPaused = videoPlayer.paused;
+            currentQuality = newQuality;
+            videoPlayer.src = currentVideoSources[newQuality];
+            videoPlayer.addEventListener('loadeddata', () => {
+                videoPlayer.currentTime = currentTime;
+                if (!isPaused) videoPlayer.play();
+                updateActiveQualityButton();
+            }, { once: true });
+        }
+
+        function updateActiveQualityButton() {
+            document.querySelectorAll('.quality-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.quality === currentQuality);
+            });
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "00:00";
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+    }
+
+    // Project Details Modal Functionality
+    function initializeProjectDetailsModal() {
+        const detailsModal = document.getElementById('detailsModal');
+        const iframe = document.getElementById('modalIframe');
+        const span = document.getElementsByClassName('close')[0];
+
+        document.querySelectorAll('.open-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                const page = button.getAttribute('data-page');
+                iframe.src = page;
+                detailsModal.style.display = 'block';
+            });
+        });
+
+        if (span) {
+            span.addEventListener('click', function() {
+                detailsModal.style.display = 'none';
+                iframe.src = '';
+            });
+        }
+
+        window.addEventListener('click', function(event) {
+            if (event.target == detailsModal) {
+                detailsModal.style.display = 'none';
+                iframe.src = '';
+            }
+        });
+    }
+
+    // AI Summary Functionality
+    function initializeAISummary() {
+        const geminiModal = new bootstrap.Modal(document.getElementById('geminiSummaryModal'));
+        const geminiSpinner = document.getElementById('geminiSpinner');
+        const geminiContent = document.getElementById('geminiSummaryContent');
+
+        document.querySelectorAll('.generate-summary').forEach(button => {
+            button.addEventListener('click', async function () {
+                const projectTitle = this.dataset.title;
+                const projectTech = this.dataset.tech;
+
+                geminiContent.textContent = '';
+                geminiSpinner.style.display = 'block';
+                geminiModal.show();
+
+                const prompt = `Generate a professional, one-paragraph project summary for a developer's portfolio. The project is titled "${projectTitle}" and uses the following technologies: ${projectTech}. The summary should be concise, highlight the project's purpose and the technologies used, and be engaging for potential employers.`;
+                
+                try {
+                    const summary = await callGeminiAPI(prompt);
+                    geminiSpinner.style.display = 'none';
+                    geminiContent.textContent = summary;
+                } catch (error) {
+                    geminiSpinner.style.display = 'none';
+                    geminiContent.textContent = "Sorry, I couldn't generate a summary at this moment. Please try again later.";
+                }
+            });
+        });
+
+        async function callGeminiAPI(prompt, maxRetries = 3) {
+            const apiKey = "AIzaSyBYbmBSicVfWFMTGSfnKkIyLPCfxZyZEIc";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+
+            const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+            let attempt = 0;
+            while (attempt < maxRetries) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                    const result = await response.json();
+                    if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error("Invalid response structure from Gemini API");
+                    }
+                } catch (error) {
+                    console.error(`Attempt ${attempt + 1} failed:`, error);
+                    attempt++;
+                    if (attempt >= maxRetries) {
+                        return "Sorry, I couldn't generate a summary at this moment. Please try again later.";
+                    }
+                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+                }
+            }
+        }
+    }
+
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const statusDiv = document.getElementById('form-status');
+        
+        fetch('', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                statusDiv.innerHTML = '<div class="alert alert-success">' + data.message + '</div>';
+                this.reset();
+            } else {
+                statusDiv.innerHTML = '<div class="alert alert-danger">Please correct the errors and try again.</div>';
+            }
+        })
+        .catch(error => {
+            statusDiv.innerHTML = '<div class="alert alert-danger">An error occurred. Please try again.</div>';
+        });
+    });
+</script>
+{% endblock %}
