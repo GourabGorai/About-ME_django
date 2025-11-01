@@ -3,6 +3,7 @@ services:
     name: portfolio-django
     env: python
     buildCommand: "./build.sh"
+    startCommand: "gunicorn portfolio.wsgi:application"
     plan: free
     envVars:
       - key: SECRET_KEY
@@ -13,6 +14,7 @@ services:
         value: "*"
       - key: DJANGO_SETTINGS_MODULE
         value: "portfolio.settings"
+    staticPublishPath: ./staticfiles
 
 databases:
   - name: portfolio-db
