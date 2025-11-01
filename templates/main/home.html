@@ -88,24 +88,10 @@
                     {% elif category.slug == 'internships' %}
                         <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                         <div class="row">
-                            <!-- Original Hardcoded Internships -->
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/intern1.jpg' %}" class="img-thumbnail" alt="Internship 1"
-                                    onclick="openInternshipModal('{% static 'assets/img/intern1.jpg' %}', 'Internship at Techsaksham (a joint CSR initiative of Microsoft & SAP)', '{% static 'assets/pdf/intern1.pdf' %}', 'This internship focused on advanced Machine Learning and AI. Project Topic: Implementation of ML model for image classification. Verification Link: https://techsaksham.org/verify-aicte-certificate/TSPIN24_601881')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/intern2.jpg' %}" class="img-thumbnail" alt="Internship 2"
-                                    onclick="openInternshipModal('{% static 'assets/img/intern2.jpg' %}', 'Internship at Deloitte and Forage', '{% static 'assets/pdf/intern2.pdf' %}', 'Deloitte Australia Technology Job Simulation on Forage - March 2025. Completed a job simulation involving development and coding. Wrote a proposal for creating a dashboard')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{% static 'assets/img/intern3.jpg' %}" class="img-thumbnail" alt="Internship 3"
-                                    onclick="openInternshipModal('{% static 'assets/img/intern3.jpg' %}', 'Internship at Edunet Foundation in collaboration with IBM SkillBuild', '{% static 'assets/pdf/intern3.pdf' %}', 'This internship focused on advanced Machine Learning and AI. Project Topic: Employee Salary Prediction.')" />
-                            </div>
-                            
                             <!-- Dynamic Admin-Added Internships -->
                             {% for item in category.items.all %}
                                 {% if item.is_active %}
-                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:300 }}">
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
                                         {% if item.image and item.pdf_file %}
                                             <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
                                                 onclick="openInternshipModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.pdf_file.url }}', '{{ item.description|escapejs }}')" />
@@ -127,32 +113,10 @@
                     {% elif category.slug == 'gallery' %}
                         <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                         <div class="row">
-                            <!-- Original Hardcoded Gallery Items -->
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/image1.jpg' %}" class="img-thumbnail" alt="Image 1"
-                                    onclick="openModal('{% static 'assets/img/image1.jpg' %}', 'Scholar Merchandise', ' ')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/image2.jpg' %}" class="img-thumbnail" alt="Image 2"
-                                    onclick="openModal('{% static 'assets/img/image2.jpg' %}', 'NIIT Industrial Training Batch 2024', ' ')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{% static 'assets/img/image3.jpg' %}" class="img-thumbnail" alt="Image 3"
-                                    onclick="openModal('{% static 'assets/img/image3.jpg' %}', 'Anti-Ragging Ceremony', ' ')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/image4.jpg' %}" class="img-thumbnail" alt="Image 4"
-                                    onclick="openModal('{% static 'assets/img/image4.jpg' %}', 'Selection Letter of RF Scholarship', ' ')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/image5.jpg' %}" class="img-thumbnail" alt="Image 5"
-                                    onclick="openModal('{% static 'assets/img/image5.jpg' %}', 'BCA 2022-2025 BATCH', ' ')" />
-                            </div>
-                            
                             <!-- Dynamic Admin-Added Gallery Items -->
                             {% for item in category.items.all %}
                                 {% if item.is_active %}
-                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:500 }}">
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
                                         {% if item.image %}
                                             <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
                                                 onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
@@ -171,52 +135,10 @@
                     {% elif category.slug == 'certifications' %}
                         <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                         <div class="row">
-                            <!-- Original Hardcoded Certifications -->
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/cert1.jpg' %}" class="img-thumbnail" alt="Certification 1"
-                                    onclick="openModal('{% static 'assets/img/cert1.jpg' %}', 'INDUSTRIAL TRAINING ON MACHINE LEARNING', 'This certification demonstrates completion of an industrial training program focused on Machine Learning. It covers foundational techniques and tools essential for ML development.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/cert2.jpg' %}" class="img-thumbnail" alt="Certification 2"
-                                    onclick="openModal('{% static 'assets/img/cert2.jpg' %}', 'APPLIED ML COURSE', 'This certificate was awarded for completing an Applied Machine Learning course offered by Reliance Foundation Skilling Academy. It includes hands-on projects and practical ML applications.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{% static 'assets/img/cert3.jpg' %}" class="img-thumbnail" alt="Certification 3"
-                                    onclick="openModal('{% static 'assets/img/cert3.jpg' %}', 'FRONT-END WEB DEVELOPMENT', 'This certificate from Reliance Foundation Skilling Academy reflects skills in Front-End Web Development, including HTML, CSS, and JavaScript fundamentals.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/cert4.png' %}" class="img-thumbnail" alt="Certification 4"
-                                    onclick="openModal('{% static 'assets/img/cert4.png' %}', 'NAUKRI CAMPUS YOUNG TURKS MERIT CERTIFICATE', 'This certificate of merit was awarded as part of the Naukri Campus Young Turks program, recognizing excellence in specific technical and career-related skills.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/cert5.jpg' %}" class="img-thumbnail" alt="Certification 5"
-                                    onclick="openModal('{% static 'assets/img/cert5.jpg' %}', 'BASICS OF PYTHON', 'This certification from Infosys Springboard demonstrates foundational Python skills, covering essential programming concepts and problem-solving techniques.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{% static 'assets/img/cert6.jpg' %}" class="img-thumbnail" alt="Certification 6"
-                                    onclick="openModal('{% static 'assets/img/cert6.jpg' %}', 'CYBER SECURITY', 'This certification from RELIANCE FOUNDATION demonstrates foundational CYBER SECURITY CONCEPTS.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/cert7.jpg' %}" class="img-thumbnail" alt="Certification 7"
-                                    onclick="openModal('{% static 'assets/img/cert7.jpg' %}', 'Project Manager ROLE, LinkedIn', '')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/cert8.jpg' %}" class="img-thumbnail" alt="Certification 8"
-                                    onclick="openModal('{% static 'assets/img/cert8.jpg' %}', 'Python Foundation Certification', '')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{% static 'assets/img/cert9.jpg' %}" class="img-thumbnail" alt="Certification 9"
-                                    onclick="openModal('{% static 'assets/img/cert9.jpg' %}', 'Artificial Intelligence Fundamentals', '')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/cert10.jpg' %}" class="img-thumbnail" alt="Certification 10"
-                                    onclick="openModal('{% static 'assets/img/cert10.jpg' %}', 'ServiceNow IT Leadership', '')" />
-                            </div>
-                            
                             <!-- Dynamic Admin-Added Certifications -->
                             {% for item in category.items.all %}
                                 {% if item.is_active %}
-                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1000 }}">
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
                                         {% if item.image %}
                                             <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
                                                 onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
@@ -235,29 +157,10 @@
                     {% elif category.slug == 'hackathons' %}
                         <div class="subheading mb-5" data-aos="fade-in">Click on the images for more details.</div>
                         <div class="row">
-                            <!-- Original Hardcoded Hackathons -->
-                            <div class="col-md-4 mb-4" data-aos="fade-up">
-                                <img src="{% static 'assets/img/hack1.png' %}" class="img-thumbnail" alt="Hackathon 1"
-                                    onclick="openModal('{% static 'assets/img/hack1.png' %}', 'Hackathon 1', 'No Details Available.')" />
-                            </div>
-                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <img src="{% static 'assets/img/image-7.png' %}" class="img-thumbnail" alt="Hackathon 2" onclick="openHackathonDetailsModal(
-                                   'Google Solution Challenge 2025',
-                                   [
-                                       '{% static 'assets/img/image-7.png' %}',
-                                       '{% static 'assets/img/hack2.jpg' %}',
-                                       '{% static 'assets/img/hack2_detail1.jpg' %}',
-                                       '{% static 'assets/img/hack2_detail2.jpg' %}',
-                                       '{% static 'assets/img/hack2_detail3.jpg' %}'
-                                   ],
-                                   'The Google Solution Challenge 2025 is an annual global competition organized by Google Developer Student Clubs (GDSC), inviting university students to develop innovative solutions to real-world problems using Google technologies. The primary mission is to address one or more of the United Nations\' 17 Sustainable Development Goals (SDGs), which range from ending poverty and ensuring quality education to promoting climate action and gender equality.'
-                               )" />
-                            </div>
-                            
                             <!-- Dynamic Admin-Added Hackathons -->
                             {% for item in category.items.all %}
                                 {% if item.is_active %}
-                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:200 }}">
+                                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
                                         {% if item.image %}
                                             <img src="{{ item.image.url }}" class="img-thumbnail" alt="{{ item.title }}"
                                                 onclick="openModal('{{ item.image.url }}', '{{ item.title }}', '{{ item.description|escapejs }}')" />
