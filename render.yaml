@@ -3,7 +3,7 @@ services:
     name: portfolio-django
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn portfolio.wsgi:application"
+    startCommand: "./start.sh"
     plan: free
     envVars:
       - key: PYTHON_VERSION
@@ -18,6 +18,10 @@ services:
         value: true
       - key: DJANGO_LOG_LEVEL
         value: INFO
+      - key: DJANGO_SETTINGS_MODULE
+        value: portfolio.settings
+      - key: PYTHONPATH
+        value: /opt/render/project/src
 
 databases:
   - name: portfolio-db
