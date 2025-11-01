@@ -121,9 +121,21 @@ WHITENOISE_AUTOREFRESH = True
 WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br']
 WHITENOISE_MAX_AGE = 31536000  # 1 year
 
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# Media files configuration
+if DEBUG:
+    # Development configuration
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+else:
+    # Production configuration - serve media files from static directory
+    MEDIA_URL = '/static/media/'
+    MEDIA_ROOT = BASE_DIR / 'static' / 'media'
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    
+    # Ensure media directory exists in static folder
+    import os
+    os.makedirs(MEDIA_ROOT, exist_ok=True)
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
