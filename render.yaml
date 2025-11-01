@@ -3,25 +3,16 @@ services:
     name: portfolio-django
     env: python
     buildCommand: "./build.sh"
-    startCommand: "./start.sh"
     plan: free
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.0
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
-        value: false
+        value: "False"
       - key: ALLOWED_HOSTS
         value: "*"
-      - key: SECURE_SSL_REDIRECT
-        value: true
-      - key: DJANGO_LOG_LEVEL
-        value: INFO
       - key: DJANGO_SETTINGS_MODULE
-        value: portfolio.settings
-      - key: PYTHONPATH
-        value: /opt/render/project/src
+        value: "portfolio.settings"
 
 databases:
   - name: portfolio-db
