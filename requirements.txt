@@ -3,5 +3,5 @@ Pillow
 python-decouple
 gunicorn
 whitenoise
-psycopg2-binary
+psycopg2
 dj-database-url
