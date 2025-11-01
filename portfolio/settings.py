@@ -17,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-producti
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # ALLOWED_HOSTS configuration
-allowed_hosts_str = config('ALLOWED_HOSTS', default='localhost,127.0.0.1')
+allowed_hosts_str = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,about-me-django.onrender.com')
 if allowed_hosts_str == '*':
     ALLOWED_HOSTS = ['*']
 else:
